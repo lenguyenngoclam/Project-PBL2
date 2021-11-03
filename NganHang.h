@@ -8,26 +8,26 @@ using namespace std;
 class NganHang{
     private :
         string idNganHang;
-        string tenNganHang;
-        string diaChiNganHang;
+        string TenNganHang;
+        string DiaChiNganHang;
     public :
         static int s_id;
         NganHang();
-        NganHang(string ten, string diaChi);
+        NganHang(string ten, string diachi);
         NganHang(const NganHang& nh);
         NganHang& operator=(const NganHang& nh);
 
-        //Relational operator overloading
-        bool operator>(const NganHang& nh) const;
-        bool operator==(const NganHang& nh) const;
-        bool operator<(const NganHang& nh) const;
-        bool operator!=(const NganHang& nh) const;
+        // Relational operator overloading
+        bool operator >(const NganHang& nh) const;
+        bool operator ==(const NganHang& nh) const;
+        bool operator <(const NganHang& nh) const;
+        bool operator !=(const NganHang& nh) const;
 
         ~NganHang() = default;
 
-        static void caiDatID();
-        bool dangNhapTaiKhoan(); 
-        friend ostream& operator<<(ostream& os, const NganHang& nh);
+        static void CaiDatID();
+        bool DangNhapTaiKhoan(); 
+        friend ostream& operator <<(ostream& os, const NganHang& nh);
 };
 
 class DanhSachNganHang{
@@ -37,16 +37,16 @@ class DanhSachNganHang{
         DanhSachNganHang() = default;
         ~DanhSachNganHang() = default;
 
-        void themNganHang();
-        void layThongTinNganHang(string t, string dc);
-        void inNganHang();
-        void xoaTaiKhoan();
-        void themTaiKhoan();
+        void ThemNganHang();
+        void LayThongTinNganHang(string t, string dc);
+        void InNganHang();
+        void XoaTaiKhoan();
+        void ThemTaiKhoan();
 };
 
 ostream& operator<<(ostream& os, const NganHang& nh){
-    os << "Ten Ngan Hang : " << nh.tenNganHang << endl;
-    os << "Dia chi Ngan Hang : " << nh.diaChiNganHang << endl;
+    os << "Ten Ngan Hang : " << nh.TenNganHang << endl;
+    os << "Dia chi Ngan Hang : " << nh.DiaChiNganHang << endl;
     return os;
 }
 #endif
