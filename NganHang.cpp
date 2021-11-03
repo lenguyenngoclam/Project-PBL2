@@ -7,60 +7,71 @@ using namespace std;
 //Constructor of NganHang class
 int NganHang::s_id = 1;
 
-void NganHang::caiDatID(){
+void NganHang::CaiDatID(){
     NganHang::s_id++;
 }
-NganHang::NganHang() : tenNganHang(""), diaChiNganHang(""){
+
+NganHang::NganHang() : TenNganHang(""), DiaChiNganHang(""){
     idNganHang = "NH" + to_string(NganHang::s_id);
-    caiDatID();
+    CaiDatID();
 }
-NganHang::NganHang(string t, string dc) : idNganHang("NH" + to_string(s_id)), tenNganHang(t), diaChiNganHang(dc){
-    caiDatID();
+
+NganHang::NganHang(string t, string dc) : idNganHang("NH" + to_string(s_id)), TenNganHang(t), DiaChiNganHang(dc){
+    CaiDatID();
 }
-NganHang::NganHang(const NganHang& nh) : idNganHang("NH" + to_string(s_id)), tenNganHang(nh.tenNganHang), diaChiNganHang(nh.diaChiNganHang){
-    caiDatID();
+
+NganHang::NganHang(const NganHang& nh) : idNganHang("NH" + to_string(s_id)), TenNganHang(nh.TenNganHang), DiaChiNganHang(nh.DiaChiNganHang){
+    CaiDatID();
 }
+
 NganHang& NganHang::operator=(const NganHang& nh){
-    idNganHang = s_id;
-    tenNganHang = nh.tenNganHang;
-    diaChiNganHang = nh.diaChiNganHang;
-    caiDatID();
+    idNganHang = "NH" + to_string(s_id);
+    TenNganHang = nh.TenNganHang;
+    DiaChiNganHang = nh.DiaChiNganHang;
+    CaiDatID();
     return (*this);
 }
 
 //Relational operator overloading of NganHang class
-bool NganHang::operator==(const NganHang& nh) const{
-    return (tenNganHang == nh.tenNganHang) && (diaChiNganHang == nh.diaChiNganHang);
+bool NganHang::operator ==(const NganHang& nh) const{
+    return (TenNganHang == nh.TenNganHang) && (DiaChiNganHang == nh.DiaChiNganHang);
 }
-bool NganHang::operator!=(const NganHang& nh) const{
-    return (idNganHang != nh.idNganHang) && (tenNganHang != nh.tenNganHang) && (diaChiNganHang != nh.diaChiNganHang);
+
+bool NganHang::operator !=(const NganHang& nh) const{
+    return (idNganHang != nh.idNganHang) && (TenNganHang != nh.TenNganHang) && (DiaChiNganHang != nh.DiaChiNganHang);
 }
-bool NganHang::operator>(const NganHang& nh) const{
+
+bool NganHang::operator >(const NganHang& nh) const{
     int t1 = stoi(idNganHang.substr(idNganHang.size() - 3,3)), 
         t2 = stoi((nh.idNganHang).substr(nh.idNganHang.size() - 3, 3));
     return (t1 > t2);
 }
-bool NganHang::operator<(const NganHang& nh) const{
+
+bool NganHang::operator <(const NganHang& nh) const{
     int t1 = stoi(idNganHang.substr(idNganHang.size() - 3,3)), 
         t2 = stoi((nh.idNganHang).substr(nh.idNganHang.size() - 3, 3));
     return (t1 < t2);
 }
 
 //DanhSachNganHang member function 
-void DanhSachNganHang::themTaiKhoan(){
+void DanhSachNganHang::ThemTaiKhoan(){
 
 }
-void DanhSachNganHang::xoaTaiKhoan(){
+
+void DanhSachNganHang::XoaTaiKhoan(){
 
 }
-void DanhSachNganHang::themNganHang(){
+
+void DanhSachNganHang::ThemNganHang(){
     NganHang nh1("BIDV","Da Nang");
     ls.insert(nh1);
 }
-void DanhSachNganHang::layThongTinNganHang(string t, string dc){
+
+void DanhSachNganHang::LayThongTinNganHang(string t, string dc){
     NganHang nh(t,dc);
     ls.getInfo(nh);
 }
-void DanhSachNganHang::inNganHang(){
+
+void DanhSachNganHang::InNganHang(){
     ls.printList();
 }
