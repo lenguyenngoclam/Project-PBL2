@@ -1,6 +1,7 @@
 #ifndef KhachHang_h
 #define KhachHang_h
 
+//Testing
 #include <iostream>
 #include <string>
 #include "ThongTinCaNhan.h"
