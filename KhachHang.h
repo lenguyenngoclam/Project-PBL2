@@ -27,6 +27,7 @@ class KhachHang{
     public :
         void moTaiKhoan();
         void dongTaiKhoan();
+        void taoATM(); // Chuc nang de dky the atm luc mo tai khoan
         void taoOnlineBanking();
         void xemSoDu();
 };
