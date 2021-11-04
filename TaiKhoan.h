@@ -13,5 +13,6 @@ class TaiKhoan{
         virtual ~TaiKhoan();
         virtual void datMatKhau() = 0;
         virtual void datTenDangNhap() = 0;
+        virtual void doiMatKhau() = 0;
 };
 #endif

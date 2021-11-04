@@ -6,7 +6,6 @@
 #include <string>
 #include "ThongTinCaNhan.h"
 #include "TaiKhoan.h"
-
 using namespace std;
 
 class TheATM{
@@ -18,6 +17,8 @@ class TheATM{
         void napTien(double soTien);
         void rutTien();
         void xemSoDu();
+        void datMatKhau();
+        void doiMatKhau();
 };
 
 class KhachHang{
@@ -25,7 +26,11 @@ class KhachHang{
         static int idKhachHang;
         TheATM theATM;
     public :
+        void moTaiKhoan();
         void dongTaiKhoan();
+        void taoATM(); // Chuc nang de dky the atm luc mo tai khoan
+        void taoOnlineBanking();
+        void xemSoDu();
 };
 
 class OnlineBanking : public TaiKhoan{
@@ -36,6 +41,7 @@ class OnlineBanking : public TaiKhoan{
         ~OnlineBanking() override = default;
         void datMatKhau() override;
         void datTenDangNhap() override;
+        void doiMatKhau() override;
 };
 
 #endif
