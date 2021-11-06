@@ -8,13 +8,15 @@ using namespace std;
 
 class ThongTinCaNhan{
     protected :
-        string hoTen;
-        string diaChi;
-        string soDienThoai;
-        int tuoi;
+        string HoTen;
+        string DiaChi;
+        string SoDienThoai;
+        int Tuoi;
     public :
-        ThongTinCaNhan(string, string, string);
-        virtual ~ThongTinCaNhan();
-        void layThongTinCaNhan();
+        ThongTinCaNhan(string = "",string = "",string = "",int = 19);
+        virtual ~ThongTinCaNhan() {}
+        void LayThongTinCaNhan();
+        void NhapThongTinCaNhan();
+        void DoiThongTinCaNhan();
 };
 #endif

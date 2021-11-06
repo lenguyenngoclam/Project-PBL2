@@ -11,8 +11,8 @@ class TaiKhoan{
     public :    
         TaiKhoan() = default;
         virtual ~TaiKhoan();
-        virtual void datMatKhau() = 0;
-        virtual void datTenDangNhap() = 0;
-        virtual void doiMatKhau() = 0;
+        virtual void DatMatKhau() = 0;
+        virtual void DatTenDangNhap() = 0;
+        virtual void DoiMatKhau() = 0;
 };
 #endif

@@ -6,14 +6,15 @@
 #include "ThongTinCaNhan.h"
 
 using namespace std;
+
 class NhanVien : public ThongTinCaNhan{
     private :
         static string idNhanVien;
     public :
         NhanVien(string hoten, string diachi, string sodienthoai, int tuoi);
         ~NhanVien() override = default;
-        void layThongTin();
-        void caiDatThongTin();
+        void LayThongTin();
+        void CaiDatThongTin();
 };
 
 class TaiKhoanNhanVien : public TaiKhoan{
@@ -22,8 +23,8 @@ class TaiKhoanNhanVien : public TaiKhoan{
     public :
         TaiKhoanNhanVien();
         ~TaiKhoanNhanVien() override = default;
-        void datMatKhau() override;
-        void datTenDangNhap() override;
+        void DatMatKhau() override;
+        void DatTenDangNhap() override;
 };
 
 #endif
