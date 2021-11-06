@@ -10,38 +10,38 @@ using namespace std;
 
 class TheATM{
     private :
-        static string maSoThe;
-        string matKhau;
-        string maTaiKhoan;
+        static string MaSoThe;
+        string MatKhau;
+        string MaTaiKhoan;
     public :    
-        void napTien(double soTien);
-        void rutTien();
-        void xemSoDu();
-        void datMatKhau();
-        void doiMatKhau();
+        void NapTien(double soTien);
+        void RutTien();
+        void XemSoDu();
+        void DatMatKhau();
+        void DoiMatKhau();
 };
 
 class KhachHang{
     private :
         static int idKhachHang;
-        TheATM theATM;
+        TheATM TheATM;
     public :
-        void moTaiKhoan();
-        void dongTaiKhoan();
-        void taoATM(); // Chuc nang de dky the atm luc mo tai khoan
-        void taoOnlineBanking();
-        void xemSoDu();
+        void MoTaiKhoan();
+        void DongTaiKhoan();
+        void TaoATM(); // Chuc nang de dky the atm luc mo tai khoan
+        void TaoOnlineBanking();
+        void XemSoDu();
 };
 
 class OnlineBanking : public TaiKhoan{
     private :   
-        KhachHang khachHang;
+        KhachHang KhachHang;
     public :
         OnlineBanking() = default;
         ~OnlineBanking() override = default;
-        void datMatKhau() override;
-        void datTenDangNhap() override;
-        void doiMatKhau() override;
+        void DatMatKhau() override;
+        void DatTenDangNhap() override;
+        void DoiMatKhau() override;
 };
 
 #endif

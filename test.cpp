@@ -7,8 +7,8 @@ using namespace std;
 
 int main(){
     DanhSachNganHang ds;
-    ds.themNganHang();
-    ds.inNganHang();
+    ds.ThemNganHang();
+    ds.InNganHang();
 
     return 0;
 }
