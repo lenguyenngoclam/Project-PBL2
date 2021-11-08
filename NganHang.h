@@ -5,6 +5,8 @@
 
 using namespace std;
 
+class DanhSachNganHang;
+
 class NganHang{
     private :
         string idNganHang;
@@ -28,6 +30,7 @@ class NganHang{
         static void CaiDatID();
         bool DangNhapTaiKhoan(); 
         friend ostream& operator <<(ostream& os, const NganHang& nh);
+        friend class DanhSachNganHang;
 };
 
 class DanhSachNganHang{
@@ -40,11 +43,11 @@ class DanhSachNganHang{
         void ThemNganHang();
         void LayThongTinNganHang(string t, string dc);
         void InNganHang();
-        void XoaTaiKhoan();
-        void ThemTaiKhoan();
 };
 
 ostream& operator<<(ostream& os, const NganHang& nh){
+    if(nh.TenNganHang == "" && nh.DiaChiNganHang == "")
+        return os;
     os << "Ten Ngan Hang : " << nh.TenNganHang << endl;
     os << "Dia chi Ngan Hang : " << nh.DiaChiNganHang << endl;
     return os;

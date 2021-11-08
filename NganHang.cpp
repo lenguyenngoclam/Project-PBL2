@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string.h>
+#include <fstream>
 #include "NganHang.h"
 
 using namespace std;
@@ -38,33 +39,27 @@ bool NganHang::operator ==(const NganHang& nh) const{
 }
 
 bool NganHang::operator !=(const NganHang& nh) const{
-    return (idNganHang != nh.idNganHang) && (TenNganHang != nh.TenNganHang) && (DiaChiNganHang != nh.DiaChiNganHang);
+    return (idNganHang != nh.idNganHang);
 }
-
 bool NganHang::operator >(const NganHang& nh) const{
-    int t1 = stoi(idNganHang.substr(idNganHang.size() - 3,3)), 
-        t2 = stoi((nh.idNganHang).substr(nh.idNganHang.size() - 3, 3));
-    return (t1 > t2);
+    return (idNganHang > nh.idNganHang);
 }
 
 bool NganHang::operator <(const NganHang& nh) const{
-    int t1 = stoi(idNganHang.substr(idNganHang.size() - 3,3)), 
-        t2 = stoi((nh.idNganHang).substr(nh.idNganHang.size() - 3, 3));
-    return (t1 < t2);
+    return (idNganHang < nh.idNganHang); 
 }
 
 //DanhSachNganHang member function 
-void DanhSachNganHang::ThemTaiKhoan(){
-
-}
-
-void DanhSachNganHang::XoaTaiKhoan(){
-
-}
-
 void DanhSachNganHang::ThemNganHang(){
-    NganHang nh1("BIDV","Da Nang");
-    ls.insert(nh1);
+    ifstream fin;
+    fin.open("NGANHANG.txt",ios::in);
+    while(!fin.eof()){
+        NganHang temp;
+        getline(fin,temp.TenNganHang);
+        getline(fin, temp.DiaChiNganHang);
+        ls.insert(temp);
+    }
+    fin.close();
 }
 
 void DanhSachNganHang::LayThongTinNganHang(string t, string dc){

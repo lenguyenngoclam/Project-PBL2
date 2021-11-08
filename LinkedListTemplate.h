@@ -58,7 +58,7 @@ class LinkedList{
         void printList(){
             Node<T> *current = *head_ref;
             while(current != NULL){
-                cout << current -> getData() << " ";
+                cout << current -> getData();
                 current = current -> getNext();
             }
         }
