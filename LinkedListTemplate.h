@@ -14,7 +14,7 @@ class Node{
         void setData(T new_data){
             data = new_data;
         }
-
+        
         Node<T>* &getNext(){
             return next;
         }
