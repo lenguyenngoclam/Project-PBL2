@@ -41,6 +41,7 @@ class LinkedList{
         void insert(T data){
             Node<T> *new_node = new Node<T>;
             new_node -> setData(data);
+
             if((*head_ref) == NULL || (*head_ref) -> getData() > data){
                 new_node -> getNext() = (*head_ref);
                 (*head_ref) = new_node;
