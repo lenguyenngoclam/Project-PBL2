@@ -3,19 +3,40 @@
 
 #include <iostream>
 #include "TaiKhoan.h"
-#include "ThongTinCaNhan.h"
+#include "ThongTinCaNhan.cpp"
+#include "LinkedListTemplate.h"
 
 using namespace std;
 
+class DanhSachNhanVien;
+
 class NhanVien : public ThongTinCaNhan{
     private :
-        static string idNhanVien;
+        string idNhanVien;
     public :
-        NhanVien(string hoten, string diachi, string sodienthoai, int tuoi);
+
+        NhanVien() {
+            ThongTinCaNhan();
+        }
+        NhanVien(string id, string hoten, string diachi, string sodienthoai, string tuoi);
+
         ~NhanVien() override = default;
-        void LayThongTin();
+
+        NhanVien(const NhanVien& nv);
+        NhanVien& operator=(const NhanVien& nv);
+
+        void LayThongTinCaNhan() const override;
+        void DoiThongTinCaNhan() override;
         void CaiDatThongTin();
+
+        bool operator <(const NhanVien& rhs) const;
+        bool operator >(const NhanVien& rhs) const;
+        bool operator != (const NhanVien& rhs) const;
+
+        friend class DanhSachNhanVien;
+        friend ostream& operator<<(ostream& os, const NhanVien& nv);
 };
+
 
 class TaiKhoanNhanVien : public TaiKhoan{
     private :
@@ -26,5 +47,21 @@ class TaiKhoanNhanVien : public TaiKhoan{
         void DatMatKhau() override;
         void DatTenDangNhap() override;
 };
+
+
+class DanhSachNhanVien : public NhanVien{
+    private :
+        LinkedList<NhanVien> ls;
+    public :
+        DanhSachNhanVien() = default;
+        ~DanhSachNhanVien() = default;
+
+        void caiDatDanhSach();
+        void inDanhSach();
+        Node<NhanVien>* getHead();
+
+        friend class NhanVien;
+};
+
 
 #endif
