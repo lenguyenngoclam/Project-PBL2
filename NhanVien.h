@@ -31,10 +31,10 @@ class NhanVien : public ThongTinCaNhan{
 
         bool operator <(const NhanVien& rhs) const;
         bool operator >(const NhanVien& rhs) const;
-        bool operator != (const NhanVien& rhs) const;
+        bool operator !=(const NhanVien& rhs) const;
 
         friend class DanhSachNhanVien;
-        friend ostream& operator<<(ostream& os, const NhanVien& nv);
+        friend ostream& operator <<(ostream& os, const NhanVien& nv);
 };
 
 
@@ -49,15 +49,15 @@ class TaiKhoanNhanVien : public TaiKhoan{
 };
 
 
-class DanhSachNhanVien : public NhanVien{
+class DanhSachNhanVien{
     private :
         LinkedList<NhanVien> ls;
     public :
         DanhSachNhanVien() = default;
         ~DanhSachNhanVien() = default;
 
-        void caiDatDanhSach();
-        void inDanhSach();
+        void CaiDatDanhSach();
+        void InDanhSach();
         Node<NhanVien>* getHead();
 
         friend class NhanVien;

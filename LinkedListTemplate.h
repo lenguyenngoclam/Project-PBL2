@@ -1,3 +1,5 @@
+#ifndef LinkedListTemplate_h
+#define LinkedListTemplate_h
 #include <iostream>
 #include <string>
 using namespace std;
@@ -120,7 +122,7 @@ class LinkedList{
             delete temp;
         }
 
-        LinkedList<T> &operator=(const LinkedList<T> &l){
+        LinkedList<T> &operator =(const LinkedList<T> &l){
             deleteList();
             Node<T> *current = l.getHead();
             while(current != NULL){
@@ -131,3 +133,4 @@ class LinkedList{
         }
 };
 
+#endif

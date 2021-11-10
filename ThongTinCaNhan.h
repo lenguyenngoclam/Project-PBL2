@@ -18,7 +18,7 @@ class ThongTinCaNhan{
         virtual ~ThongTinCaNhan() {}
 
         ThongTinCaNhan(const ThongTinCaNhan&);
-        ThongTinCaNhan& operator=(const ThongTinCaNhan&);
+        ThongTinCaNhan& operator =(const ThongTinCaNhan&);
 
         virtual void LayThongTinCaNhan() const;
         void NhapThongTinCaNhan();
@@ -26,7 +26,7 @@ class ThongTinCaNhan{
 
 };
 
-//Vì là hàm ảo nên phải khai báo chung 1 file
+// Vì là hàm ảo nên phải khai báo chung 1 file
 void ThongTinCaNhan::LayThongTinCaNhan() const
 {
     cout << "- Ho va ten: " << HoTen << endl;

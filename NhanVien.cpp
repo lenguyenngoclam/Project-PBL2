@@ -28,7 +28,7 @@ void NhanVien::DoiThongTinCaNhan(){
     this -> ThongTinCaNhan::DoiThongTinCaNhan();
 
     string line;
-    string a[] = {HoTen, DiaChi, SoDienThoai, Tuoi};
+    string a[] = {HoTen, Tuoi, DiaChi, SoDienThoai};
     while(getline(fin, line)){
         fout << line << endl;
         if(line == idNhanVien){
@@ -49,44 +49,49 @@ void NhanVien::DoiThongTinCaNhan(){
 
 
 void NhanVien::LayThongTinCaNhan() const{
-    cout << "- ID : " << idNhanVien << endl;
+    cout << "- ID: " << idNhanVien << endl;
     ThongTinCaNhan::LayThongTinCaNhan();
 }
 
-bool NhanVien::operator!= (const NhanVien& rhs) const{
+bool NhanVien::operator !=(const NhanVien& rhs) const{
     return idNhanVien.compare(rhs.idNhanVien) != 0;
 }
 
-bool NhanVien::operator<(const NhanVien& rhs) const{
+bool NhanVien::operator <(const NhanVien& rhs) const{
     return idNhanVien.compare(rhs.idNhanVien) < 0;
 }
 
-bool NhanVien::operator >(const NhanVien& rhs) const {
+bool NhanVien::operator >(const NhanVien& rhs) const{
     return idNhanVien.compare(rhs.idNhanVien) > 0;
 }
 
 
-void DanhSachNhanVien::caiDatDanhSach(){
+void DanhSachNhanVien::CaiDatDanhSach(){
     ifstream fin;
     fin.open("NHANVIEN.txt", ios::in);
     while(!fin.eof()){
         NhanVien temp;
         getline(fin, temp.idNhanVien);
         getline(fin, temp.HoTen);
+        getline(fin, temp.Tuoi);
         getline(fin, temp.DiaChi);
         getline(fin, temp.SoDienThoai);
-        getline(fin, temp.Tuoi);
+        // cout << temp.idNhanVien << endl;
+        // cout << temp.HoTen << endl;
+        // cout << temp.Tuoi << endl;
+        // cout << temp.DiaChi << endl;
+        // cout << temp.SoDienThoai << endl;
         ls.insert(temp);
     }
     fin.close();
 }
 
-ostream& operator<<(ostream& os, const NhanVien& nv){
+ostream& operator <<(ostream& os, const NhanVien& nv){
     nv.LayThongTinCaNhan();
     return os;
 }
 
-void DanhSachNhanVien::inDanhSach(){
+void DanhSachNhanVien::InDanhSach(){
     ls.printList();
 }
 
