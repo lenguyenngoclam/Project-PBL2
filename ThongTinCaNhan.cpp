@@ -16,7 +16,7 @@ ThongTinCaNhan::ThongTinCaNhan(const ThongTinCaNhan& tt){
     Tuoi = tt.Tuoi;
 }
 
-ThongTinCaNhan& ThongTinCaNhan::operator=(const ThongTinCaNhan& tt){
+ThongTinCaNhan& ThongTinCaNhan::operator =(const ThongTinCaNhan& tt){
     HoTen = tt.HoTen;
     DiaChi = tt.DiaChi;
     SoDienThoai = tt.SoDienThoai;
