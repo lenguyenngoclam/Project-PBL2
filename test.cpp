@@ -14,7 +14,8 @@ int main(){
     ds.InDanhSach();
 
     Node<NhanVien>* current = ds.getHead();
-    (current -> getNext() -> getData()).DoiThongTinCaNhan();
-    // ds.InDanhSach();
+    (current -> getData()).DoiThongTinCaNhan();
+    cout << "------------Danh sach moi------------" << endl;
+    ds.InDanhSach();
     return 0;
 }

@@ -5,6 +5,8 @@
 
 using namespace std;
 
+int count_line = 0;
+
 NhanVien::NhanVien(string id, string ten, string dc, string sdt, string t) : ThongTinCaNhan(ten,dc,sdt,t) {
     idNhanVien = id;
 }
@@ -12,13 +14,13 @@ NhanVien::NhanVien(string id, string ten, string dc, string sdt, string t) : Tho
 NhanVien::NhanVien(const NhanVien& nv) : ThongTinCaNhan(nv){
     idNhanVien = nv.idNhanVien;
 }
-NhanVien& NhanVien::operator=(const NhanVien& nv){
+NhanVien& NhanVien::operator =(const NhanVien& nv){
     ThongTinCaNhan::operator=(nv);
     idNhanVien = nv.idNhanVien;
     return (*this);
 }
 
-//Đổi thông tin cá nhân
+// Đổi thông tin cá nhân
 void NhanVien::DoiThongTinCaNhan(){
     ifstream fin;
     fin.open("NHANVIEN.txt", ios::in);
@@ -29,14 +31,17 @@ void NhanVien::DoiThongTinCaNhan(){
 
     string line;
     string a[] = {HoTen, Tuoi, DiaChi, SoDienThoai};
+    int count = 1;
     while(getline(fin, line)){
-        fout << line << endl;
+        if (count == count_line) fout << line; 
+        else { count++; fout << line << endl; }
         if(line == idNhanVien){
             for(int i = 0; i < 4; i++){
                 getline(fin, line);
                 line.replace(0, line.length(), a[i]);
                 fout << line << endl;
             }
+            count += 4;
         }
     }
 
@@ -65,7 +70,7 @@ bool NhanVien::operator >(const NhanVien& rhs) const{
     return idNhanVien.compare(rhs.idNhanVien) > 0;
 }
 
-
+// DanhSachNhanVien 
 void DanhSachNhanVien::CaiDatDanhSach(){
     ifstream fin;
     fin.open("NHANVIEN.txt", ios::in);
@@ -76,12 +81,8 @@ void DanhSachNhanVien::CaiDatDanhSach(){
         getline(fin, temp.Tuoi);
         getline(fin, temp.DiaChi);
         getline(fin, temp.SoDienThoai);
-        // cout << temp.idNhanVien << endl;
-        // cout << temp.HoTen << endl;
-        // cout << temp.Tuoi << endl;
-        // cout << temp.DiaChi << endl;
-        // cout << temp.SoDienThoai << endl;
         ls.insert(temp);
+        count_line += 5;
     }
     fin.close();
 }
