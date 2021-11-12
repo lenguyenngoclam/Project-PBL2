@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "LinkedListTemplate.h"
 
 using namespace std;
 
@@ -49,27 +50,23 @@ void ThongTinCaNhan::DoiThongTinCaNhan()
     {
         case 1: {
             cout << "- Nhap ho va ten moi: "; 
-            getline(cin,HoTen); break;
+            getline(cin,HoTen); fflush(stdin); break;
         }
         case 2: {
-            fflush(stdin);
             cout << "- Nhap tuoi: "; 
-            getline(cin,Tuoi); break;
+            getline(cin,Tuoi);  fflush(stdin);break;
         }
         case 3: {
-            fflush(stdin);
             cout << "- Nhap dia chi: "; 
-            getline(cin,DiaChi); break;
+            getline(cin,DiaChi); fflush(stdin); break;
         }
         case 4: {
-            fflush(stdin);
             cout << "- Nhap so dien thoai: "; 
-            getline(cin, SoDienThoai); break;
+            getline(cin,SoDienThoai); fflush(stdin); break;
         }
     }
     cout << "----------Thong tin moi----------" << endl;
     LayThongTinCaNhan();
 }
-
 
 #endif
