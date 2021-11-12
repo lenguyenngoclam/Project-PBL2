@@ -21,7 +21,7 @@ class Node{
             return next;
         }
 
-        T getData(){
+        T &getData(){
             return data;
         }
 

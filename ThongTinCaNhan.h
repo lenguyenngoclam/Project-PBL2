@@ -65,8 +65,6 @@ void ThongTinCaNhan::DoiThongTinCaNhan()
             getline(cin,SoDienThoai); fflush(stdin); break;
         }
     }
-    cout << "----------Thong tin moi----------" << endl;
-    LayThongTinCaNhan();
 }
 
 #endif
