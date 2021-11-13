@@ -28,9 +28,10 @@ void NhanVien::DoiThongTinCaNhan(){
     ofstream fout;
     fout.open("temp.txt", ios::app);
     this -> ThongTinCaNhan::DoiThongTinCaNhan();
-
+    
     string line;
     string a[] = {HoTen, Tuoi, DiaChi, SoDienThoai};
+    string b[] = {this->HoTen, this->Tuoi, this->DiaChi, this->SoDienThoai};
     int count = 1;
     while(getline(fin, line)){
         if (count == count_line) fout << line; 
@@ -39,6 +40,7 @@ void NhanVien::DoiThongTinCaNhan(){
             for(int i = 0; i < 4; i++){
                 getline(fin, line);
                 line.replace(0, line.length(), a[i]);
+                b[i] = a[i];
                 fout << line << endl;
             }
             count += 4;

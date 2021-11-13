@@ -23,7 +23,7 @@ class NhanVien : public ThongTinCaNhan{
         ~NhanVien() override = default;
 
         NhanVien(const NhanVien& nv);
-        NhanVien& operator=(const NhanVien& nv);
+        NhanVien& operator =(const NhanVien& nv);
 
         void LayThongTinCaNhan() const override;
         void DoiThongTinCaNhan() override;
