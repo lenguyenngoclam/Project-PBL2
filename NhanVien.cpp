@@ -7,7 +7,7 @@
 using namespace std;
 
 int count_line = 0;
-string number_NhanVien;
+string number_NhanVien = "0";
 
 NhanVien::NhanVien(string id, string ten, string dc, string sdt, string t) : ThongTinCaNhan(ten,dc,sdt,t) {
     idNhanVien = id;
