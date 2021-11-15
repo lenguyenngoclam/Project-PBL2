@@ -15,7 +15,6 @@ class NhanVien : public ThongTinCaNhan{
     private :
         string idNhanVien;
     public :
-
         NhanVien() {
             ThongTinCaNhan();
         }
@@ -25,6 +24,8 @@ class NhanVien : public ThongTinCaNhan{
 
         NhanVien(const NhanVien& nv);
         NhanVien& operator =(const NhanVien& nv);
+
+        string LaySoLuong();
 
         void LayThongTinCaNhan() const override;
         void DoiThongTinCaNhan() override;
@@ -48,9 +49,9 @@ class TaiKhoanNhanVien : public TaiKhoan{
         TaiKhoanNhanVien(string ten, string mk);
         ~TaiKhoanNhanVien() override = default;
 
-        void DatMatKhau() override;
-        void DatTenDangNhap() override;
-        string kiemTraDangNhap() override;
+        //void DatMatKhau() override;
+        //void DatTenDangNhap() override;
+        //string kiemTraDangNhap() override;
 
         friend class SuKien;
 };
@@ -65,6 +66,7 @@ class DanhSachNhanVien{
 
         void CaiDatDanhSach();
         void InDanhSach();
+        void SuaDanhSach(const NhanVien &nv);
         Node<NhanVien>* getHead();
 
         friend class NhanVien;

@@ -1,7 +1,7 @@
 #ifndef KhachHang_h
 #define KhachHang_h
 
-//Testing
+// Testing
 #include <iostream>
 #include <string>
 #include "ThongTinCaNhan.h"
@@ -21,11 +21,34 @@ class TheATM{
         void DoiMatKhau();
 };
 
-class KhachHang{
+class KhachHang;
+
+class OnlineBanking : public TaiKhoan{
+    private :   
+        KhachHang kh;
+    public :
+        OnlineBanking() = default;
+        ~OnlineBanking() override = default;
+        //void DatMatKhau() override;
+        //void DatTenDangNhap() override;
+};
+
+class KhachHang : public ThongTinCaNhan{
     private :
-        static int idKhachHang;
+        string idKhachHang;
         TheATM TheATM;
     public :
+        KhachHang(string id, string hoten, string diachi, string sodienthoai, string tuoi);
+
+        ~KhachHang() override = default;
+
+        KhachHang(const KhachHang &kh);
+        KhachHang &operator =(const KhachHang &kh);
+
+        void LayThongTinCaNhan() const override;
+        void DoiThongTinCaNhan() override;
+        void CaiDatThongTin();
+
         void MoTaiKhoan();
         void DongTaiKhoan();
         void TaoATM(); // Chuc nang de dky the atm luc mo tai khoan
@@ -33,15 +56,20 @@ class KhachHang{
         void XemSoDu();
 };
 
-class OnlineBanking : public TaiKhoan{
-    private :   
-        KhachHang KhachHang;
-    public :
-        OnlineBanking() = default;
-        ~OnlineBanking() override = default;
-        void DatMatKhau() override;
-        void DatTenDangNhap() override;
-        string kiemTraDangNhap() override;
+class DanhSachKhachHang{
+    private:
+        LinkedList<KhachHang> ls;
+    public:
+        DanhSachKhachHang() = default;
+        ~DanhSachKhachHang() = default;
+
+        void CaiDatDanhSach();
+        void InDanhSach();
+
+        Node<KhachHang>* getHead();
+
+        friend class KhachHang;
 };
+
 
 #endif

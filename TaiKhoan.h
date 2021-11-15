@@ -13,12 +13,12 @@ class TaiKhoan{
     public :    
         TaiKhoan();
         TaiKhoan(string ten, string mk) : tenDangNhap(ten), matKhau(mk) {};
-        virtual ~TaiKhoan();
-        virtual void DatMatKhau() = 0;
-        virtual void DatTenDangNhap() = 0;
-        virtual string kiemTraDangNhap() = 0;
 
-        static string giaoDienThemTaiKhoan();
+        virtual ~TaiKhoan() {};
+        //virtual void DatMatKhau() = 0;
+        //virtual void DatTenDangNhap() = 0;
+        //virtual string kiemTraDangNhap() = 0;
+
 };
 
 class DanhSachTaiKhoan{
@@ -26,5 +26,6 @@ class DanhSachTaiKhoan{
         LinkedList<TaiKhoan*> ls;
     public : 
         void themTaiKhoan(TaiKhoan *tk);
+        void inDanhSach();
 };  
 #endif

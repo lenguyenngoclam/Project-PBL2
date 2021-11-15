@@ -1,11 +1,13 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <string>
 #include "NhanVien.h"
 
 using namespace std;
 
 int count_line = 0;
+string number_NhanVien;
 
 NhanVien::NhanVien(string id, string ten, string dc, string sdt, string t) : ThongTinCaNhan(ten,dc,sdt,t) {
     idNhanVien = id;
@@ -20,11 +22,16 @@ NhanVien& NhanVien::operator =(const NhanVien& nv){
     return (*this);
 }
 
+string NhanVien::LaySoLuong()
+{
+    return number_NhanVien;
+}
+
 // Đổi thông tin cá nhân
 void NhanVien::DoiThongTinCaNhan(){
     ifstream fin;
     fin.open("NHANVIEN.txt", ios::in);
-    //Viết vào một file tạm là temp.txt sau đó sẽ xoá file NHANVIEN.txt và đổi tên file temp thành NHANVIEN
+    // Viết vào một file tạm là temp.txt sau đó sẽ xoá file NHANVIEN.txt và đổi tên file temp thành NHANVIEN
     ofstream fout;
     fout.open("temp.txt", ios::app);
     this -> ThongTinCaNhan::DoiThongTinCaNhan();
@@ -34,9 +41,16 @@ void NhanVien::DoiThongTinCaNhan(){
     string b[] = {this->HoTen, this->Tuoi, this->DiaChi, this->SoDienThoai};
     int count = 1;
     while(getline(fin, line)){
-        if (count == count_line) fout << line; 
-        else { count++; fout << line << endl; }
-        if(line == idNhanVien){
+        if (count == 1) {
+            number_NhanVien = line.substr(0,line.size()-1); // Cắt kí tự "\n" cuối line
+            ++count; fout << line << endl;
+        }
+        else if (count == count_line) fout << line; 
+        else { 
+            ++count; 
+            fout << line << endl; 
+        }
+        if (line == idNhanVien){
             for(int i = 0; i < 4; i++){
                 getline(fin, line);
                 line.replace(0, line.length(), a[i]);
@@ -45,6 +59,7 @@ void NhanVien::DoiThongTinCaNhan(){
             }
             count += 4;
         }
+        cout << "Count_line: " << count_line << " | Count: " << count << endl; 
     }
 
     fin.close();
@@ -57,6 +72,15 @@ void NhanVien::DoiThongTinCaNhan(){
 void NhanVien::LayThongTinCaNhan() const{
     cout << "- ID: " << idNhanVien << endl;
     ThongTinCaNhan::LayThongTinCaNhan();
+}
+
+void NhanVien::CaiDatThongTin()
+{
+    ThongTinCaNhan::NhapThongTinCaNhan();
+    string temp = "NV";
+    int num = stoi(number_NhanVien);
+    num++; number_NhanVien = to_string(num);
+    idNhanVien = temp + number_NhanVien;
 }
 
 bool NhanVien::operator !=(const NhanVien& rhs) const{
@@ -75,6 +99,8 @@ bool NhanVien::operator >(const NhanVien& rhs) const{
 void DanhSachNhanVien::CaiDatDanhSach(){
     ifstream fin;
     fin.open("NHANVIEN.txt", ios::in);
+    getline(fin, number_NhanVien);
+    count_line += 1;
     while(!fin.eof()){
         NhanVien temp;
         getline(fin, temp.idNhanVien);
@@ -92,9 +118,11 @@ void DanhSachNhanVien::CaiDatDanhSach(){
 
 TaiKhoanNhanVien::TaiKhoanNhanVien(string ten, string mk) : TaiKhoan(ten,mk), nv() {}
 
+/*
 string TaiKhoanNhanVien::kiemTraDangNhap(){
     return "NV";
 }
+*/
 
 ostream& operator <<(ostream& os, const NhanVien& nv){
     nv.LayThongTinCaNhan();
@@ -105,7 +133,67 @@ void DanhSachNhanVien::InDanhSach(){
     ls.printList();
 }
 
+void DanhSachNhanVien::SuaDanhSach(const NhanVien &nv)
+{
+    ifstream fin;
+    fin.open("NHANVIEN.txt", ios::in);
+    getline(fin, number_NhanVien);
+    while(!fin.eof()){
+        NhanVien temp;
+        getline(fin, temp.idNhanVien);
+        getline(fin, temp.HoTen);
+        getline(fin, temp.Tuoi);
+        getline(fin, temp.DiaChi);
+        getline(fin, temp.SoDienThoai);
+        if (fin.eof()) {
+            NhanVien temp1;
+            temp1.idNhanVien = nv.idNhanVien;
+            temp1.HoTen = nv.HoTen;
+            temp1.Tuoi = nv.Tuoi;
+            temp1.DiaChi = nv.DiaChi;
+            temp1.SoDienThoai = nv.SoDienThoai;
+            ls.insert(temp1);
+            break;
+        }
+    }
+    fin.close();
+
+    ifstream fin2;
+    fin2.open("NHANVIEN.txt", ios::in);
+
+    ofstream fout;
+    fout.open("temp.txt", ios::app);
+
+    string line; int count = 1;
+    while(getline(fin2, line)){
+        if (count == 1) {
+            number_NhanVien = line.substr(0,line.size()-1); // Cắt kí tự "\n" cuối line
+            ++count; fout << line << endl;
+        }
+        else if (count == count_line) {
+            cout << line << endl;
+            fout << line << endl;
+            fout << nv.idNhanVien << endl;
+            fout << nv.HoTen << endl; cout << nv.HoTen << endl << endl;
+            fout << nv.Tuoi << endl; cout << nv.Tuoi << endl << endl;
+            fout << nv.DiaChi << endl;
+            fout << nv.SoDienThoai;   
+            count_line += 5;     
+            break;    
+        }
+        else { 
+            ++count; 
+            fout << line << endl; 
+        }
+    }
+
+    fin2.close();
+    fout.close();
+    
+    remove("NHANVIEN.txt");
+    rename("temp.txt","NHANVIEN.txt");
+}
+
 Node<NhanVien>* DanhSachNhanVien::getHead(){
     return ls.getHead();
 }
-
