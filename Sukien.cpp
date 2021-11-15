@@ -3,7 +3,7 @@
 
 using namespace std;
 
-bool SuKien::suKienThemTaiKhoan(){
+bool SuKien::suKienThemTaiKhoan(DanhSachNhanVien& ls){
     string choice;
     cout << "Loại tài khoản muốn thêm";
     getline(cin,choice);
@@ -18,6 +18,7 @@ bool SuKien::suKienThemTaiKhoan(){
         TaiKhoanNhanVien temp(tenDangNhap,matKhau);
         temp.nv.CaiDatThongTin();
         dsTaiKhoan.themTaiKhoan(&temp);
+        ls.themNhanVien(temp.nv);
     }
     return true;
 }

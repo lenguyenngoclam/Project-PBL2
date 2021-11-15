@@ -1,13 +1,18 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "NhanVien.cpp"
+#include "Sukien.cpp"
 
 using namespace std;
 
 int main(){
-    NhanVien temp;
-    temp.CaiDatThongTin();
+    SuKien event;
+    DanhSachNhanVien ls;
+    ls.CaiDatDanhSach();
+    while(event.suKienThemTaiKhoan(ls)){
+        break;
+    }
 
+    ls.InDanhSach();
     return 0;
 }

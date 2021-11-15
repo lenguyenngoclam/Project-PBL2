@@ -2,6 +2,7 @@
 #define NhanVien_h
 
 #include <iostream>
+#include <fstream>
 #include "TaiKhoan.h"
 #include "ThongTinCaNhan.cpp"
 #include "LinkedListTemplate.h"
@@ -67,6 +68,7 @@ class DanhSachNhanVien{
         void CaiDatDanhSach();
         void InDanhSach();
         void SuaDanhSach(const NhanVien &nv);
+        void themNhanVien(NhanVien& nv); 
         Node<NhanVien>* getHead();
 
         friend class NhanVien;

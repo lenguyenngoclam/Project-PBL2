@@ -12,7 +12,7 @@ class SuKien{
     private :
         DanhSachTaiKhoan dsTaiKhoan;
     public :
-        bool suKienThemTaiKhoan();
+        bool suKienThemTaiKhoan(DanhSachNhanVien &ls);
 };
 
 #endif

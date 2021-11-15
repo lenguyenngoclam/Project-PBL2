@@ -1,13 +1,21 @@
 #include <iostream>
-#include <fstream>
 #include <vector>
 #include <string>
 #include "NhanVien.h"
 
 using namespace std;
 
+string laySoLuongNhanVien() {
+    ifstream fin;
+    fin.open("NHANVIEN.txt", ios::in);
+    string line;
+    getline(fin, line);
+    fin.close();
+    return line;
+}
+
 int count_line = 0;
-string number_NhanVien = "0";
+string number_NhanVien = laySoLuongNhanVien();
 
 NhanVien::NhanVien(string id, string ten, string dc, string sdt, string t) : ThongTinCaNhan(ten,dc,sdt,t) {
     idNhanVien = id;
@@ -196,4 +204,8 @@ void DanhSachNhanVien::SuaDanhSach(const NhanVien &nv)
 
 Node<NhanVien>* DanhSachNhanVien::getHead(){
     return ls.getHead();
+}
+
+void DanhSachNhanVien::themNhanVien(NhanVien& nv){
+    ls.insert(nv);
 }
