@@ -1,16 +1,10 @@
-2
-NV1
+KH1
 Nguyen Nho Song Hoang
-19
+18
 K149 Le Dinh Ly
 0905515517
-NV2
+KH2
 Le Nguyen Ngoc Lam 
 19
 48C duong K20
 0962814899
-NV3
-Song Hoang
-20
-Da Nang
-0905000777

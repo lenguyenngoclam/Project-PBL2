@@ -14,7 +14,6 @@ class NhanVien : public ThongTinCaNhan{
     private :
         string idNhanVien;
     public :
-
         NhanVien() {
             ThongTinCaNhan();
         }
@@ -24,6 +23,8 @@ class NhanVien : public ThongTinCaNhan{
 
         NhanVien(const NhanVien& nv);
         NhanVien& operator =(const NhanVien& nv);
+
+        string LaySoLuong();
 
         void LayThongTinCaNhan() const override;
         void DoiThongTinCaNhan() override;
@@ -58,6 +59,7 @@ class DanhSachNhanVien{
 
         void CaiDatDanhSach();
         void InDanhSach();
+        void SuaDanhSach(const NhanVien &nv);
         Node<NhanVien>* getHead();
 
         friend class NhanVien;
