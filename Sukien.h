@@ -3,14 +3,16 @@
 
 #include <iostream>
 #include <string>
+#include "TaiKhoan.cpp"
+#include "NhanVien.cpp"
 
 using namespace std;
 
-class Sukien{
+class SuKien{
+    private :
+        DanhSachTaiKhoan dsTaiKhoan;
     public :
-        void suKienThemTaiKhoan(){
-            
-        }
+        bool suKienThemTaiKhoan();
 };
 
 #endif

@@ -9,6 +9,7 @@
 using namespace std;
 
 class DanhSachNhanVien;
+class TaiKhoanNhanVien;
 
 class NhanVien : public ThongTinCaNhan{
     private :
@@ -34,6 +35,7 @@ class NhanVien : public ThongTinCaNhan{
         bool operator !=(const NhanVien& rhs) const;
 
         friend class DanhSachNhanVien;
+        friend class TaiKhoanNhanVien;
         friend ostream& operator <<(ostream& os, const NhanVien& nv);
 };
 
@@ -43,9 +45,14 @@ class TaiKhoanNhanVien : public TaiKhoan{
         NhanVien nv;
     public :
         TaiKhoanNhanVien();
+        TaiKhoanNhanVien(string ten, string mk);
         ~TaiKhoanNhanVien() override = default;
+
         void DatMatKhau() override;
         void DatTenDangNhap() override;
+        string kiemTraDangNhap() override;
+
+        friend class SuKien;
 };
 
 

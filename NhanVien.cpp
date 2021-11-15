@@ -54,7 +54,6 @@ void NhanVien::DoiThongTinCaNhan(){
     rename("temp.txt","NHANVIEN.txt");
 }
 
-
 void NhanVien::LayThongTinCaNhan() const{
     cout << "- ID: " << idNhanVien << endl;
     ThongTinCaNhan::LayThongTinCaNhan();
@@ -87,6 +86,14 @@ void DanhSachNhanVien::CaiDatDanhSach(){
         count_line += 5;
     }
     fin.close();
+}
+
+// TaiKhoanNhanVien
+
+TaiKhoanNhanVien::TaiKhoanNhanVien(string ten, string mk) : TaiKhoan(ten,mk), nv() {}
+
+string TaiKhoanNhanVien::kiemTraDangNhap(){
+    return "NV";
 }
 
 ostream& operator <<(ostream& os, const NhanVien& nv){

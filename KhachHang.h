@@ -41,7 +41,7 @@ class OnlineBanking : public TaiKhoan{
         ~OnlineBanking() override = default;
         void DatMatKhau() override;
         void DatTenDangNhap() override;
-        void DoiMatKhau() override;
+        string kiemTraDangNhap() override;
 };
 
 #endif
