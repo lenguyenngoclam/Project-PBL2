@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <fstream>
-#include "TaiKhoan.h"
+#include "TaiKhoan.cpp"
 #include "ThongTinCaNhan.cpp"
 #include "LinkedListTemplate.h"
 
@@ -50,10 +50,14 @@ class TaiKhoanNhanVien : public TaiKhoan{
         TaiKhoanNhanVien(string ten, string mk);
         ~TaiKhoanNhanVien() override = default;
 
-        //void DatMatKhau() override;
-        //void DatTenDangNhap() override;
+        TaiKhoanNhanVien(const TaiKhoanNhanVien& tk);
+
+        void datTaiKhoan() override;
+        
         //string kiemTraDangNhap() override;
 
+        TaiKhoanNhanVien& operator=(const TaiKhoanNhanVien& rhs);        
+        ostream& getInfo(ostream&) override;
         friend class SuKien;
 };
 

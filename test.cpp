@@ -6,13 +6,9 @@
 using namespace std;
 
 int main(){
-    SuKien event;
-    DanhSachNhanVien ls;
-    ls.CaiDatDanhSach();
-    while(event.suKienThemTaiKhoan(ls)){
-        break;
-    }
-
-    ls.InDanhSach();
+    TaiKhoanNhanVien temp("ngoclam3092002","3092002");
+    DanhSachTaiKhoan ds;
+    ds.themTaiKhoan(&temp);
+    ds.head -> data -> getInfo(cout);
     return 0;
 }
