@@ -1,11 +1,12 @@
 #ifndef KhachHang_h
 #define KhachHang_h
 
-// Testing
 #include <iostream>
 #include <string>
+
 #include "ThongTinCaNhan.h"
 #include "TaiKhoan.h"
+#include "LinkedListTemplate.h"
 using namespace std;
 
 class TheATM{
@@ -21,7 +22,40 @@ class TheATM{
         void DoiMatKhau();
 };
 
-class KhachHang;
+class KhachHang : public ThongTinCaNhan{
+    private :
+        string idKhachHang;
+        TheATM TheATM;
+    public :
+        KhachHang() {
+            ThongTinCaNhan();
+        }
+        KhachHang(string id, string hoten, string diachi, string sodienthoai, string tuoi);
+
+        ~KhachHang() override = default;
+
+        KhachHang(const KhachHang &kh);
+        KhachHang &operator =(const KhachHang &kh);
+
+        string LaySoLuong();
+
+        void LayThongTinCaNhan() const override;
+        void DoiThongTinCaNhan() override;
+        void CaiDatThongTin();
+
+        bool operator ==(const KhachHang& rhs) const;
+        bool operator !=(const KhachHang& rhs) const;
+        bool operator >(const KhachHang& rhs) const;
+        bool operator <(const KhachHang& rhs) const;
+
+        void MoTaiKhoan();
+        void DongTaiKhoan();
+        void TaoATM(); // Chuc nang de dky the atm luc mo tai khoan
+        void TaoOnlineBanking();
+        void XemSoDu();
+
+        friend class DanhSachKhachHang;
+};
 
 class OnlineBanking : public TaiKhoan{
     private :   
@@ -33,29 +67,6 @@ class OnlineBanking : public TaiKhoan{
         //void DatTenDangNhap() override;
 };
 
-class KhachHang : public ThongTinCaNhan{
-    private :
-        string idKhachHang;
-        TheATM TheATM;
-    public :
-        KhachHang(string id, string hoten, string diachi, string sodienthoai, string tuoi);
-
-        ~KhachHang() override = default;
-
-        KhachHang(const KhachHang &kh);
-        KhachHang &operator =(const KhachHang &kh);
-
-        void LayThongTinCaNhan() const override;
-        void DoiThongTinCaNhan() override;
-        void CaiDatThongTin();
-
-        void MoTaiKhoan();
-        void DongTaiKhoan();
-        void TaoATM(); // Chuc nang de dky the atm luc mo tai khoan
-        void TaoOnlineBanking();
-        void XemSoDu();
-};
-
 class DanhSachKhachHang{
     private:
         LinkedList<KhachHang> ls;
@@ -65,6 +76,9 @@ class DanhSachKhachHang{
 
         void CaiDatDanhSach();
         void InDanhSach();
+        void SuaDanhSach(const KhachHang &nv);
+        void ThemKhachHang(KhachHang& nv); 
+        void TimKiemKhachHang(string id);
 
         Node<KhachHang>* getHead();
 

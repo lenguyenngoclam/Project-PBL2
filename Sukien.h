@@ -3,13 +3,15 @@
 
 #include <iostream>
 #include <string>
+
+#include "TaiKhoan.h"
 #include "NhanVien.cpp"
 
 using namespace std;
 
 class SuKien{
     public :
-        bool suKienThemTaiKhoan(DanhSachNhanVien &ls, DanhSachTaiKhoan &);
+        bool SuKienThemTaiKhoan(DanhSachNhanVien &ls, DanhSachTaiKhoan &);
 };
 
 #endif

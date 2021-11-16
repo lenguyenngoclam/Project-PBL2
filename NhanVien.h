@@ -3,8 +3,9 @@
 
 #include <iostream>
 #include <fstream>
-#include "TaiKhoan.cpp"
-#include "ThongTinCaNhan.cpp"
+
+#include "ThongTinCaNhan.h"
+#include "TaiKhoan.h"
 #include "LinkedListTemplate.h"
 
 using namespace std;
@@ -32,6 +33,7 @@ class NhanVien : public ThongTinCaNhan{
         void DoiThongTinCaNhan() override;
         void CaiDatThongTin();
 
+        bool operator ==(const NhanVien& rhs) const;
         bool operator <(const NhanVien& rhs) const;
         bool operator >(const NhanVien& rhs) const;
         bool operator !=(const NhanVien& rhs) const;
@@ -52,7 +54,7 @@ class TaiKhoanNhanVien : public TaiKhoan{
 
         TaiKhoanNhanVien(const TaiKhoanNhanVien& tk);
 
-        void datTaiKhoan() override;
+        void DatTaiKhoan() override;
         
         //string kiemTraDangNhap() override;
 
@@ -72,7 +74,9 @@ class DanhSachNhanVien{
         void CaiDatDanhSach();
         void InDanhSach();
         void SuaDanhSach(const NhanVien &nv);
-        void themNhanVien(NhanVien& nv); 
+        void ThemNhanVien(NhanVien& nv); 
+        void TimKiemNhanVien(string id);
+
         Node<NhanVien>* getHead();
 
         friend class NhanVien;

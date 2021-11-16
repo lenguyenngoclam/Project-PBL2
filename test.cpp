@@ -1,32 +1,20 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+
+#include "TaiKhoan.cpp"
 #include "Sukien.cpp"
+#include "ThongTinCaNhan.cpp"
 
 using namespace std;
 
 int main(){
-<<<<<<< HEAD
-    // DanhSachNhanVien ds;
-    // ds.CaiDatDanhSach();
-    // ds.InDanhSach();
-
-    // Node<NhanVien>* current = ds.getHead();
-    // (current -> getData()).DoiThongTinCaNhan();
-    // cout << "------------Danh sach moi------------" << endl;
-    // ds.InDanhSach();
-
-    NhanVien nv;
-    nv.CaiDatThongTin();
-    nv.LayThongTinCaNhan();
-    // ds.SuaDanhSach(nv);
-    // cout << "------------Danh sach moi------------" << endl;
-    // ds.InDanhSach();
-=======
-    TaiKhoanNhanVien temp("ngoclam3092002","3092002");
+    string username, password;
+    cout << "- Username: "; cin >> username;
+    cout << "- Password: "; cin >> password;
+    TaiKhoanNhanVien temp(username,password);
     DanhSachTaiKhoan ds;
-    ds.themTaiKhoan(&temp);
+    ds.ThemTaiKhoan(&temp);
     ds.head -> data -> getInfo(cout);
->>>>>>> main
     return 0;
 }
