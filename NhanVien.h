@@ -2,13 +2,15 @@
 #define NhanVien_h
 
 #include <iostream>
-#include "TaiKhoan.h"
+#include <fstream>
+#include "TaiKhoan.cpp"
 #include "ThongTinCaNhan.cpp"
 #include "LinkedListTemplate.h"
 
 using namespace std;
 
 class DanhSachNhanVien;
+class TaiKhoanNhanVien;
 
 class NhanVien : public ThongTinCaNhan{
     private :
@@ -35,6 +37,7 @@ class NhanVien : public ThongTinCaNhan{
         bool operator !=(const NhanVien& rhs) const;
 
         friend class DanhSachNhanVien;
+        friend class TaiKhoanNhanVien;
         friend ostream& operator <<(ostream& os, const NhanVien& nv);
 };
 
@@ -44,9 +47,18 @@ class TaiKhoanNhanVien : public TaiKhoan{
         NhanVien nv;
     public :
         TaiKhoanNhanVien();
+        TaiKhoanNhanVien(string ten, string mk);
         ~TaiKhoanNhanVien() override = default;
-        void DatMatKhau() override;
-        void DatTenDangNhap() override;
+
+        TaiKhoanNhanVien(const TaiKhoanNhanVien& tk);
+
+        void datTaiKhoan() override;
+        
+        //string kiemTraDangNhap() override;
+
+        TaiKhoanNhanVien& operator=(const TaiKhoanNhanVien& rhs);        
+        ostream& getInfo(ostream&) override;
+        friend class SuKien;
 };
 
 
@@ -60,6 +72,7 @@ class DanhSachNhanVien{
         void CaiDatDanhSach();
         void InDanhSach();
         void SuaDanhSach(const NhanVien &nv);
+        void themNhanVien(NhanVien& nv); 
         Node<NhanVien>* getHead();
 
         friend class NhanVien;

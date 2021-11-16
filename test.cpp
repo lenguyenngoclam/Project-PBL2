@@ -1,13 +1,12 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "test-h.cpp"
-#include "NhanVien.cpp"
-#include "NganHang.cpp"
+#include "Sukien.cpp"
 
 using namespace std;
 
 int main(){
+<<<<<<< HEAD
     // DanhSachNhanVien ds;
     // ds.CaiDatDanhSach();
     // ds.InDanhSach();
@@ -23,5 +22,11 @@ int main(){
     // ds.SuaDanhSach(nv);
     // cout << "------------Danh sach moi------------" << endl;
     // ds.InDanhSach();
+=======
+    TaiKhoanNhanVien temp("ngoclam3092002","3092002");
+    DanhSachTaiKhoan ds;
+    ds.themTaiKhoan(&temp);
+    ds.head -> data -> getInfo(cout);
+>>>>>>> main
     return 0;
 }

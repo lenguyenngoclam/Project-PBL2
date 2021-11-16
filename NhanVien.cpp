@@ -1,13 +1,25 @@
 #include <iostream>
-#include <fstream>
 #include <vector>
 #include <string>
 #include "NhanVien.h"
 
 using namespace std;
 
+string laySoLuongNhanVien() {
+    ifstream fin;
+    fin.open("NHANVIEN.txt", ios::in);
+    string line;
+    getline(fin, line);
+    fin.close();
+    return line;
+}
+
 int count_line = 0;
+<<<<<<< HEAD
 string number_NhanVien = "0";
+=======
+string number_NhanVien = laySoLuongNhanVien();
+>>>>>>> main
 
 NhanVien::NhanVien(string id, string ten, string dc, string sdt, string t) : ThongTinCaNhan(ten,dc,sdt,t) {
     idNhanVien = id;
@@ -79,8 +91,40 @@ void NhanVien::CaiDatThongTin()
     ThongTinCaNhan::NhapThongTinCaNhan();
     string temp = "NV";
     int num = stoi(number_NhanVien);
-    num++; number_NhanVien = to_string(num);
+    num++; 
+    number_NhanVien = to_string(num);
     idNhanVien = temp + number_NhanVien;
+
+    ifstream fin;
+    fin.open("NHANVIEN.txt", ios::in);
+    // Viết vào một file tạm là temp.txt sau đó sẽ xoá file NHANVIEN.txt và đổi tên file temp thành NHANVIEN
+    ofstream fout;
+    fout.open("temp.txt", ios::app);
+    
+    string line;
+    string a[] = {HoTen, Tuoi, DiaChi, SoDienThoai};
+    string b[] = {this->HoTen, this->Tuoi, this->DiaChi, this->SoDienThoai};
+    int count = 1;
+    while(getline(fin, line)){
+        if (count == 1) {
+            fout << number_NhanVien << endl;
+            count++;
+        } else {
+            fout << line << endl;
+        }
+    }
+
+    fout << idNhanVien << endl;
+    fout << HoTen << endl;
+    fout << Tuoi << endl;
+    fout << DiaChi << endl;
+    fout << SoDienThoai;
+
+    fin.close();
+    fout.close();
+
+    remove("NHANVIEN.txt");
+    rename("temp.txt","NHANVIEN.txt");    
 }
 
 bool NhanVien::operator !=(const NhanVien& rhs) const{
@@ -114,6 +158,43 @@ void DanhSachNhanVien::CaiDatDanhSach(){
     fin.close();
 }
 
+//------------------------------------------------------------------------------------------------------------------------------------------------------
+// TaiKhoanNhanVien
+
+TaiKhoanNhanVien::TaiKhoanNhanVien(string ten, string mk) : TaiKhoan(ten,mk), nv() {}
+
+void TaiKhoanNhanVien::datTaiKhoan(){
+    ofstream fout;
+    fout.open("TAIKHOAN.txt", ios::app);
+    TaiKhoanNhanVien temp("NV" + tenDangNhap, matKhau);
+
+    fout << temp.tenDangNhap << endl;
+    fout << temp.matKhau << endl;
+}
+
+ostream& TaiKhoanNhanVien::getInfo(ostream& os){
+    TaiKhoan::getInfo(os);
+    return os;
+}
+
+TaiKhoanNhanVien::TaiKhoanNhanVien(const TaiKhoanNhanVien& tk) : TaiKhoan(tk), nv(tk.nv) {}
+
+TaiKhoanNhanVien& TaiKhoanNhanVien::operator=(const TaiKhoanNhanVien& rhs){
+    tenDangNhap = rhs.tenDangNhap;
+    matKhau = rhs.matKhau;
+    nv = rhs.nv;
+
+    return (*this);
+}
+/*
+string TaiKhoanNhanVien::kiemTraDangNhap(){
+    return "NV";
+}
+*/
+
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------
+//Danh sach nhan vien
 ostream& operator <<(ostream& os, const NhanVien& nv){
     nv.LayThongTinCaNhan();
     return os;
@@ -186,4 +267,8 @@ void DanhSachNhanVien::SuaDanhSach(const NhanVien &nv)
 
 Node<NhanVien>* DanhSachNhanVien::getHead(){
     return ls.getHead();
+}
+
+void DanhSachNhanVien::themNhanVien(NhanVien& nv){
+    ls.insert(nv);
 }
