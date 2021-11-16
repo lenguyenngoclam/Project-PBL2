@@ -8,19 +8,19 @@ using namespace std;
 
 class TaiKhoan{
     protected :
-        string tenDangNhap;
-        string matKhau;
+        string TenDangNhap;
+        string MatKhau;
     public :    
         TaiKhoan();
-        TaiKhoan(string ten, string mk) : tenDangNhap(ten), matKhau(mk) {};
+        TaiKhoan(string ten, string mk) : TenDangNhap(ten), MatKhau(mk) {};
         TaiKhoan(const TaiKhoan& tk);
 
         virtual ~TaiKhoan() {};
-        virtual void datTaiKhoan() = 0;
+        virtual void DatTaiKhoan() = 0;
         //virtual string kiemTraDangNhap() = 0;
         virtual ostream& getInfo(ostream&);
 
-        TaiKhoan& operator=(const TaiKhoan& rhs);
+        TaiKhoan& operator =(const TaiKhoan& rhs);
 
 };
 
@@ -38,8 +38,8 @@ class DanhSachTaiKhoan{
 
         ~DanhSachTaiKhoan() = default;
 
-        void themTaiKhoan(TaiKhoan *tk);
-        void caiDatDanhSach();
-        void inDanhSach();
+        void ThemTaiKhoan(TaiKhoan *tk);
+        void CaiDatDanhSach();
+        void InDanhSach();
 };  
 #endif

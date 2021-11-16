@@ -1,14 +1,20 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+
+#include "TaiKhoan.cpp"
 #include "Sukien.cpp"
+#include "ThongTinCaNhan.cpp"
 
 using namespace std;
 
 int main(){
-    TaiKhoanNhanVien temp("ngoclam3092002","3092002");
+    string username, password;
+    cout << "- Username: "; cin >> username;
+    cout << "- Password: "; cin >> password;
+    TaiKhoanNhanVien temp(username,password);
     DanhSachTaiKhoan ds;
-    ds.themTaiKhoan(&temp);
+    ds.ThemTaiKhoan(&temp);
     ds.head -> data -> getInfo(cout);
     return 0;
 }
