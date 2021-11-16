@@ -21,15 +21,16 @@ class TheATM{
         void DoiMatKhau();
 };
 
+class KhachHang;
+
 class OnlineBanking : public TaiKhoan{
     private :   
-        KhachHang KhachHang;
+        KhachHang kh;
     public :
         OnlineBanking() = default;
         ~OnlineBanking() override = default;
-        void DatMatKhau() override;
-        void DatTenDangNhap() override;
-        void DoiMatKhau() override;
+        //void DatMatKhau() override;
+        //void DatTenDangNhap() override;
 };
 
 class KhachHang : public ThongTinCaNhan{
