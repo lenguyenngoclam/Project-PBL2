@@ -25,8 +25,12 @@ class Node{
             return data;
         }
 
-        bool operator !=(const Node<T> *n){
+        bool operator ==(const Node<T> *n){
             return (next == n -> next && data == n -> data);
+        }
+
+        bool operator !=(const Node<T> *n){
+            return (next != n -> next && data != n -> data);
         }
 };
 
