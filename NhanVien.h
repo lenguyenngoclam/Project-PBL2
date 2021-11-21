@@ -6,7 +6,7 @@
 
 #include "ThongTinCaNhan.h"
 #include "TaiKhoan.h"
-#include "LinkedListTemplate.h"
+#include "SetTemplate.cpp"
 
 using namespace std;
 
@@ -21,6 +21,7 @@ class NhanVien : public ThongTinCaNhan{
             ThongTinCaNhan();
         }
         NhanVien(string id, string hoten, string diachi, string sodienthoai, string tuoi);
+        NhanVien(const string id) : ThongTinCaNhan(), idNhanVien(id) {}
 
         ~NhanVien() override = default;
 
@@ -44,29 +45,9 @@ class NhanVien : public ThongTinCaNhan{
 };
 
 
-class TaiKhoanNhanVien : public TaiKhoan{
-    private :
-        NhanVien nv;
-    public :
-        TaiKhoanNhanVien();
-        TaiKhoanNhanVien(string ten, string mk);
-        ~TaiKhoanNhanVien() override = default;
-
-        TaiKhoanNhanVien(const TaiKhoanNhanVien& tk);
-
-        void DatTaiKhoan() override;
-        
-        //string kiemTraDangNhap() override;
-
-        TaiKhoanNhanVien& operator=(const TaiKhoanNhanVien& rhs);        
-        ostream& getInfo(ostream&) override;
-        friend class SuKien;
-};
-
-
 class DanhSachNhanVien{
     private :
-        LinkedList<NhanVien> ls;
+        Set<NhanVien> set;
     public :
         DanhSachNhanVien() = default;
         ~DanhSachNhanVien() = default;
@@ -76,8 +57,6 @@ class DanhSachNhanVien{
         void SuaDanhSach(const NhanVien &nv);
         void ThemNhanVien(NhanVien& nv); 
         void TimKiemNhanVien(string id);
-
-        Node<NhanVien>* getHead();
 
         friend class NhanVien;
 };

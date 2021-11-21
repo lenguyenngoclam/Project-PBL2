@@ -57,16 +57,6 @@ class KhachHang : public ThongTinCaNhan{
         friend class DanhSachKhachHang;
 };
 
-class OnlineBanking : public TaiKhoan{
-    private :   
-        KhachHang kh;
-    public :
-        OnlineBanking() = default;
-        ~OnlineBanking() override = default;
-        //void DatMatKhau() override;
-        //void DatTenDangNhap() override;
-};
-
 class DanhSachKhachHang{
     private:
         LinkedList<KhachHang> ls;

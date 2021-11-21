@@ -141,41 +141,6 @@ bool NhanVien::operator >(const NhanVien& rhs) const{
     return idNhanVien.compare(rhs.idNhanVien) > 0;
 }
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
-// TaiKhoanNhanVien
-
-TaiKhoanNhanVien::TaiKhoanNhanVien(string ten, string mk) : TaiKhoan(ten,mk), nv() {}
-
-void TaiKhoanNhanVien::DatTaiKhoan(){
-    ofstream fout;
-    fout.open("TAIKHOAN.txt", ios::app);
-    TaiKhoanNhanVien temp("NV" + TenDangNhap, MatKhau);
-
-    fout << temp.TenDangNhap << endl;
-    fout << temp.MatKhau << endl;
-}
-
-ostream& TaiKhoanNhanVien::getInfo(ostream& os){
-    TaiKhoan::getInfo(os);
-    return os;
-}
-
-TaiKhoanNhanVien::TaiKhoanNhanVien(const TaiKhoanNhanVien& tk) : TaiKhoan(tk), nv(tk.nv) {}
-
-TaiKhoanNhanVien& TaiKhoanNhanVien::operator=(const TaiKhoanNhanVien& rhs){
-    TenDangNhap = rhs.TenDangNhap;
-    MatKhau = rhs.MatKhau;
-    nv = rhs.nv;
-
-    return (*this);
-}
-/*
-string TaiKhoanNhanVien::kiemTraDangNhap(){
-    return "NV";
-}
-*/
-
-
 // ----------------------------------------------------------------------------------------------------------------------------------------------
 // DanhSachNhanVien 
 void DanhSachNhanVien::CaiDatDanhSach(){
@@ -190,7 +155,7 @@ void DanhSachNhanVien::CaiDatDanhSach(){
         getline(fin, temp.Tuoi);
         getline(fin, temp.DiaChi);
         getline(fin, temp.SoDienThoai);
-        ls.insert(temp);
+        set.insert(temp);
         count_line += 5;
     }
     fin.close();
@@ -203,12 +168,14 @@ ostream& operator <<(ostream& os, const NhanVien& nv){
 
 void DanhSachNhanVien::InDanhSach(){
     cout << "---------------Danh sach nhan vien---------------" << endl;
-    ls.printList();
+    for(size_t i = 0; i < set.getSize(); i++)
+        set[i].LayThongTinCaNhan();
 }
 
 void DanhSachNhanVien::SuaDanhSach(const NhanVien &nv)
 {
-// Sua trong DSLK
+    //Hàm thành viên có chức năng sửa lại nhân viên cuối cùng nằm trong file 
+    
     ifstream fin;
     fin.open("NHANVIEN.txt", ios::in);
     getline(fin, number_NhanVien);
@@ -226,7 +193,7 @@ void DanhSachNhanVien::SuaDanhSach(const NhanVien &nv)
             temp1.Tuoi = nv.Tuoi;
             temp1.DiaChi = nv.DiaChi;
             temp1.SoDienThoai = nv.SoDienThoai;
-            ls.insert(temp1);
+            set.insert(temp1);
             break;
         }
     }
@@ -268,28 +235,20 @@ void DanhSachNhanVien::SuaDanhSach(const NhanVien &nv)
     rename("temp.txt","NHANVIEN.txt");
 }
 
-Node<NhanVien>* DanhSachNhanVien::getHead(){
-    return ls.getHead();
-}
-
 void DanhSachNhanVien::ThemNhanVien(NhanVien& nv){
-    ls.insert(nv);
+    set.insert(nv);
 }
 
 void DanhSachNhanVien::TimKiemNhanVien(string id) // Tìm kiếm nhân viên theo idNhanVien
 {
     cout << "------------------Nhan Vien " << id << "-------------------" << endl;
-    Node<NhanVien> *current = getHead();
-    int found;
-     while(current != NULL){
-        if(current -> getData().idNhanVien == id)
-        {
-            current -> getData().LayThongTinCaNhan();
-            found = 1;
-            break;
-        }    
-        current = current -> getNext();
-        found = 0;
-    }
-    if (found == 0) cout << "-> Khong co nhan vien co ID " << id << "!" << endl;
+    //Tạo một nhân viên tạm để chứa id nhằm tìm kiếm trong tập hợp (Vì đã định nghĩa toán tử == so sánh hai NhanVien theo id)
+    NhanVien nv(id);
+
+    int index = set.findEle(nv);
+
+    if(index == -1) 
+        cout << "-> Khong co nhan vien co ID " << id << "!" << endl;
+    else 
+        set[index].LayThongTinCaNhan();
 }

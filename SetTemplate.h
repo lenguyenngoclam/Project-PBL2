@@ -28,6 +28,7 @@ class Set{
         T begin();
         T end();
         size_t findEle(const T& data);
+        size_t getSize() { return size; }
 
         T& operator[](const size_t& index);
 
