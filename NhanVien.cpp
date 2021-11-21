@@ -1,9 +1,9 @@
+#ifndef Nhanvien_cpp
+#define Nhanvien_cpp
 #include <iostream>
 #include <string>
 #include <fstream>
 
-#include "ThongTinCaNhan.h"
-#include "TaiKhoan.h"
 #include "NhanVien.h"
 
 using namespace std;
@@ -36,6 +36,17 @@ NhanVien& NhanVien::operator =(const NhanVien& nv){
 string NhanVien::LaySoLuong()
 {
     return number_NhanVien;
+}
+
+void NhanVien::themTaiKhoan(TaiKhoanNhanVien& tk){
+    this -> taiKhoanNhanVien = &tk;
+    CaiDatThongTin();
+    ofstream fout;
+    fout.open("NHANVIEN.txt", ios::app);
+    fout << endl;
+    fout << ("NV" + tk.layTaiKhoan()) << endl;
+    fout << tk.layMatKhau();
+    fout.close();
 }
 
 // Đổi thông tin cá nhân
@@ -86,7 +97,6 @@ void NhanVien::LayThongTinCaNhan() const{
 
 void NhanVien::CaiDatThongTin()
 {
-    ThongTinCaNhan::NhapThongTinCaNhan();
     string temp = "NV";
     int num = stoi(number_NhanVien);
     num++; 
@@ -252,3 +262,77 @@ void DanhSachNhanVien::TimKiemNhanVien(string id) // Tìm kiếm nhân viên the
     else 
         set[index].LayThongTinCaNhan();
 }
+// ----------------------------------------------------------------------------------------------------------------------------------------------
+// TAI KHOAN NHAN VIEN
+
+TaiKhoanNhanVien::TaiKhoanNhanVien() : TaiKhoan("","") {}
+TaiKhoanNhanVien::TaiKhoanNhanVien(string ten, string mk) : TaiKhoan(ten,mk), nhanVien() {}
+
+void TaiKhoanNhanVien::themTaiKhoan(NhanVien& nv){
+    this -> nhanVien = &nv;
+    this -> DatTaiKhoan();
+    nv.themTaiKhoan(*this);
+}
+
+void TaiKhoanNhanVien::DatTaiKhoan(){
+    ofstream fout;
+    fout.open("TAIKHOAN.txt", ios::app);
+    TaiKhoanNhanVien temp("NV" + TenDangNhap, MatKhau);
+
+    fout << temp.TenDangNhap << endl;
+    fout << temp.MatKhau << endl;
+    fout.close();
+}
+
+TaiKhoanNhanVien::TaiKhoanNhanVien(const TaiKhoanNhanVien& tk) : TaiKhoan(tk), nhanVien(tk.nhanVien) {}
+
+TaiKhoanNhanVien& TaiKhoanNhanVien::operator=(const TaiKhoanNhanVien& rhs){
+    TenDangNhap = rhs.TenDangNhap;
+    MatKhau = rhs.MatKhau;
+    nhanVien = rhs.nhanVien;
+
+    return (*this);
+}
+
+bool TaiKhoanNhanVien::operator==(const TaiKhoanNhanVien& rhs){
+    return (TenDangNhap == rhs.TenDangNhap && MatKhau == rhs.MatKhau);
+}
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------
+// DANH SACH TAI KHOAN NHAN VIEN
+
+void DanhSachTaiKhoanNhanVien::caiDatDanhSach(){
+    ifstream fin;
+    fin.open("NHANVIEN.txt", ios::in);
+    int count = 1;
+    string line;
+    while(getline(fin,line)){
+        if(count != 1 && count % 7 == 0){
+            TaiKhoanNhanVien tk;
+            tk.TenDangNhap = line;
+            getline(fin, line);
+            tk.MatKhau = line;
+            count++;
+            set.insert(tk);
+        }
+        count++;
+    }   
+}
+
+bool DanhSachTaiKhoanNhanVien::kiemTraTaiKhoan(TaiKhoanNhanVien& nv){
+    int index = set.findEle(nv);
+    if(index == -1)
+        return false;
+    else
+        return true;
+}  
+
+void DanhSachTaiKhoanNhanVien::inDanhSach(){
+    size_t n = set.getSize();
+    for(size_t i = 0; i != n; i++){
+        cout << set[i].TenDangNhap << " " << set[i].MatKhau;
+        cout << endl;
+    }
+}
+
+#endif

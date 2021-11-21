@@ -1,20 +1,13 @@
 #include <iostream>
 #include <initializer_list>
-#include "SetTemplate.cpp"
+#include "NhanVien.cpp"
 
 using namespace std;
 
 int main(){
 
-    Set<int> s(4);
-    cout << s << endl;
-    s.insert(1);
-    s.insert(2);
-    s.insert(3);
-    cout << s << endl;
-    s[2] = 5;
-    cout << s[2];
-    cout << s.findEle(1);
-
+    NhanVien nv("","Le Nguyen Ngoc Lam","48C k20","0962814899","20");
+    TaiKhoanNhanVien tk("ngoclam3092002","3092002");
+    tk.themTaiKhoan(nv);
     return 0;
 }

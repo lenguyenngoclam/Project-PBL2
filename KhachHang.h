@@ -2,35 +2,27 @@
 #define KhachHang_h
 
 #include <iostream>
+#include <fstream>
 #include <string>
 
-#include "ThongTinCaNhan.h"
+#include "ThongTinCaNhan.cpp"
 #include "TaiKhoan.h"
-#include "LinkedListTemplate.h"
+#include "SetTemplate.cpp"
+
 using namespace std;
 
-class TheATM{
-    private :
-        static string MaSoThe;
-        string MatKhau;
-        string MaTaiKhoan;
-    public :    
-        void NapTien(double soTien);
-        void RutTien();
-        void XemSoDu();
-        void DatMatKhau();
-        void DoiMatKhau();
-};
+class TheATM;
 
 class KhachHang : public ThongTinCaNhan{
     private :
         string idKhachHang;
-        TheATM TheATM;
+        TheATM theAtm;
     public :
         KhachHang() {
             ThongTinCaNhan();
         }
         KhachHang(string id, string hoten, string diachi, string sodienthoai, string tuoi);
+        KhachHang(string id) : idKhachHang(id), ThongTinCaNhan() {};
 
         ~KhachHang() override = default;
 
@@ -57,9 +49,23 @@ class KhachHang : public ThongTinCaNhan{
         friend class DanhSachKhachHang;
 };
 
+class TheATM{
+    private :
+        double soDu;
+        string MatKhau;
+        string MaTaiKhoan;
+        KhachHang khachHang;
+    public :    
+        void NapTien(double soTien);
+        void RutTien(double );
+        void XemSoDu();
+        void DatMatKhau();
+        void DoiMatKhau();
+};
+
 class DanhSachKhachHang{
     private:
-        LinkedList<KhachHang> ls;
+        Set<KhachHang> set;
     public:
         DanhSachKhachHang() = default;
         ~DanhSachKhachHang() = default;
@@ -70,9 +76,17 @@ class DanhSachKhachHang{
         void ThemKhachHang(KhachHang& nv); 
         void TimKiemKhachHang(string id);
 
-        Node<KhachHang>* getHead();
-
         friend class KhachHang;
+};
+
+class OnlineBanking : public TaiKhoan{
+    private :   
+        KhachHang kh;
+    public :
+        OnlineBanking() = default;
+        ~OnlineBanking() override = default;
+        //void DatMatKhau() override;
+        //void DatTenDangNhap() override;
 };
 
 

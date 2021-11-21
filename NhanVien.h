@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "ThongTinCaNhan.h"
+#include "ThongTinCaNhan.cpp"
 #include "TaiKhoan.h"
 #include "SetTemplate.cpp"
 
@@ -12,10 +12,13 @@ using namespace std;
 
 class DanhSachNhanVien;
 class TaiKhoanNhanVien;
+class DanhSachTaiKhoanNhanVien;
 
 class NhanVien : public ThongTinCaNhan{
     private :
         string idNhanVien;
+        TaiKhoanNhanVien *taiKhoanNhanVien;
+        void themTaiKhoan(TaiKhoanNhanVien&);
     public :
         NhanVien() {
             ThongTinCaNhan();
@@ -59,6 +62,39 @@ class DanhSachNhanVien{
         void TimKiemNhanVien(string id);
 
         friend class NhanVien;
+};
+
+class TaiKhoanNhanVien : public TaiKhoan{
+    private :
+        NhanVien* nhanVien;
+    public :
+        TaiKhoanNhanVien();
+        TaiKhoanNhanVien(string ten, string mk);
+        ~TaiKhoanNhanVien() override = default;
+
+        TaiKhoanNhanVien(const TaiKhoanNhanVien& tk);
+
+        void DatTaiKhoan() override;
+        void themTaiKhoan(NhanVien& nv);
+        string layTaiKhoan() { return TenDangNhap; }
+        string layMatKhau() {return MatKhau; }
+
+        TaiKhoanNhanVien& operator=(const TaiKhoanNhanVien& rhs); 
+
+        bool operator==(const TaiKhoanNhanVien& rhs);       
+        friend class SuKien;
+        friend class NhanVien;
+        friend class DanhSachTaiKhoanNhanVien;
+};
+
+class DanhSachTaiKhoanNhanVien{
+    private :
+        Set<TaiKhoanNhanVien> set;
+    public :
+        DanhSachTaiKhoanNhanVien() : set() {};
+        void caiDatDanhSach();
+        bool kiemTraTaiKhoan(TaiKhoanNhanVien& nv);
+        void inDanhSach();
 };
 
 

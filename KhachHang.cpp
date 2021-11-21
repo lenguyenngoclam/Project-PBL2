@@ -1,9 +1,3 @@
-#include <iostream>
-#include <string>
-#include <fstream>
-
-#include "ThongTinCaNhan.h"
-#include "TaiKhoan.h"
 #include "KhachHang.h"
 
 using namespace std;
@@ -80,7 +74,7 @@ void KhachHang::DoiThongTinCaNhan() {
     rename("temp.txt","KHACHHANG.txt");
 }
 
-void KhachHang::LayThongTinCaNhan() const {
+void KhachHang::LayThongTinCaNhan() const{
     cout << "- ID: " << idKhachHang << endl;
     ThongTinCaNhan::LayThongTinCaNhan();
 }
@@ -156,7 +150,7 @@ void DanhSachKhachHang::CaiDatDanhSach(){
         getline(fin, temp.Tuoi);
         getline(fin, temp.DiaChi);
         getline(fin, temp.SoDienThoai);
-        ls.insert(temp);
+        set.insert(temp);
         count_line += 5;
     }
     fin.close();
@@ -169,7 +163,8 @@ ostream& operator <<(ostream& os, const KhachHang& kh){
 
 void DanhSachKhachHang::InDanhSach(){
     cout << "---------------Danh sach khach hang---------------" << endl;
-    ls.printList();
+    for(size_t i = 0; i < set.getSize(); i++)
+        set[i].LayThongTinCaNhan();
 }
 
 void DanhSachKhachHang::SuaDanhSach(const KhachHang &kh)
@@ -192,7 +187,7 @@ void DanhSachKhachHang::SuaDanhSach(const KhachHang &kh)
             temp1.Tuoi = kh.Tuoi;
             temp1.DiaChi = kh.DiaChi;
             temp1.SoDienThoai = kh.SoDienThoai;
-            ls.insert(temp1);
+            set.insert(temp1);
             break;
         }
     }
@@ -234,29 +229,23 @@ void DanhSachKhachHang::SuaDanhSach(const KhachHang &kh)
     rename("temp.txt","KHACHHANG.txt");
 }
 
-Node<KhachHang>* DanhSachKhachHang::getHead()
-{
-    return ls.getHead();
-}
-
 void DanhSachKhachHang::ThemKhachHang(KhachHang& nv){
-    ls.insert(nv);
+    set.insert(nv);
 }
 
 void DanhSachKhachHang::TimKiemKhachHang(string id) // Tìm kiếm khách hàng theo idKhachHang
 {
     cout << "-----------------Khach Hang " << id << "-------------------" << endl;
-    Node<KhachHang> *current = getHead();
-    int found;
-     while(current != NULL){
-        if(current -> getData().idKhachHang == id)
-        {
-            current -> getData().LayThongTinCaNhan();
-            found = 1;
-            break;
-        }    
-        current = current -> getNext();
-        found = 0;
-    }
-    if (found == 0) cout << "-> Khong co khach hang nao co ID " << id << "!" << endl;
+    KhachHang kh(id);
+
+    int index = set.findEle(kh);
+
+    if(index == -1) 
+        cout << "-> Khong co nhan vien co ID " << id << "!" << endl;
+    else 
+        set[index].LayThongTinCaNhan();
 }
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------
+// THE ATM
+
