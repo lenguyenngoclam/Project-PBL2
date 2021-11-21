@@ -248,4 +248,43 @@ void DanhSachKhachHang::TimKiemKhachHang(string id) // Tìm kiếm khách hàng 
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------
 // THE ATM
+TheATM::TheATM(const TheATM& the) : soDu(the.soDu), MaTaiKhoan(the.MaTaiKhoan), MatKhau(the.MatKhau){
+    KhachHang = the.KhachHang;
+}
+
+void TheATM::NapTien(double d){
+    soDu += d;
+}
+
+void TheATM::rutTien(double d){
+    soDu -= d;
+}
+
+double TheATM::laySoDu(){
+    return soDu;
+}
+
+void TheATM::DoiMatKhau(string mkMoi){
+    
+}
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------
+// DANH SACH THE ATM
+void DanhSachTheATM::caiDatDanhSach(){
+    ifstream fin;
+    fin.open("KHACHHANG.txt", ios::in);
+    int count = 1;
+    string line;
+    while(getline(fin,line)){
+        if(count != 1 && count % 7 == 0){
+            TheATM the;
+            the.MaTaiKhoan = line;
+            getline(fin, line);
+            the.MatKhau = line;
+            count++;
+            set.insert(tk);
+        }
+        count++;
+    }  
+}
 

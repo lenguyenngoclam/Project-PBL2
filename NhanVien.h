@@ -44,6 +44,7 @@ class NhanVien : public ThongTinCaNhan{
 
         friend class DanhSachNhanVien;
         friend class TaiKhoanNhanVien;
+        friend class DanhSachTaiKhoanNhanVien;
         friend ostream& operator <<(ostream& os, const NhanVien& nv);
 };
 
@@ -66,7 +67,7 @@ class DanhSachNhanVien{
 
 class TaiKhoanNhanVien : public TaiKhoan{
     private :
-        NhanVien* nhanVien;
+        NhanVien nhanVien;
     public :
         TaiKhoanNhanVien();
         TaiKhoanNhanVien(string ten, string mk);
@@ -78,6 +79,7 @@ class TaiKhoanNhanVien : public TaiKhoan{
         void themTaiKhoan(NhanVien& nv);
         string layTaiKhoan() { return TenDangNhap; }
         string layMatKhau() {return MatKhau; }
+        NhanVien layNhanVien() { return nhanVien; }
 
         TaiKhoanNhanVien& operator=(const TaiKhoanNhanVien& rhs); 
 
@@ -92,9 +94,14 @@ class DanhSachTaiKhoanNhanVien{
         Set<TaiKhoanNhanVien> set;
     public :
         DanhSachTaiKhoanNhanVien() : set() {};
+        DanhSachTaiKhoanNhanVien(size_t n) : set(n) {};
+        ~DanhSachTaiKhoanNhanVien();
         void caiDatDanhSach();
         bool kiemTraTaiKhoan(TaiKhoanNhanVien& nv);
         void inDanhSach();
+        TaiKhoanNhanVien& suDungTaiKhoan(string, string);
+
+        friend class TaiKhoanNhanVien;
 };
 
 

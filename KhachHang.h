@@ -12,11 +12,12 @@
 using namespace std;
 
 class TheATM;
+class DanhSachTheATM;
 
 class KhachHang : public ThongTinCaNhan{
     private :
         string idKhachHang;
-        TheATM theAtm;
+        TheATM *theAtm;
     public :
         KhachHang() {
             ThongTinCaNhan();
@@ -54,13 +55,19 @@ class TheATM{
         double soDu;
         string MatKhau;
         string MaTaiKhoan;
-        KhachHang khachHang;
+        KhachHang *khachHang;
     public :    
+        TheATM(double d, string mk, string tk) : soDu(d), MatKhau(mk), MaTaiKhoan(tk), KhachHang(){};
+        TheATM() : soDu(0), MatKhau(""), MaTaiKhoan(""), KhachHang() {};
+
+        TheATM(const TheATM&);
+
         void NapTien(double soTien);
         void RutTien(double );
-        void XemSoDu();
-        void DatMatKhau();
-        void DoiMatKhau();
+        double laySoDu();
+        void caiDatTheATM();
+        void DoiMatKhau(string);
+        friend class DanhSachTheATM;
 };
 
 class DanhSachKhachHang{
@@ -88,6 +95,18 @@ class OnlineBanking : public TaiKhoan{
         //void DatMatKhau() override;
         //void DatTenDangNhap() override;
 };
+
+class DanhSachTheATM{
+    private :
+        Set<TheATM> set;
+    public :
+        DanhSachTheATM() : set() {};
+        void caiDatDanhSach();
+};
+
+class DanhSachTaiKhoanOnlineBanking{
+
+}
 
 
 #endif

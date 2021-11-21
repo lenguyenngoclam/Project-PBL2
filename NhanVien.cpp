@@ -269,7 +269,7 @@ TaiKhoanNhanVien::TaiKhoanNhanVien() : TaiKhoan("","") {}
 TaiKhoanNhanVien::TaiKhoanNhanVien(string ten, string mk) : TaiKhoan(ten,mk), nhanVien() {}
 
 void TaiKhoanNhanVien::themTaiKhoan(NhanVien& nv){
-    this -> nhanVien = &nv;
+    this -> nhanVien = nv;
     this -> DatTaiKhoan();
     nv.themTaiKhoan(*this);
 }
@@ -287,9 +287,9 @@ void TaiKhoanNhanVien::DatTaiKhoan(){
 TaiKhoanNhanVien::TaiKhoanNhanVien(const TaiKhoanNhanVien& tk) : TaiKhoan(tk), nhanVien(tk.nhanVien) {}
 
 TaiKhoanNhanVien& TaiKhoanNhanVien::operator=(const TaiKhoanNhanVien& rhs){
+    nhanVien = rhs.nhanVien;
     TenDangNhap = rhs.TenDangNhap;
     MatKhau = rhs.MatKhau;
-    nhanVien = rhs.nhanVien;
 
     return (*this);
 }
@@ -301,20 +301,30 @@ bool TaiKhoanNhanVien::operator==(const TaiKhoanNhanVien& rhs){
 // ----------------------------------------------------------------------------------------------------------------------------------------------
 // DANH SACH TAI KHOAN NHAN VIEN
 
+DanhSachTaiKhoanNhanVien::~DanhSachTaiKhoanNhanVien(){
+}
+
 void DanhSachTaiKhoanNhanVien::caiDatDanhSach(){
     ifstream fin;
     fin.open("NHANVIEN.txt", ios::in);
     int count = 1;
     string line;
     while(getline(fin,line)){
-        if(count != 1 && count % 7 == 0){
+        if(count != 1){
             TaiKhoanNhanVien tk;
-            tk.TenDangNhap = line;
-            getline(fin, line);
+
+            tk.nhanVien.idNhanVien = line; getline(fin,line);
+            tk.nhanVien.HoTen = line; getline(fin,line);
+            tk.nhanVien.Tuoi = line; getline(fin,line);
+            tk.nhanVien.DiaChi = line; getline(fin, line);
+            tk.nhanVien.SoDienThoai = line; getline(fin,line);
+
+            tk.TenDangNhap = line; getline(fin, line);
             tk.MatKhau = line;
-            count++;
+            
             set.insert(tk);
-        }
+            count += 6;
+        } 
         count++;
     }   
 }
@@ -331,8 +341,15 @@ void DanhSachTaiKhoanNhanVien::inDanhSach(){
     size_t n = set.getSize();
     for(size_t i = 0; i != n; i++){
         cout << set[i].TenDangNhap << " " << set[i].MatKhau;
+        set[i].nhanVien.LayThongTinCaNhan();
         cout << endl;
     }
+}
+
+TaiKhoanNhanVien& DanhSachTaiKhoanNhanVien::suDungTaiKhoan(string ten, string mk){
+    TaiKhoanNhanVien tk(ten,mk);
+    int index = set.findEle(tk);
+    return set[index];
 }
 
 #endif

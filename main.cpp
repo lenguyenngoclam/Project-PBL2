@@ -8,6 +8,7 @@ int main(){
     DanhSachTaiKhoanNhanVien dsTaiKhoan;
     dsTaiKhoan.caiDatDanhSach();
     dsTaiKhoan.inDanhSach();
+
     
     while(true){
         cout << "Bạn là " << endl;
@@ -18,17 +19,21 @@ int main(){
         if(choice == "1"){
             string tenDangNhap, matKhau;
             cout << "Xin mời đăng nhập : " << endl;
-            cout << "Tài khoản : " << endl; getline(cin,tenDangNhap);
-            cout << "Mật khẩu : " << endl; getline(cin, matKhau);
+            cout << "Tài khoản : "; getline(cin,tenDangNhap);
+            cout << "\nMật khẩu : " << endl; getline(cin, matKhau);
             tenDangNhap = "NV" + tenDangNhap;
+
             TaiKhoanNhanVien tk(tenDangNhap,matKhau);
-            if(dsTaiKhoan.kiemTraTaiKhoan(tk))
-                cout << "OK";
+            if(dsTaiKhoan.kiemTraTaiKhoan(tk)){
+                TaiKhoanNhanVien tk = dsTaiKhoan.suDungTaiKhoan(tenDangNhap, matKhau);
+                tk.layNhanVien().LayThongTinCaNhan();
+                break;
+            }
             else 
                 cout << "Not OK";
         }
     }
-    
 
+    
    return 0;
 }

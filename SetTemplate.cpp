@@ -44,7 +44,7 @@ Set<T>& Set<T>::operator=(const Set& s){
 
 template<typename T>
 ostream& Set<T>::getInfo(ostream& os) const{
-    for(size_t i = 0; i != size; i++)
+    for(size_t i = 0; i != curr; i++)
         os << arr[i] << " ";
     return os;
 }
@@ -62,9 +62,14 @@ void Set<T>::free(){
 template<typename T>
 void Set<T>::insert(T data){
     if(curr == max_size){
+        Set temp(max_size + 3);
+        for(size_t i = 0; i != size; i++)
+            temp.arr[i] = arr[i];
         free();
-        (*this) = Set(max_size + 3);
+        (*this) = temp;
     }
+    if(curr == size) 
+        size++;
     arr[curr] = data;
     curr++;
 }
