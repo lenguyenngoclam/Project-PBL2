@@ -1,20 +1,20 @@
 #include <iostream>
-#include <string>
-#include <fstream>
-
-#include "TaiKhoan.cpp"
-#include "Sukien.cpp"
-#include "ThongTinCaNhan.cpp"
+#include <initializer_list>
+#include "SetTemplate.cpp"
 
 using namespace std;
 
 int main(){
-    string username, password;
-    cout << "- Username: "; cin >> username;
-    cout << "- Password: "; cin >> password;
-    TaiKhoanNhanVien temp(username,password);
-    DanhSachTaiKhoan ds;
-    ds.ThemTaiKhoan(&temp);
-    ds.head -> data -> getInfo(cout);
+
+    Set<int> s(4);
+    cout << s << endl;
+    s.insert(1);
+    s.insert(2);
+    s.insert(3);
+    cout << s << endl;
+    s[2] = 5;
+    cout << s[2];
+    cout << s.findEle(1);
+
     return 0;
 }
