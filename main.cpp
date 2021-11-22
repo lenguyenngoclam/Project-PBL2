@@ -30,7 +30,7 @@ int main(){
         string choice;
         getline(cin,choice);
 
-        //Mã tài khoản ATM
+        // Mã tài khoản ATM
         string tenDangNhap, matKhau, maTaiKhoan;
 
         if(choice == "1"){
@@ -83,7 +83,7 @@ int main(){
 
             size_t tempIndex;
             double soTien;
-            //temp dùng để lưu idKhachHang, ...
+            // temp dùng để lưu idKhachHang, ...
             string temp;
 
             cout << "1. Sử dụng thẻ ATM" << endl;
@@ -115,14 +115,14 @@ int main(){
                                     cout << "Số tiền cần rút không hợp lệ";
                                 else {
                                     the.RutTien(d);
-                                    cout << "Số dư còn lại = " << to_string(the.laySoDu());
+                                    cout << "Số dư hiện tại = " << to_string(the.laySoDu());
                                 }
                                 break;
                             case 3 :
                                 cout << "Số tiền muốn nạp = ";
                                 cin >> d;
                                 the.NapTien(d);
-                                cout << "Số dư còn lại = " << to_string(the.laySoDu());
+                                cout << "Số dư hiện tại = " << to_string(the.laySoDu());
                                 break;
                         }
                     } else 
@@ -160,7 +160,7 @@ int main(){
                                         cout << "Số dư tài khoản không đủ" << endl;
                                     else {
                                         the.chuyenTien(nguoiNhan, soTien);
-                                        cout << "Số dư còn lại = " << to_string(the.laySoDu()) << endl;
+                                        cout << "Số dư hiện tại = " << to_string(the.laySoDu()) << endl;
                                     }
                                 }
                                 break;
@@ -208,6 +208,6 @@ int main(){
         }
     }
 
-    
-   return 0;
+    system("pause");
+    return 0;
 }

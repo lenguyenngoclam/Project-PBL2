@@ -95,6 +95,7 @@ class DanhSachTaiKhoanNhanVien{
         DanhSachTaiKhoanNhanVien(size_t n) : set(n) {};
         ~DanhSachTaiKhoanNhanVien();
         void caiDatDanhSach();
+        // Kiểm tra tài khoản có hợp lệ không
         bool kiemTraTaiKhoan(TaiKhoanNhanVien& nv);
         void inDanhSach();
         TaiKhoanNhanVien& suDungTaiKhoan(string, string);

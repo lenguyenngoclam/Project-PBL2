@@ -295,15 +295,15 @@ void TheATM::suaFile(double (*func)(double, double), double soTien){
             fout << line << endl; 
         }
         if (line == MaTaiKhoan){
-            //Lấy dòng chứa mật khẩu thẻ atm trong NHANVIEN.txt
+            // Lấy dòng chứa mật khẩu thẻ atm trong NHANVIEN.txt
             getline(fin, line);
             if(line == MatKhau){
                 fout << line << endl;
-                //Lấy dòng chứa số dư trong thẻ
+                // Lấy dòng chứa số dư trong thẻ
                 getline(fin,line);
                 
                 double d = stod(line);
-                //Sử dụng con trỏ hàm tìm hàm cộng hoặc trừ hợp lí đối với trường hợp rút tiền hoặc nạp tiền
+                // Sử dụng con trỏ hàm tìm hàm cộng hoặc trừ hợp lí đối với trường hợp rút tiền hoặc nạp tiền
                 d = func(d,soTien);
                 soDu = d;
                 fout << to_string(d) << endl;
