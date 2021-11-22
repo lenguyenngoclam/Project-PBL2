@@ -17,7 +17,6 @@ string LaySoLuongNhanVien() {
     return line;
 }
 
-int count_line = 0;
 string number_NhanVien = LaySoLuongNhanVien();
 
 NhanVien::NhanVien(string id, string ten, string dc, string sdt, string t) : ThongTinCaNhan(ten,dc,sdt,t) {
@@ -67,7 +66,7 @@ void NhanVien::DoiThongTinCaNhan(){
             number_NhanVien = line.substr(0,line.size()-1); // Cắt kí tự "\n" cuối line
             ++count; fout << line << endl;
         }
-        else if (count == count_line) fout << line; 
+        else if (count == nhanVien_count_line) fout << line; 
         else { 
             ++count; 
             fout << line << endl; 
@@ -157,7 +156,8 @@ void DanhSachNhanVien::CaiDatDanhSach(){
     ifstream fin;
     fin.open("NHANVIEN.txt", ios::in);
     getline(fin, number_NhanVien);
-    count_line += 1;
+    nhanVien_count_line += 1;
+    string line;
     while(!fin.eof()){
         NhanVien temp;
         getline(fin, temp.idNhanVien);
@@ -165,14 +165,19 @@ void DanhSachNhanVien::CaiDatDanhSach(){
         getline(fin, temp.Tuoi);
         getline(fin, temp.DiaChi);
         getline(fin, temp.SoDienThoai);
+
         set.insert(temp);
-        count_line += 5;
+        
+        //Lấy ra 2 dòng chứa tài khoản và mật khẩu của nhân viên
+        getline(fin, line);
+        getline(fin, line);
+        nhanVien_count_line += 7;
     }
     fin.close();
 }
 
 ostream& operator <<(ostream& os, const NhanVien& nv){
-    nv.LayThongTinCaNhan();
+    cout << "Xin chào ! Tôi là : " << nv.HoTen;
     return os;
 }
 
@@ -180,73 +185,6 @@ void DanhSachNhanVien::InDanhSach(){
     cout << "---------------Danh sach nhan vien---------------" << endl;
     for(size_t i = 0; i < set.getSize(); i++)
         set[i].LayThongTinCaNhan();
-}
-
-void DanhSachNhanVien::SuaDanhSach(const NhanVien &nv)
-{
-    //Hàm thành viên có chức năng sửa lại nhân viên cuối cùng nằm trong file 
-    
-    ifstream fin;
-    fin.open("NHANVIEN.txt", ios::in);
-    getline(fin, number_NhanVien);
-    while(!fin.eof()){
-        NhanVien temp;
-        getline(fin, temp.idNhanVien);
-        getline(fin, temp.HoTen);
-        getline(fin, temp.Tuoi);
-        getline(fin, temp.DiaChi);
-        getline(fin, temp.SoDienThoai);
-        if (fin.eof()) {
-            NhanVien temp1;
-            temp1.idNhanVien = nv.idNhanVien;
-            temp1.HoTen = nv.HoTen;
-            temp1.Tuoi = nv.Tuoi;
-            temp1.DiaChi = nv.DiaChi;
-            temp1.SoDienThoai = nv.SoDienThoai;
-            set.insert(temp1);
-            break;
-        }
-    }
-    fin.close();
-
-// Sua trong file NHANVIEN.txt
-    ifstream fin2;
-    fin2.open("NHANVIEN.txt", ios::in);
-
-    ofstream fout;
-    fout.open("temp.txt", ios::app);
-
-    string line; int count = 1;
-    while(getline(fin2, line)){
-        if (count == 1) {
-            number_NhanVien = line.substr(0,line.size()-1); // Cắt kí tự "\n" cuối line
-            ++count; fout << line << endl;
-        }
-        else if (count == count_line) {
-            fout << line << endl;
-            fout << nv.idNhanVien << endl;
-            fout << nv.HoTen << endl; 
-            fout << nv.Tuoi << endl; 
-            fout << nv.DiaChi << endl;
-            fout << nv.SoDienThoai;   
-            count_line += 5;     
-            break;    
-        }
-        else { 
-            ++count; 
-            fout << line << endl; 
-        }
-    }
-
-    fin2.close();
-    fout.close();
-    
-    remove("NHANVIEN.txt");
-    rename("temp.txt","NHANVIEN.txt");
-}
-
-void DanhSachNhanVien::ThemNhanVien(NhanVien& nv){
-    set.insert(nv);
 }
 
 void DanhSachNhanVien::TimKiemNhanVien(string id) // Tìm kiếm nhân viên theo idNhanVien
@@ -262,27 +200,12 @@ void DanhSachNhanVien::TimKiemNhanVien(string id) // Tìm kiếm nhân viên the
     else 
         set[index].LayThongTinCaNhan();
 }
+
 // ----------------------------------------------------------------------------------------------------------------------------------------------
 // TAI KHOAN NHAN VIEN
 
 TaiKhoanNhanVien::TaiKhoanNhanVien() : TaiKhoan("","") {}
 TaiKhoanNhanVien::TaiKhoanNhanVien(string ten, string mk) : TaiKhoan(ten,mk), nhanVien() {}
-
-void TaiKhoanNhanVien::themTaiKhoan(NhanVien& nv){
-    this -> nhanVien = nv;
-    this -> DatTaiKhoan();
-    nv.themTaiKhoan(*this);
-}
-
-void TaiKhoanNhanVien::DatTaiKhoan(){
-    ofstream fout;
-    fout.open("TAIKHOAN.txt", ios::app);
-    TaiKhoanNhanVien temp("NV" + TenDangNhap, MatKhau);
-
-    fout << temp.TenDangNhap << endl;
-    fout << temp.MatKhau << endl;
-    fout.close();
-}
 
 TaiKhoanNhanVien::TaiKhoanNhanVien(const TaiKhoanNhanVien& tk) : TaiKhoan(tk), nhanVien(tk.nhanVien) {}
 

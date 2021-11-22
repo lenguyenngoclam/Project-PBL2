@@ -4,9 +4,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "ThongTinCaNhan.cpp"
-#include "TaiKhoan.h"
-#include "SetTemplate.cpp"
+#include "include.h"
 
 using namespace std;
 
@@ -58,9 +56,10 @@ class DanhSachNhanVien{
 
         void CaiDatDanhSach();
         void InDanhSach();
-        void SuaDanhSach(const NhanVien &nv);
-        void ThemNhanVien(NhanVien& nv); 
+
         void TimKiemNhanVien(string id);
+        
+        Set<NhanVien>& getSetNhanVien() { return set; }
 
         friend class NhanVien;
 };
@@ -75,7 +74,6 @@ class TaiKhoanNhanVien : public TaiKhoan{
 
         TaiKhoanNhanVien(const TaiKhoanNhanVien& tk);
 
-        void DatTaiKhoan() override;
         void themTaiKhoan(NhanVien& nv);
         string layTaiKhoan() { return TenDangNhap; }
         string layMatKhau() {return MatKhau; }

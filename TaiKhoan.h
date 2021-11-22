@@ -6,8 +6,6 @@
 
 using namespace std;
 
-class DanhSachTaiKhoan;
-
 class TaiKhoan{
     protected :
         string TenDangNhap;
@@ -15,11 +13,9 @@ class TaiKhoan{
     public :    
         TaiKhoan() : TenDangNhap(""), MatKhau("") {};
         TaiKhoan(string ten, string mk) : TenDangNhap(ten), MatKhau(mk) {};
+        TaiKhoan(const TaiKhoan& tk) : TenDangNhap(tk.TenDangNhap), MatKhau(tk.MatKhau){};
 
         virtual ~TaiKhoan() {};
-        virtual void DatTaiKhoan() = 0;
-        //virtual string kiemTraDangNhap() = 0; 
-        friend DanhSachTaiKhoan;
 };
 
 #endif

@@ -3,6 +3,7 @@
 
 #include <initializer_list>
 #include <iostream>
+#include <time.h>
 
 using namespace std;
 
@@ -29,6 +30,7 @@ class Set{
         T end();
         size_t findEle(const T& data);
         size_t getSize() { return size; }
+        size_t getCurr() { return curr; }
 
         T& operator[](const size_t& index);
 
