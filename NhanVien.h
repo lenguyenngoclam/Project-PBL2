@@ -4,23 +4,25 @@
 #include <iostream>
 #include <fstream>
 
-#include "ThongTinCaNhan.h"
-#include "TaiKhoan.h"
-#include "LinkedListTemplate.h"
+#include "include.h"
 
 using namespace std;
 
 class DanhSachNhanVien;
 class TaiKhoanNhanVien;
+class DanhSachTaiKhoanNhanVien;
 
 class NhanVien : public ThongTinCaNhan{
     private :
         string idNhanVien;
+        TaiKhoanNhanVien *taiKhoanNhanVien;
+        void themTaiKhoan(TaiKhoanNhanVien&);
     public :
         NhanVien() {
             ThongTinCaNhan();
         }
         NhanVien(string id, string hoten, string diachi, string sodienthoai, string tuoi);
+        NhanVien(const string id) : ThongTinCaNhan(), idNhanVien(id) {}
 
         ~NhanVien() override = default;
 
@@ -40,13 +42,31 @@ class NhanVien : public ThongTinCaNhan{
 
         friend class DanhSachNhanVien;
         friend class TaiKhoanNhanVien;
+        friend class DanhSachTaiKhoanNhanVien;
         friend ostream& operator <<(ostream& os, const NhanVien& nv);
 };
 
 
+class DanhSachNhanVien{
+    private :
+        Set<NhanVien> set;
+    public :
+        DanhSachNhanVien() = default;
+        ~DanhSachNhanVien() = default;
+
+        void CaiDatDanhSach();
+        void InDanhSach();
+
+        void TimKiemNhanVien(string id);
+        
+        Set<NhanVien>& getSetNhanVien() { return set; }
+
+        friend class NhanVien;
+};
+
 class TaiKhoanNhanVien : public TaiKhoan{
     private :
-        NhanVien nv;
+        NhanVien nhanVien;
     public :
         TaiKhoanNhanVien();
         TaiKhoanNhanVien(string ten, string mk);
@@ -54,32 +74,32 @@ class TaiKhoanNhanVien : public TaiKhoan{
 
         TaiKhoanNhanVien(const TaiKhoanNhanVien& tk);
 
-        void DatTaiKhoan() override;
-        
-        //string kiemTraDangNhap() override;
+        void themTaiKhoan(NhanVien& nv);
+        string layTaiKhoan() { return TenDangNhap; }
+        string layMatKhau() {return MatKhau; }
+        NhanVien layNhanVien() { return nhanVien; }
 
-        TaiKhoanNhanVien& operator=(const TaiKhoanNhanVien& rhs);        
-        ostream& getInfo(ostream&) override;
+        TaiKhoanNhanVien& operator=(const TaiKhoanNhanVien& rhs); 
+
+        bool operator==(const TaiKhoanNhanVien& rhs);       
         friend class SuKien;
+        friend class NhanVien;
+        friend class DanhSachTaiKhoanNhanVien;
 };
 
-
-class DanhSachNhanVien{
+class DanhSachTaiKhoanNhanVien{
     private :
-        LinkedList<NhanVien> ls;
+        Set<TaiKhoanNhanVien> set;
     public :
-        DanhSachNhanVien() = default;
-        ~DanhSachNhanVien() = default;
+        DanhSachTaiKhoanNhanVien() : set() {};
+        DanhSachTaiKhoanNhanVien(size_t n) : set(n) {};
+        ~DanhSachTaiKhoanNhanVien();
+        void caiDatDanhSach();
+        bool kiemTraTaiKhoan(TaiKhoanNhanVien& nv);
+        void inDanhSach();
+        TaiKhoanNhanVien& suDungTaiKhoan(string, string);
 
-        void CaiDatDanhSach();
-        void InDanhSach();
-        void SuaDanhSach(const NhanVien &nv);
-        void ThemNhanVien(NhanVien& nv); 
-        void TimKiemNhanVien(string id);
-
-        Node<NhanVien>* getHead();
-
-        friend class NhanVien;
+        friend class TaiKhoanNhanVien;
 };
 
 

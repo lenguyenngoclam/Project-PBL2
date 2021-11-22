@@ -1,6 +1,4 @@
 #include "ThongTinCaNhan.h"
-#include <iostream>
-#include <string>
 
 using namespace std;
 

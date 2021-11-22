@@ -1,24 +1,20 @@
-#include <iostream>
-#include <string>
-#include <fstream>
-
-#include "ThongTinCaNhan.h"
-#include "TaiKhoan.h"
 #include "KhachHang.h"
 
 using namespace std;
 
-string LaySoLuongKhachHang() {
-    ifstream fin;
-    fin.open("KHACHHANG.txt", ios::in);
-    string line;
-    getline(fin, line);
-    fin.close();
-    return line;
+// ----------------------------------------------------------------------------------------------------------------------------------------------
+// HAM CHUC NANG
+
+double add(double a, double b){
+    return a + b;
 }
 
-int count_line = 0;
-string number_KhachHang = LaySoLuongKhachHang();
+double sub(double a, double b){
+    return a - b;
+}
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------
+// KHACH HANG
 
 KhachHang::KhachHang(string id, string ten, string dc, string sdt, string t) : ThongTinCaNhan(ten,dc,sdt,t) {
     idKhachHang = id;
@@ -57,7 +53,7 @@ void KhachHang::DoiThongTinCaNhan() {
             number_KhachHang = line.substr(0,line.size()-1); // Cắt kí tự "\n" cuối line
             ++count; fout << line << endl;
         }
-        else if (count == count_line) fout << line; 
+        else if (count == khachHang_count_line) fout << line; 
         else { 
             ++count; 
             fout << line << endl; 
@@ -80,7 +76,7 @@ void KhachHang::DoiThongTinCaNhan() {
     rename("temp.txt","KHACHHANG.txt");
 }
 
-void KhachHang::LayThongTinCaNhan() const {
+void KhachHang::LayThongTinCaNhan() const{
     cout << "- ID: " << idKhachHang << endl;
     ThongTinCaNhan::LayThongTinCaNhan();
 }
@@ -117,7 +113,7 @@ void KhachHang::CaiDatThongTin()
     fout << HoTen << endl;
     fout << Tuoi << endl;
     fout << DiaChi << endl;
-    fout << SoDienThoai;
+    fout << SoDienThoai << endl;
 
     fin.close();
     fout.close();
@@ -130,25 +126,13 @@ bool KhachHang::operator ==(const KhachHang& rhs) const{
     return idKhachHang.compare(rhs.idKhachHang) == 0;
 }
 
-bool KhachHang::operator !=(const KhachHang& rhs) const{
-    return idKhachHang.compare(rhs.idKhachHang) != 0;
-}
-
-bool KhachHang::operator <(const KhachHang& rhs) const{
-    return idKhachHang.compare(rhs.idKhachHang) < 0;
-}
-
-bool KhachHang::operator >(const KhachHang& rhs) const{
-    return idKhachHang.compare(rhs.idKhachHang) > 0;
-}
-
 // ----------------------------------------------------------------------------------------------------------------------------------------------
-// DanhSachKhachHang 
+// DANH SACH KHACH HANG 
 void DanhSachKhachHang::CaiDatDanhSach(){
     ifstream fin;
     fin.open("KHACHHANG.txt", ios::in);
     getline(fin, number_KhachHang);
-    count_line += 1;
+    khachHang_count_line += 1;
     while(!fin.eof()){
         KhachHang temp;
         getline(fin, temp.idKhachHang);
@@ -156,8 +140,19 @@ void DanhSachKhachHang::CaiDatDanhSach(){
         getline(fin, temp.Tuoi);
         getline(fin, temp.DiaChi);
         getline(fin, temp.SoDienThoai);
-        ls.insert(temp);
-        count_line += 5;
+        
+        string tk, mk, soDu;
+        getline(fin, tk);
+        getline(fin, mk);
+        getline(fin, soDu);
+
+        double d = stod(soDu);
+        TheATM theAtm = TheATM(tk,mk,d);
+
+        setKhachHang.insert(temp);
+        setATM.insert(theAtm);
+
+        khachHang_count_line += 8;
     }
     fin.close();
 }
@@ -169,94 +164,241 @@ ostream& operator <<(ostream& os, const KhachHang& kh){
 
 void DanhSachKhachHang::InDanhSach(){
     cout << "---------------Danh sach khach hang---------------" << endl;
-    ls.printList();
-}
-
-void DanhSachKhachHang::SuaDanhSach(const KhachHang &kh)
-{
-// Sua trong DSLK
-    ifstream fin;
-    fin.open("KHACHHANG.txt", ios::in);
-    getline(fin, number_KhachHang);
-    while(!fin.eof()){
-        KhachHang temp;
-        getline(fin, temp.idKhachHang);
-        getline(fin, temp.HoTen);
-        getline(fin, temp.Tuoi);
-        getline(fin, temp.DiaChi);
-        getline(fin, temp.SoDienThoai);
-        if (fin.eof()) {
-            KhachHang temp1;
-            temp1.idKhachHang = kh.idKhachHang;
-            temp1.HoTen = kh.HoTen;
-            temp1.Tuoi = kh.Tuoi;
-            temp1.DiaChi = kh.DiaChi;
-            temp1.SoDienThoai = kh.SoDienThoai;
-            ls.insert(temp1);
-            break;
-        }
-    }
-    fin.close();
-    
-// Sua trong file KHACHHANG.txt
-    ifstream fin2;
-    fin2.open("KHACHHANG.txt", ios::in);
-
-    ofstream fout;
-    fout.open("temp.txt", ios::app);
-
-    string line; int count = 1;
-    while(getline(fin2, line)){
-        if (count == 1) {
-            number_KhachHang = line.substr(0,line.size()-1); // Cắt kí tự "\n" cuối line
-            ++count; fout << line << endl;
-        }
-        else if (count == count_line) {
-            fout << line << endl;
-            fout << kh.idKhachHang << endl;
-            fout << kh.HoTen << endl; 
-            fout << kh.Tuoi << endl; 
-            fout << kh.DiaChi << endl;
-            fout << kh.SoDienThoai;   
-            count_line += 5;     
-            break;    
-        }
-        else { 
-            ++count; 
-            fout << line << endl; 
-        }
-    }
-
-    fin2.close();
-    fout.close();
-    
-    remove("KHACHHANG.txt");
-    rename("temp.txt","KHACHHANG.txt");
-}
-
-Node<KhachHang>* DanhSachKhachHang::getHead()
-{
-    return ls.getHead();
-}
-
-void DanhSachKhachHang::ThemKhachHang(KhachHang& nv){
-    ls.insert(nv);
+    for(size_t i = 0; i < setKhachHang.getSize(); i++)
+        setKhachHang[i].LayThongTinCaNhan();
 }
 
 void DanhSachKhachHang::TimKiemKhachHang(string id) // Tìm kiếm khách hàng theo idKhachHang
 {
     cout << "-----------------Khach Hang " << id << "-------------------" << endl;
-    Node<KhachHang> *current = getHead();
-    int found;
-     while(current != NULL){
-        if(current -> getData().idKhachHang == id)
-        {
-            current -> getData().LayThongTinCaNhan();
-            found = 1;
-            break;
-        }    
-        current = current -> getNext();
-        found = 0;
+    KhachHang kh(id);
+
+    int index = setKhachHang.findEle(kh);
+
+    if(index == -1) 
+        cout << "-> Khong co nhan vien co ID " << id << "!" << endl;
+    else {
+        setKhachHang[index].LayThongTinCaNhan();
+        setATM[index].layThongTinThe();
     }
-    if (found == 0) cout << "-> Khong co khach hang nao co ID " << id << "!" << endl;
+}
+
+void DanhSachKhachHang::taoTaiKhoanKhachHang(){
+    KhachHang temp;
+    temp.CaiDatThongTin();
+    setKhachHang.insert(temp);
+    TheATM the;
+    the.caiDatTheATM();
+    setATM.insert(the);
+}
+
+void DanhSachKhachHang::suaThongTinKhachHang(string id){
+    KhachHang temp(id);
+    size_t index = setKhachHang.findEle(temp);
+    if(index == -1){
+        cout << "Khách hàng tìm kiếm không tìm thấy" << endl;
+    } else {
+        setKhachHang[index].DoiThongTinCaNhan();
+    }
+}
+
+bool DanhSachKhachHang::kiemTraTheATM(string tk, string mk){
+    TheATM the(tk,mk);
+    int index = setATM.findEle(the);
+    if(index == -1)
+        return false;
+    else 
+        return true;
+}
+
+size_t DanhSachKhachHang::suDungATM(string tk, string mk){
+    TheATM the(tk,mk);
+    return setATM.findEle(the);
+}
+
+TheATM& DanhSachKhachHang::layThongTinTheATM(string idKhachHang){
+    KhachHang temp(idKhachHang);
+    size_t index = setKhachHang.findEle(temp);
+    return setATM[index];
+}
+
+size_t DanhSachKhachHang::timKiemATM(string maThe){
+    for(size_t i = 0; i != setATM.getCurr(); i++){
+        if(setATM[i].layMaThe() == maThe)
+            return i;
+    }
+    return -1;
+}
+
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------
+// THE ATM
+TheATM::TheATM(const TheATM& the) : soDu(the.soDu), MaTaiKhoan(the.MaTaiKhoan), MatKhau(the.MatKhau){}
+
+TheATM& TheATM::operator=(const TheATM& the){
+    soDu = the.soDu;
+    MaTaiKhoan = the.MaTaiKhoan;
+    MatKhau = the.MatKhau;
+    return (*this);
+}
+
+double TheATM::laySoDu(){
+    return soDu;
+}
+
+bool TheATM::operator== (const TheATM& the){
+    return (the.MaTaiKhoan == MaTaiKhoan && the.MatKhau == MatKhau); 
+}
+
+void TheATM::caiDatTheATM(){
+    ofstream fout;
+    fout.open("KHACHHANG.txt",ios::app);
+    string line;
+
+    cout << "Xin mời nhập mã thẻ ATM : ";
+    getline(cin,MaTaiKhoan);
+    fout << MaTaiKhoan << endl;
+
+    cout << "Xin mời nhập mật khẩu : ";
+    getline(cin, MatKhau);
+    fout << MatKhau << endl;
+
+    cout << "Số tiền nạp vào tài khoản : ";
+    cin >> soDu;
+    fout << to_string(soDu);
+
+    fout.close();
+}
+
+void TheATM::layThongTinThe(){
+    cout << "- Mã số thẻ ATM : " << MaTaiKhoan << endl;
+    cout << "- Số dư trong thẻ : " << to_string(soDu) << endl;
+}
+
+void TheATM::suaFile(double (*func)(double, double), double soTien){
+    ifstream fin;
+    fin.open("KHACHHANG.txt", ios::in);
+    // Viết vào một file tạm là temp.txt sau đó sẽ xoá file NHANVIEN.txt và đổi tên file temp thành NHANVIEN
+    ofstream fout;
+    fout.open("temp.txt", ios::app);
+    
+    string line;
+    int count = 1;
+    while(getline(fin, line)){
+        if (count == 1) {
+            number_KhachHang = line.substr(0,line.size()-1); // Cắt kí tự "\n" cuối line
+            ++count; fout << line << endl;
+        }
+        else if (count == khachHang_count_line) fout << line; 
+        else { 
+            ++count; 
+            fout << line << endl; 
+        }
+        if (line == MaTaiKhoan){
+            //Lấy dòng chứa mật khẩu thẻ atm trong NHANVIEN.txt
+            getline(fin, line);
+            if(line == MatKhau){
+                fout << line << endl;
+                //Lấy dòng chứa số dư trong thẻ
+                getline(fin,line);
+                
+                double d = stod(line);
+                //Sử dụng con trỏ hàm tìm hàm cộng hoặc trừ hợp lí đối với trường hợp rút tiền hoặc nạp tiền
+                d = func(d,soTien);
+                soDu = d;
+                fout << to_string(d) << endl;
+                count += 2;
+            } else {
+                fout << line << endl;
+                count++;
+            }
+        }
+    }
+
+    fin.close();
+    fout.close();
+
+    remove("KHACHHANG.txt");
+    rename("temp.txt","KHACHHANG.txt"); 
+}
+
+void TheATM::NapTien(double d){
+    suaFile(add,d);
+}
+
+void TheATM::RutTien(double d){
+    suaFile(sub,d);
+}
+
+void TheATM::chuyenTien(TheATM& the, double tien){
+    suaFile(sub,tien);
+    the.suaFile(add,tien);
+}
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------
+// ONLINE BANKING
+
+void OnlineBanking::caiDatOnlineBanking(string id){
+    ofstream fout;
+    fout.open("OnlineBanking.txt", ios::app);
+    
+    idKhachHang = id;
+    fout << endl;
+    fout << idKhachHang << endl;
+
+    cout << "Nhập tài khoản : ";
+    getline(cin, TenDangNhap);
+    fout << TenDangNhap << endl;
+
+    cout << "Nhập mật khẩu : ";
+    getline(cin, MatKhau);
+    fout << MatKhau;
+
+ }
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------
+// DANH SACH ONLINE BANKING
+
+void DanhSachOnlineBanking::caiDatDanhSach(){
+    ifstream fin;
+    fin.open("OnlineBanking.txt", ios::in);
+    string line;
+    while(!fin.eof()){
+        OnlineBanking banking;
+        getline(fin, banking.idKhachHang);
+        getline(fin,banking.TenDangNhap);
+        getline(fin, banking.MatKhau);
+
+        set.insert(banking);
+    }  
+    fin.close();
+}
+
+bool DanhSachOnlineBanking::kiemTraTaiKhoan(string tk, string mk){
+    OnlineBanking banking(tk, mk);
+    size_t index = set.findEle(banking);
+    if(index == -1)
+        return false;
+    else 
+        return true;
+}
+
+string DanhSachOnlineBanking::layIDKhachHang(string tk, string mk){
+    OnlineBanking banking(tk,mk);
+    size_t index = set.findEle(banking);
+    return set[index].idKhachHang;
+}
+
+void DanhSachOnlineBanking::themOnlineBanking(string id){
+    OnlineBanking banking;
+    banking.caiDatOnlineBanking(id);
+    set.insert(banking);
+}
+
+bool DanhSachOnlineBanking::kiemTraOnlineBanking(string id){
+    for(size_t i = 0; i != set.getCurr(); i++){
+        if(set[i].idKhachHang == id)
+            return true;
+    }
+    return false;
 }
