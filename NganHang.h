@@ -47,7 +47,7 @@ class DanhSachNganHang{
 ostream& operator <<(ostream& os, const NganHang& nh){
     if(nh.TenNganHang == "" && nh.DiaChiNganHang == "")
         return os;
-    os << "Id Ngan Hang: " << nh.idNganHang << endl;
+    os << "ID Ngan Hang: " << nh.idNganHang << endl;
     os << "Ten Ngan Hang : " << nh.TenNganHang << endl;
     os << "Dia chi Ngan Hang : " << nh.DiaChiNganHang << endl;
     os << "--------------------------------------------------" << endl;

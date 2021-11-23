@@ -196,7 +196,7 @@ void DanhSachKhachHang::suaThongTinKhachHang(string id){
     KhachHang temp(id);
     size_t index = setKhachHang.findEle(temp);
     if(index == -1){
-        cout << "Khách hàng tìm kiếm không tìm thấy" << endl;
+        cout << "Khong tim thay khach hang" << endl;
     } else {
         setKhachHang[index].DoiThongTinCaNhan();
     }
@@ -255,23 +255,23 @@ void TheATM::caiDatTheATM(){
     fout.open("KHACHHANG.txt",ios::app);
     string line;
 
-    cout << "Xin mời nhập mã thẻ ATM : ";
+    cout << "Xin moi nhap ma the ATM : "; fflush(stdin);
     getline(cin,MaTaiKhoan);
     fout << MaTaiKhoan << endl;
 
-    cout << "Xin mời nhập mật khẩu : ";
+    cout << "Xin moi nhap mat khau : "; fflush(stdin);
     getline(cin, MatKhau);
     fout << MatKhau << endl;
 
-    cout << "Số tiền nạp vào tài khoản : ";
+    cout << "So tien nap vao tai khoan : "; fflush(stdin);
     cin >> soDu;
     fout << to_string(soDu);
 
 }
 
 void TheATM::layThongTinThe(){
-    cout << "- Mã số thẻ ATM : " << MaTaiKhoan << endl;
-    cout << "- Số dư trong thẻ : " << to_string(soDu) << endl;
+    cout << "- Ma so the ATM : " << MaTaiKhoan << endl;
+    cout << "- So du trong the : " << to_string(soDu) << endl;
 }
 
 void TheATM::suaFile(double (*func)(double, double), double soTien){
@@ -345,11 +345,11 @@ void OnlineBanking::caiDatOnlineBanking(string id){
     fout << endl;
     fout << idKhachHang << endl;
 
-    cout << "Nhập tài khoản : ";
+    cout << "Nhap tai khoan : ";
     getline(cin, TenDangNhap);
     fout << TenDangNhap << endl;
 
-    cout << "Nhập mật khẩu : ";
+    cout << "Nhap mat khau : ";
     getline(cin, MatKhau);
     fout << MatKhau;
 
