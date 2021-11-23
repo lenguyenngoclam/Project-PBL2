@@ -2,13 +2,17 @@
 #include "NhanVien.cpp"
 #include "KhachHang.cpp"
 
-
 using namespace std;
 /*
 void giaoDienDangNhap(string &tk, string &mk){
     cout << "Xin mời đăng nhập : " << endl;
     cout << "Tài khoản : "; getline(cin,tk);
     cout << "Mật khẩu : "; getline(cin, mk);
+}
+
+void giaoDienNhapID(string& id){
+    cout << "Xin mời nhập ID : " << endl;
+    getline(cin, id);
 }
 
 int main(){
@@ -33,53 +37,63 @@ int main(){
         // Mã tài khoản ATM
         string tenDangNhap, matKhau, maTaiKhoan;
 
-        if(choice == "1"){
+        choice = (choice == "1") ? "nv" : "kh";
+
+        if(choice == "nv"){
 
             giaoDienDangNhap(tenDangNhap, matKhau);
             tenDangNhap = "NV" + tenDangNhap;
 
             TaiKhoanNhanVien tk(tenDangNhap,matKhau);
 
-            if(dsTaiKhoan.kiemTraTaiKhoan(tk)){
-                TaiKhoanNhanVien tk = dsTaiKhoan.suDungTaiKhoan(tenDangNhap, matKhau);
-                cout << "------ Xin chào -------" << endl;
-                tk.layNhanVien().LayThongTinCaNhan();
+            while(!dsTaiKhoan.kiemTraTaiKhoan(tk)){
+                cout << "Tài khoản mật khẩu bị sai. Vui lòng đăng nhập lại" << endl;
+                giaoDienDangNhap(tenDangNhap,matKhau);
+                tk = TaiKhoanNhanVien(tenDangNhap, matKhau);    
+            }
+
+            tk = dsTaiKhoan.suDungTaiKhoan(tenDangNhap, matKhau);
+            cout << "------ Xin chào -------" << endl;
+            tk.layNhanVien().LayThongTinCaNhan();
+
+            string tempString = "n";
+            while(tempString == "n"){
                 cout << "Bạn muốn : " << endl;
                 cout << "1. Xem danh sách khách hàng" << endl;
                 cout << "2. Tạo tài khoản cho khách hàng" << endl;
                 cout << "3. Sửa thông tin khách hàng" << endl;
                 cout << "4. Lấy thông tin của khách hàng" << endl;
-                getline(cin, choice);
+                string choose;
+                getline(cin, choose);
 
                 string tempID;
                 size_t tempIndex;
 
-                switch(stoi(choice)){
+                switch(stoi(choose)){
                     case 1: 
                         dsKhachHang.InDanhSach();
+
                         break;
                     case 2:
                         dsKhachHang.taoTaiKhoanKhachHang();
+
                         break;
                     case 3: 
-                        cout << "\tNhập ID của khách hàng muốn sửa đổi thông tin : ";
-                        getline(cin, tempID); 
-                        
+                        giaoDienNhapID(tempID);
+
                         dsKhachHang.suaThongTinKhachHang(tempID);
                         break;
                     case 4:
-                        cout << "\tNhập ID của khách hàng muốn lấy thông tin :  ";
-                        getline(cin, tempID);
+                        giaoDienNhapID(tempID);
 
                         dsKhachHang.TimKiemKhachHang(tempID);
                         break;
                 }
-                break;
-            }
-            else 
-                cout << "Not OK";
 
-        } else {
+                cout << "Đăng xuất ? (c/n)";
+                getline(cin, tempString);
+            }
+        } else if(choice == "kh"){
 
             size_t tempIndex;
             double soTien;
@@ -95,7 +109,12 @@ int main(){
             switch(stoi(choice)){
                 case 1 :
                     giaoDienDangNhap(tenDangNhap, matKhau);
-                    if(dsKhachHang.kiemTraTheATM(tenDangNhap, matKhau)){
+                    while(!dsKhachHang.kiemTraTheATM(tenDangNhap, matKhau)){
+                        cout << "Tài khoản mật khẩu bị sai. Vui lòng đăng nhập lại" << endl;
+                        giaoDienDangNhap(tenDangNhap,matKhau);
+                    }
+
+                    while(dsKhachHang.kiemTraTheATM(tenDangNhap, matKhau)){
                         size_t viTriKhachHang = dsKhachHang.suDungATM(tenDangNhap, matKhau);
                         TheATM& the = dsKhachHang.getSetATM()[viTriKhachHang];
 
@@ -125,9 +144,12 @@ int main(){
                                 cout << "Số dư hiện tại = " << to_string(the.laySoDu());
                                 break;
                         }
-                    } else 
-                        cout << "Not OK";
-                    break;
+                        cout << "Đăng xuất ? (c/n)";
+                        string tempString;
+                        getline(cin, tempString);
+                        if(tempString == "c")
+                            break; 
+                    }
                 case 2 :
 
                     giaoDienDangNhap(tenDangNhap, matKhau);
@@ -205,6 +227,8 @@ int main(){
                     break;
             }
             break;
+        } else {
+            cout << "Error";
         }
     }
 

@@ -267,7 +267,6 @@ void TheATM::caiDatTheATM(){
     cin >> soDu;
     fout << to_string(soDu);
 
-    fout.close();
 }
 
 void TheATM::layThongTinThe(){
