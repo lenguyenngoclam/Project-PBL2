@@ -19,6 +19,9 @@ string LaySoLuongNhanVien() {
 
 string number_NhanVien = LaySoLuongNhanVien();
 
+// ---------------------------------------------------------------------------------------------------------------------------------------
+// NHANVIEN
+
 NhanVien::NhanVien(string id, string ten, string dc, string sdt, string t) : ThongTinCaNhan(ten,dc,sdt,t) {
     idNhanVien = id;
 }
@@ -150,8 +153,9 @@ bool NhanVien::operator >(const NhanVien& rhs) const{
     return idNhanVien.compare(rhs.idNhanVien) > 0;
 }
 
-// ----------------------------------------------------------------------------------------------------------------------------------------------
-// DanhSachNhanVien 
+// ---------------------------------------------------------------------------------------------------------------------------------------
+// DANHSACHNHANVIEN 
+
 void DanhSachNhanVien::CaiDatDanhSach(){
     ifstream fin;
     fin.open("NHANVIEN.txt", ios::in);
@@ -168,7 +172,7 @@ void DanhSachNhanVien::CaiDatDanhSach(){
 
         set.insert(temp);
         
-        //Lấy ra 2 dòng chứa tài khoản và mật khẩu của nhân viên
+        // Lấy ra 2 dòng chứa tài khoản và mật khẩu của nhân viên
         getline(fin, line);
         getline(fin, line);
         nhanVien_count_line += 7;
@@ -190,7 +194,7 @@ void DanhSachNhanVien::InDanhSach(){
 void DanhSachNhanVien::TimKiemNhanVien(string id) // Tìm kiếm nhân viên theo idNhanVien
 {
     cout << "------------------Nhan Vien " << id << "-------------------" << endl;
-    //Tạo một nhân viên tạm để chứa id nhằm tìm kiếm trong tập hợp (Vì đã định nghĩa toán tử == so sánh hai NhanVien theo id)
+    // Tạo một nhân viên tạm để chứa id nhằm tìm kiếm trong tập hợp (Vì đã định nghĩa toán tử == so sánh hai NhanVien theo id)
     NhanVien nv(id);
 
     int index = set.findEle(nv);
@@ -201,7 +205,7 @@ void DanhSachNhanVien::TimKiemNhanVien(string id) // Tìm kiếm nhân viên the
         set[index].LayThongTinCaNhan();
 }
 
-// ----------------------------------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------------------------
 // TAI KHOAN NHAN VIEN
 
 TaiKhoanNhanVien::TaiKhoanNhanVien() : TaiKhoan("","") {}
@@ -221,11 +225,10 @@ bool TaiKhoanNhanVien::operator==(const TaiKhoanNhanVien& rhs){
     return (TenDangNhap == rhs.TenDangNhap && MatKhau == rhs.MatKhau);
 }
 
-// ----------------------------------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------------------------
 // DANH SACH TAI KHOAN NHAN VIEN
 
-DanhSachTaiKhoanNhanVien::~DanhSachTaiKhoanNhanVien(){
-}
+DanhSachTaiKhoanNhanVien::~DanhSachTaiKhoanNhanVien() {}
 
 void DanhSachTaiKhoanNhanVien::caiDatDanhSach(){
     ifstream fin;

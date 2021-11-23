@@ -5,7 +5,8 @@
 
 using namespace std;
 
-// Constructor of NganHang class
+// --------------------------------------------------------------------------------------------------------------------------------------------
+// NGANHANG
 
 NganHang::NganHang() : idNganHang(""), TenNganHang(""), DiaChiNganHang(""){
 
@@ -45,7 +46,17 @@ bool NganHang::operator <(const NganHang& nh) const{
     return idNganHang.compare(nh.idNganHang) < 0; 
 }
 
-// DanhSachNganHang member function 
+void NganHang::LayThongTinNganHang()
+{
+    cout << "- ID ngân hàng: " << idNganHang << endl;
+    cout << "- Tên ngân hàng: " << TenNganHang << endl;
+    cout << "- Địa chỉ ngân hàng: " << DiaChiNganHang;
+    cout << "---------------------------------------------------------------------" << endl;
+}
+
+// --------------------------------------------------------------------------------------------------------------------------------------------
+// DANHSACHNGANHANG
+
 void DanhSachNganHang::ThemNganHang(){
     ifstream fin;
     fin.open("NGANHANG.txt",ios::in);
@@ -54,16 +65,21 @@ void DanhSachNganHang::ThemNganHang(){
         getline(fin,temp.idNganHang);
         getline(fin,temp.TenNganHang);
         getline(fin,temp.DiaChiNganHang);
-        ls.insert(temp);
+        set.insert(temp);
     }
     fin.close();
 }
 
 void DanhSachNganHang::LayThongTinNganHang(string id,string t, string dc){
     NganHang nh(id,t,dc);
-    ls.getInfo(nh);
+    int index = set.findEle(nh);
+    set[index].LayThongTinNganHang();
 }
 
 void DanhSachNganHang::InNganHang(){
-    ls.printList();
+    size_t n = set.getSize();
+    for(size_t i = 0; i != n; i++){
+        set[i].LayThongTinNganHang();
+        cout << endl;
+    }
 }

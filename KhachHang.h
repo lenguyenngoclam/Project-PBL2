@@ -42,14 +42,14 @@ class TheATM{
         double laySoDu();
         string layMaThe() { return MaTaiKhoan; }
 
-        //Hàm thành viên có tác dụng ghi lại tất cả các dòng trong file KHACHHANG.txt nhưng thay đổi số dư của thẻ dựa trên con trỏ hàm
+        // Hàm thành viên có tác dụng ghi lại tất cả các dòng trong file KHACHHANG.txt nhưng thay đổi số dư của thẻ dựa trên con trỏ hàm
         void suaFile(double (*func)(double, double), double soTien);
 
-        //Ghi dữ liệu người dùng nhập vào file 
+        // Ghi dữ liệu người dùng nhập vào file 
         void caiDatTheATM();
-        //Hiển thị mã tài khoản và số dư của thẻ
+        // Hiển thị mã tài khoản và số dư của thẻ
         void layThongTinThe();
-        //Chuyển tiền cho thẻ ATM khác
+        // Chuyển tiền cho thẻ ATM khác
         void chuyenTien(TheATM& maThe, double tien);
 
         friend class KhachHang;
@@ -89,7 +89,7 @@ class KhachHang : public ThongTinCaNhan{
 
 class DanhSachKhachHang{
     private:
-        //Cùng 1 index sẽ là khách hàng ứng với thẻ ATM của người đó
+        // Cùng 1 index sẽ là khách hàng ứng với thẻ ATM của người đó
         Set<KhachHang> setKhachHang;
         Set<TheATM> setATM;
     public:
@@ -99,24 +99,24 @@ class DanhSachKhachHang{
         }
         ~DanhSachKhachHang() = default;
         
-        //Đọc dữ liệu ra từ file và lưu vào set
+        // Đọc dữ liệu ra từ file và lưu vào set
         void CaiDatDanhSach();
-        //In danh sách khách hàng
+        // In danh sách khách hàng
         void InDanhSach();
-        //Tìm kiếm khách hàng dựa trên id của khách hàng
+        // Tìm kiếm khách hàng dựa trên id của khách hàng
         void TimKiemKhachHang(string id);
-        //Trong hàm này sẽ gọi caiDatThongTin của ATM và khách hàng để ghi vào file sau đó insert ATM và khách hàng vào set tương ứng
+        // Trong hàm này sẽ gọi caiDatThongTin của ATM và khách hàng để ghi vào file sau đó insert ATM và khách hàng vào set tương ứng
         void taoTaiKhoanKhachHang();
-        //Sửa thông tin khách hàng dựa trên id
+        // Sửa thông tin khách hàng dựa trên id
         void suaThongTinKhachHang(string id);
 
-        //Kiểm tra tài khoản ATM có hợp lệ không
+        // Kiểm tra tài khoản ATM có hợp lệ không
         bool kiemTraTheATM(string, string);
-        //Sử dụng tài khoản và mật khẩu và trả về index của ATM đó trong setATM
+        // Sử dụng tài khoản và mật khẩu và trả về index của ATM đó trong setATM
         size_t suDungATM(string, string);
-        //Trả về thẻ ATM sử dụng idKhachHang
+        // Trả về thẻ ATM sử dụng idKhachHang
         TheATM& layThongTinTheATM(string idKhachHang);
-        //Trả về index trong set dựa trên mã thẻ cung cấp
+        // Trả về index trong set dựa trên mã thẻ cung cấp
         size_t timKiemATM(string maThe);
 
         Set<TheATM>& getSetATM(){ return setATM; }
@@ -163,9 +163,9 @@ class DanhSachOnlineBanking{
 
         void caiDatDanhSach();
         bool kiemTraTaiKhoan(string , string);
-        //Lấy idkhachhang dựa trển tài khoản mật khẩu của online banking
+        // Lấy idkhachhang dựa trển tài khoản mật khẩu của online banking
         string layIDKhachHang(string, string);
-        //Kiểm tra idKhachHang này đã có online banking hay chưa
+        // Kiểm tra idKhachHang này đã có online banking hay chưa
         bool kiemTraOnlineBanking(string id);
         
         void themOnlineBanking(string id);
