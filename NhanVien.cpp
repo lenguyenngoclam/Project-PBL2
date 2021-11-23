@@ -181,7 +181,7 @@ void DanhSachNhanVien::CaiDatDanhSach(){
 }
 
 ostream& operator <<(ostream& os, const NhanVien& nv){
-    cout << "Xin chào ! Tôi là : " << nv.HoTen;
+    cout << "Xin chao ! Toi la : " << nv.HoTen;
     return os;
 }
 

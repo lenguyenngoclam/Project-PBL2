@@ -1,4 +1,4 @@
-5
+6
 KH1
 nguyen nho song hoang
 19
@@ -6,7 +6,7 @@ K149 Le Dinh Ly
 0905515517
 102200257
 daylamatkhau
-1010000.123000
+3000000.000000
 KH2
 Ngoc Lam Le Nguyen
 19
@@ -17,7 +17,7 @@ daylamatkhau
 180000
 KH3
 Ngoc Lam Le Nguyen
-20
+19
 48C K20
 0962814899
 1022002677
@@ -39,3 +39,11 @@ le nguyen ngoc lam
 1231231231
 1234568
 100000.000000
+KH6
+Song Hoang Nguyen Nho
+20
+Hai Chau
+0905515519
+102200260
+12345678
+1000000.000000
