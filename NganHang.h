@@ -1,7 +1,7 @@
 #ifndef NganHang_h
 #define NganHang_h
 #include <iostream>
-#include "LinkedListTemplate.h"
+#include "SetTemplate.h"
 
 using namespace std;
 
@@ -27,13 +27,14 @@ class NganHang{
         ~NganHang() = default;
 
         bool DangNhapTaiKhoan(); 
+        void LayThongTinNganHang();
         friend ostream& operator <<(ostream& os, const NganHang& nh);
         friend class DanhSachNganHang;
 };
 
 class DanhSachNganHang{
     private :
-        LinkedList<NganHang> ls;
+        Set<NganHang> set;
     public :
         DanhSachNganHang() = default;
         ~DanhSachNganHang() = default;
