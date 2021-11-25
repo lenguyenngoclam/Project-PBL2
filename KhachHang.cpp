@@ -300,13 +300,18 @@ void TheATM::suaFile(double (*func)(double, double), double soTien){
                 fout << line << endl;
                 // Lấy dòng chứa số dư trong thẻ
                 getline(fin,line);
+                ++count;
                 
                 double d = stod(line);
                 // Sử dụng con trỏ hàm tìm hàm cộng hoặc trừ hợp lí đối với trường hợp rút tiền hoặc nạp tiền
                 d = func(d,soTien);
                 soDu = d;
-                fout << to_string(d) << endl;
-                count += 2;
+
+                if(count != khachHang_count_line)
+                    fout << to_string(d) << endl;
+                else    
+                    fout << to_string(d);
+                count++;
             } else {
                 fout << line << endl;
                 count++;
