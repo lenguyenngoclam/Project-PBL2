@@ -190,6 +190,7 @@ void DanhSachKhachHang::taoTaiKhoanKhachHang(){
     TheATM the;
     the.caiDatTheATM();
     setATM.insert(the);
+    khachHang_count_line += 8;
 }
 
 void DanhSachKhachHang::suaThongTinKhachHang(string id){
