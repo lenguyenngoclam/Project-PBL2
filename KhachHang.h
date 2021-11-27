@@ -10,6 +10,9 @@
 using namespace std;
 
 class KhachHang;
+class DanhSachKhachHang;
+class DanhSachLichSuGiaoDich;
+class TheATM;
 
 string LaySoLuongKhachHang() {
     ifstream fin;
@@ -19,19 +22,81 @@ string LaySoLuongKhachHang() {
     fin.close();
     return line;
 }
+string LaySoLuongGiaoDich() {
+    ifstream fin;
+    fin.open("LichSuGiaoDich.txt", ios::in);
+    string line;
+    getline(fin, line);
+    fin.close();
+    return line;
+}
 
 string number_KhachHang = LaySoLuongKhachHang();
 int soLuong = stoi(number_KhachHang);
+string number_lichsu = LaySoLuongGiaoDich();
+int soLuongGiaoDich = stoi(number_lichsu);
+
+class LichSuGiaoDich{
+    private :
+        string maGiaoDich;
+        string noiDung;
+        string maTaiKhoan;
+    public :
+        LichSuGiaoDich(string ma = "", string nd = "", string mtk = "") : maGiaoDich(ma), noiDung(nd), maTaiKhoan(mtk){}
+        LichSuGiaoDich(const LichSuGiaoDich& ls) : maGiaoDich(ls.maGiaoDich), noiDung(ls.noiDung), maTaiKhoan(ls.maTaiKhoan) {};
+
+        ~LichSuGiaoDich() = default;
+
+        LichSuGiaoDich& operator= (const LichSuGiaoDich& ls){
+            maGiaoDich = ls.maGiaoDich;
+            noiDung = ls.noiDung;
+            maTaiKhoan = ls.maTaiKhoan;
+            return (*this);
+        } 
+
+        bool operator==(const LichSuGiaoDich& rhs){
+            return (maGiaoDich == rhs.maGiaoDich);
+        }
+
+        string layMaGiaoDich(){ return maGiaoDich; }
+        string layMaTaiKhoan(){ return maTaiKhoan; }
+        string layNoiDung() { return noiDung; }
+
+        friend ostream& operator<<(ostream&, const LichSuGiaoDich&);
+        friend class DanhSachLichSuGiaoDich;
+
+};
+
+class DanhSachLichSuGiaoDich{
+    private :
+        Set<LichSuGiaoDich> set;
+    public :
+        DanhSachLichSuGiaoDich() : set(soLuongGiaoDich) {};
+
+        DanhSachLichSuGiaoDich& operator=(const DanhSachLichSuGiaoDich& rhs){
+            set = rhs.set;
+            return (*this);
+        }
+
+        void caiDatDanhSach();
+        void themLichSuGiaoDich(LichSuGiaoDich& lsu){
+            set.insert(lsu);
+        }
+
+        friend class TheATM;
+};
 
 class TheATM{
     private :
         string MaTaiKhoan;
         string MatKhau;
         double soDu;
+        string idKhachHang;
+        Set<LichSuGiaoDich> set;
     public :    
-        TheATM(string tk, string mk) : MaTaiKhoan(tk), MatKhau(mk) {};
-        TheATM(string tk, string mk, double d) : soDu(d), MatKhau(mk), MaTaiKhoan(tk){};
-        TheATM() : soDu(0), MatKhau(""), MaTaiKhoan("") {};
+        TheATM(string tk, string mk) : MaTaiKhoan(tk), MatKhau(mk), soDu(0), idKhachHang("") {};
+        TheATM(string tk, string mk, double d, string id) : soDu(d), MatKhau(mk), MaTaiKhoan(tk), idKhachHang(id){};
+        TheATM() : soDu(0), MatKhau(""), MaTaiKhoan(""), idKhachHang("") {};
 
         TheATM(const TheATM&);
 
@@ -40,10 +105,14 @@ class TheATM{
         void NapTien(double soTien);
         void RutTien(double );
         double laySoDu();
+
         string layMaThe() { return MaTaiKhoan; }
+        string layIDKhachHang() { return idKhachHang; }
 
         // Hàm thành viên có tác dụng ghi lại tất cả các dòng trong file KHACHHANG.txt nhưng thay đổi số dư của thẻ dựa trên con trỏ hàm
         void suaFile(double (*func)(double, double), double soTien);
+        //Ghi lịch sử giao dịch vào file
+        void ghiFile(LichSuGiaoDich& lsu);
 
         // Ghi dữ liệu người dùng nhập vào file 
         void caiDatTheATM();
@@ -51,8 +120,13 @@ class TheATM{
         void layThongTinThe();
         // Chuyển tiền cho thẻ ATM khác
         void chuyenTien(TheATM& maThe, double tien);
+        //In lịch sử giao dịch
+        void inLichSuGiaoDich();
+        //Thêm lịch sử giao dịch tử file
+        void caiDatLichSuGiaoDich(DanhSachLichSuGiaoDich&);
 
         friend class KhachHang;
+        friend class DanhSachKhachHang;
 
         bool operator==(const TheATM& the);
 };
@@ -60,6 +134,7 @@ class TheATM{
 class KhachHang : public ThongTinCaNhan{
     private :
         string idKhachHang;
+        TheATM *the;
     public :
         KhachHang() {
             ThongTinCaNhan();
@@ -67,7 +142,9 @@ class KhachHang : public ThongTinCaNhan{
         KhachHang(string id, string hoten, string diachi, string sodienthoai, string tuoi);
         KhachHang(string id) : idKhachHang(id), ThongTinCaNhan() {};
 
-        ~KhachHang() override = default;
+        ~KhachHang() override{
+            delete the;
+        }
 
         KhachHang(const KhachHang &kh);
         KhachHang &operator =(const KhachHang &kh);
@@ -81,6 +158,7 @@ class KhachHang : public ThongTinCaNhan{
         void CaiDatThongTin();
 
         string layIdKhachHang(){ return idKhachHang; }
+        TheATM& layThongTinThe() { return *the; }
 
         bool operator ==(const KhachHang& rhs) const;
 
@@ -91,11 +169,9 @@ class DanhSachKhachHang{
     private:
         // Cùng 1 index sẽ là khách hàng ứng với thẻ ATM của người đó
         Set<KhachHang> setKhachHang;
-        Set<TheATM> setATM;
     public:
         DanhSachKhachHang() {
             setKhachHang = Set<KhachHang>(soLuong);
-            setATM = Set<TheATM>(soLuong);
         }
         ~DanhSachKhachHang() = default;
         
@@ -103,8 +179,6 @@ class DanhSachKhachHang{
         void CaiDatDanhSach();
         // In danh sách khách hàng
         void InDanhSach();
-        // Tìm kiếm khách hàng dựa trên id của khách hàng
-        void TimKiemKhachHang(string id);
         // Trong hàm này sẽ gọi caiDatThongTin của ATM và khách hàng để ghi vào file sau đó insert ATM và khách hàng vào set tương ứng
         void taoTaiKhoanKhachHang();
         // Sửa thông tin khách hàng dựa trên id
@@ -112,63 +186,20 @@ class DanhSachKhachHang{
 
         // Kiểm tra tài khoản ATM có hợp lệ không
         bool kiemTraTheATM(string, string);
-        // Sử dụng tài khoản và mật khẩu và trả về index của ATM đó trong setATM
-        size_t suDungATM(string, string);
         // Trả về thẻ ATM sử dụng idKhachHang
         TheATM& layThongTinTheATM(string idKhachHang);
+        // Trả về thẻ ATM sử dụng tài khoản và mật khẩu
+        TheATM& layThongTinTheATM(string tk, string mk);
         // Trả về index trong set dựa trên mã thẻ cung cấp
         size_t timKiemATM(string maThe);
+        size_t timKiemATM(string tk, string mk);
+        //Tìm kiếm khách hàng theo id
+        size_t timKiemKhachHang(string id);
 
-        Set<TheATM>& getSetATM(){ return setATM; }
+        void caiDatLichSuGiaoDich(DanhSachLichSuGiaoDich&);
+
         Set<KhachHang>& getSetKhachHang(){ return setKhachHang; }
 
         friend class KhachHang;
 };
-
-class OnlineBanking : public TaiKhoan{
-    private :   
-        string idKhachHang;
-    public :
-        OnlineBanking() : TaiKhoan(), idKhachHang("") {};
-        OnlineBanking(string tk, string mk) : TaiKhoan(tk,mk), idKhachHang("") {}
-        OnlineBanking(string id, string tk, string mk) : TaiKhoan(tk,mk), idKhachHang(id) {}
-
-        OnlineBanking(const OnlineBanking& rhs) : TaiKhoan(rhs.TenDangNhap, rhs.MatKhau), idKhachHang(rhs.idKhachHang) {}
-
-        OnlineBanking& operator=(const OnlineBanking& rhs){
-            idKhachHang = rhs.idKhachHang;
-            TenDangNhap = rhs.TenDangNhap;
-            MatKhau = rhs.MatKhau;
-            return (*this);
-        }
-
-        ~OnlineBanking() override = default;
-
-        bool operator==(const OnlineBanking& rhs){
-            return (TenDangNhap == rhs.TenDangNhap && MatKhau == rhs.MatKhau);
-        }
-
-        void caiDatOnlineBanking(string id);
-
-        friend class DanhSachOnlineBanking;
-};
-
-class DanhSachOnlineBanking{
-    private :
-        Set<OnlineBanking> set;
-    public :
-        DanhSachOnlineBanking() : set(1) {};
-
-        ~DanhSachOnlineBanking() = default;
-
-        void caiDatDanhSach();
-        bool kiemTraTaiKhoan(string , string);
-        // Lấy idkhachhang dựa trển tài khoản mật khẩu của online banking
-        string layIDKhachHang(string, string);
-        // Kiểm tra idKhachHang này đã có online banking hay chưa
-        bool kiemTraOnlineBanking(string id);
-        
-        void themOnlineBanking(string id);
-};  
-
 #endif

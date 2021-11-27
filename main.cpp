@@ -253,11 +253,13 @@ int main(){
     DanhSachTaiKhoanNhanVien dsTaiKhoan;
     DanhSachKhachHang dsKhachHang;
     DanhSachNhanVien dsNhanVien;
-    DanhSachOnlineBanking dsOnlineBanking;
-    dsOnlineBanking.caiDatDanhSach();
+    DanhSachLichSuGiaoDich dsLichSu;
+    dsLichSu.caiDatDanhSach();
     dsNhanVien.CaiDatDanhSach();
     dsKhachHang.CaiDatDanhSach();
     dsTaiKhoan.caiDatDanhSach();
+
+    dsKhachHang.caiDatLichSuGiaoDich(dsLichSu);
 
     cout << "-------------- NGAN HANG VIETCOMBANK XIN CHAO QUY KHACH ---------------" << endl;
     while(true){
@@ -326,14 +328,21 @@ int main(){
                     case 4:
                         giaoDienNhapID(tempID);
 
-                        dsKhachHang.TimKiemKhachHang(tempID);
+                        tempIndex = dsKhachHang.timKiemKhachHang(tempID);
+                        while(tempIndex == -1){
+                            cout << "ID khách hàng không tồn tại!";
+                            giaoDienNhapID(tempID);
+                            tempIndex = dsKhachHang.timKiemKhachHang(tempID);
+                        }
+                        (dsKhachHang.getSetKhachHang())[tempIndex].LayThongTinCaNhan();
                         break;
                 }
                 cout << "Dang xuat ? (c/n) "; fflush(stdin);
                 getline(cin, tempString);
 
             }
-        } else if(first_choice == "kh"){
+        } 
+        else if(first_choice == "kh"){
 
             size_t tempIndex;
             double soTien;
@@ -343,8 +352,7 @@ int main(){
             while (tempString == "n") {
 
                 cout << "1. Su dung the ATM" << endl;
-                cout << "2. Su dung online banking" << endl;
-                cout << "3. Muon dang ki la thanh vien cua ngan hang hoac dang ki online banking" << endl;
+                cout << "2. Muon dang ki la thanh vien cua ngan hang" << endl;
                 fflush(stdin); cout << "-> Lua chon cua ban: ";
                 getline(cin,choice);
 
@@ -357,14 +365,16 @@ int main(){
                         }
 
                         while(dsKhachHang.kiemTraTheATM(tenDangNhap, matKhau)){
-                            size_t viTriKhachHang = dsKhachHang.suDungATM(tenDangNhap, matKhau);
-                            TheATM& the = dsKhachHang.getSetATM()[viTriKhachHang];
+                            size_t viTriKhachHang = dsKhachHang.timKiemATM(tenDangNhap, matKhau);
+                            TheATM &the = (dsKhachHang.getSetKhachHang()[viTriKhachHang]).layThongTinThe();
 
                             cout << "----- Moi quy khach thuc hien giao dich -----" << endl;
                             cout << "\t1. Xem so du" << endl;
                             cout << "\t2. Rut tien" << endl;
                             cout << "\t3. Nap tien" << endl;
-                            cout << "\t4. Ket thuc giao dich" << endl;
+                            cout << "\t4. Chuyen tien" << endl;
+                            cout << "\t5. In lich su giao dich" << endl;
+                            cout << "\t6. Ket thuc giao dich" << endl;
                             fflush(stdin); cout << "-> Lua chon cua ban: ";
                             getline(cin, choice);
 
@@ -388,38 +398,6 @@ int main(){
                                     cout << "So du hien tai = " << to_string(the.laySoDu()) << endl;
                                     break;
                                 case 4 : 
-                                    cout << "Giao dich da ket thuc. Xin chao quy khach....." << endl;
-                                    break;
-                            }
-                            if(choice == "4") break; 
-                        }
-
-                        break;
-                    case 2 :
-
-                        giaoDienDangNhap(tenDangNhap, matKhau);
-                        while(!dsKhachHang.kiemTraTheATM(tenDangNhap, matKhau)){
-                            cout << "Tai khoan mat khau bi sai. Vui long dang nhap lai....." << endl;
-                            giaoDienDangNhap(tenDangNhap,matKhau);
-                        }
-
-                        while (dsOnlineBanking.kiemTraTaiKhoan(tenDangNhap, matKhau)){
-                            cout << "----- Moi quy khach thuc hien giao dich -----" << endl;
-                            cout << "\t1. Xem so du" << endl;
-                            cout << "\t2. Chuyen tien" << endl;
-                            cout << "\t3. Exit" << endl;
-                            fflush(stdin); cout << "-> Lua chon cua ban: ";
-                            getline(cin, choice);
-
-                            string idKhachHang = dsOnlineBanking.layIDKhachHang(tenDangNhap,matKhau);
-
-                            TheATM& the = dsKhachHang.layThongTinTheATM(idKhachHang);
-
-                            switch(stoi(choice)){
-                                case 1:   
-                                    cout << "So du = " << to_string(the.laySoDu()) << endl; 
-                                    break;
-                                case 2: 
                                     cout << "Nhap so tai khoan nguoi nhan : ";
                                     getline(cin, maTaiKhoan);
                                     tempIndex = dsKhachHang.timKiemATM(maTaiKhoan);
@@ -428,7 +406,7 @@ int main(){
                                     else {
                                         cout << "Thong tin nguoi nhan : " << endl;
                                         (dsKhachHang.getSetKhachHang())[tempIndex].LayThongTinCaNhan();
-                                        TheATM& nguoiNhan = dsKhachHang.getSetATM()[tempIndex];
+                                        TheATM& nguoiNhan = dsKhachHang.getSetKhachHang()[tempIndex].layThongTinThe();
                                         cout << "Nhap so tien can chuyen : ";
                                         cin >> soTien;
                                         if(soTien > the.laySoDu())
@@ -439,47 +417,31 @@ int main(){
                                         }
                                     }
                                     break;
-                                case 3:
-                                    cout << "Cam on quy khach da su dung dich vu Online Banking. Xin chao quy khach....." << endl;
+                                case 5 :    
+                                    the.inLichSuGiaoDich();
+                                    break;
+                                case 6 : 
+                                    cout << "Giao dich da ket thuc. Xin chao quy khach....." << endl;
                                     break;
                             }
-                            if (choice == "3") break;
+                            if(choice == "6") break; 
                         }
-                        //else 
-                            //cout << "Not OK";
+
                         break;
-                    case 3 :
+                    
+                    case 2 :
                         srand(time(0));
                         size_t index = rand() % dsKhachHang.getSetKhachHang().getCurr();
 
                         NhanVien& nv = dsNhanVien.getSetNhanVien()[index];
 
                         cout << nv << endl;
-                        cout << "1. Dang ki online banking" << endl;
-                        cout << "2. Dang ki thanh vien moi cua ngan hang" << endl;
-                        getline(cin, choice);
-                        switch(stoi(choice)){
-                            case 1 :
-                                giaoDienDangNhap(tenDangNhap, matKhau);
-                                
-                                if(dsKhachHang.kiemTraTheATM(tenDangNhap, matKhau)){
-                                    tempIndex = dsKhachHang.suDungATM(tenDangNhap, matKhau);
-                                    temp = (dsKhachHang.getSetKhachHang())[tempIndex].layIdKhachHang();
-                                    if(dsOnlineBanking.kiemTraOnlineBanking(temp) == false)
-                                        dsOnlineBanking.themOnlineBanking(temp);
-                                    else 
-                                        cout << "Khach hang nay da co tai khoan online banking" << endl;
-                                } else {
-                                    cout << "Dang nhap sai" << endl;
-                                }
-                                break;
-                            case 2 :
-                                cout << "Vui long nhap cac thong tin duoi day !" << endl;
-                                dsKhachHang.taoTaiKhoanKhachHang();
-                                break;
-                        }
+
+                        cout << "Vui long nhap cac thong tin duoi day !" << endl;
+                        dsKhachHang.taoTaiKhoanKhachHang(); 
                         
                         break;
+                        
                 }
                 cout << "Dang xuat ? (c/n) "; fflush(stdin);
                 getline(cin, tempString);
@@ -494,7 +456,6 @@ int main(){
         else {
             cout << "Moi ban nhap lai....." << endl;
         }   
-
     }
     return 0;
 }

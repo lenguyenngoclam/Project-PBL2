@@ -7,5 +7,6 @@
 
 int nhanVien_count_line = 0;
 int khachHang_count_line = 0;
+int lichsu_count_line = 0;
 
 #endif
