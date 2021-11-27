@@ -456,7 +456,7 @@ void DanhSachLichSuGiaoDich::caiDatDanhSach(){
     getline(fin, line);
     while(getline(fin, line)){
         LichSuGiaoDich temp;
-        temp.maGiaoDich = "#" + line;
+        temp.maGiaoDich = line;
         getline(fin, temp.noiDung);
         getline(fin, temp.maTaiKhoan);
 

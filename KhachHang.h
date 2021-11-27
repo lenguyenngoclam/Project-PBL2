@@ -71,7 +71,7 @@ class DanhSachLichSuGiaoDich{
     private :
         Set<LichSuGiaoDich> set;
     public :
-        DanhSachLichSuGiaoDich() : set() {};
+        DanhSachLichSuGiaoDich() : set(soLuongGiaoDich) {};
 
         DanhSachLichSuGiaoDich& operator=(const DanhSachLichSuGiaoDich& rhs){
             set = rhs.set;
