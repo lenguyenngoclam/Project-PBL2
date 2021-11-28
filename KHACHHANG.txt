@@ -6,7 +6,7 @@ K149 Le Dinh Ly
 0905515517
 102200257
 daylamatkhau
-3000000.000000
+2500000.000000
 KH2
 Ngoc Lam Le Nguyen
 19
