@@ -22,6 +22,7 @@ string LaySoLuongKhachHang() {
     fin.close();
     return line;
 }
+
 string LaySoLuongGiaoDich() {
     ifstream fin;
     fin.open("LichSuGiaoDich.txt", ios::in);
@@ -47,7 +48,7 @@ class LichSuGiaoDich{
 
         ~LichSuGiaoDich() = default;
 
-        LichSuGiaoDich& operator= (const LichSuGiaoDich& ls){
+        LichSuGiaoDich& operator =(const LichSuGiaoDich& ls){
             maGiaoDich = ls.maGiaoDich;
             noiDung = ls.noiDung;
             maTaiKhoan = ls.maTaiKhoan;
@@ -58,11 +59,11 @@ class LichSuGiaoDich{
             return (maGiaoDich == rhs.maGiaoDich);
         }
 
-        string layMaGiaoDich(){ return maGiaoDich; }
-        string layMaTaiKhoan(){ return maTaiKhoan; }
+        string layMaGiaoDich() { return maGiaoDich; }
+        string layMaTaiKhoan() { return maTaiKhoan; }
         string layNoiDung() { return noiDung; }
 
-        friend ostream& operator<<(ostream&, const LichSuGiaoDich&);
+        friend ostream& operator <<(ostream&, const LichSuGiaoDich&);
         friend class DanhSachLichSuGiaoDich;
 
 };
@@ -73,7 +74,7 @@ class DanhSachLichSuGiaoDich{
     public :
         DanhSachLichSuGiaoDich() : set(soLuongGiaoDich) {};
 
-        DanhSachLichSuGiaoDich& operator=(const DanhSachLichSuGiaoDich& rhs){
+        DanhSachLichSuGiaoDich& operator =(const DanhSachLichSuGiaoDich& rhs){
             set = rhs.set;
             return (*this);
         }
@@ -102,7 +103,7 @@ class TheATM{
 
         TheATM(const TheATM&);
 
-        TheATM& operator=(const TheATM& the);
+        TheATM& operator =(const TheATM& the);
 
         void NapTien(double soTien);
         void RutTien(double );
@@ -143,7 +144,7 @@ class KhachHang : public ThongTinCaNhan{
         KhachHang(string id) : idKhachHang(id), ThongTinCaNhan() {};
 
         ~KhachHang() override{
-            delete the;
+            // delete the;
         }
 
         KhachHang(const KhachHang &kh);

@@ -19,7 +19,7 @@ class Set{
         Set(int n = 3);
         Set(const Set<T>& s);
 
-        Set<T>& operator=(const Set<T>&);
+        Set<T>& operator =(const Set<T>&);
         
         ~Set();
 
@@ -32,7 +32,7 @@ class Set{
         size_t getSize() { return size; }
         size_t getCurr() { return curr; }
 
-        T& operator[](const size_t& index);
+        T& operator [](const size_t& index);
 
         ostream& getInfo(ostream& os) const;
 };

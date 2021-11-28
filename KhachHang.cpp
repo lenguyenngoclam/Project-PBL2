@@ -131,6 +131,7 @@ bool KhachHang::operator ==(const KhachHang& rhs) const{
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------
 // DANH SACH KHACH HANG 
+
 void DanhSachKhachHang::CaiDatDanhSach(){
     ifstream fin;
     fin.open("KHACHHANG.txt", ios::in);
@@ -207,18 +208,21 @@ bool DanhSachKhachHang::kiemTraTheATM(string tk, string mk){
         return true;
 }
 
-TheATM& DanhSachKhachHang::layThongTinTheATM(string idKhachHang){
-    KhachHang temp(idKhachHang);
-    size_t index = setKhachHang.findEle(temp);
-    return *(setKhachHang[index].the);
-}
-
+// Lấy thông tin theo stk & mk
 TheATM& DanhSachKhachHang::layThongTinTheATM(string tk, string mk){
     size_t index = timKiemATM(tk,mk);
 
     return *(setKhachHang[index].the);
 }
 
+// Lấy thông tin theo idKhachHang
+TheATM& DanhSachKhachHang::layThongTinTheATM(string idKhachHang){
+    KhachHang temp(idKhachHang);
+    size_t index = setKhachHang.findEle(temp);
+    return *(setKhachHang[index].the);
+}
+
+// Tìm kiếm theo stk & mk
 size_t DanhSachKhachHang::timKiemATM(string tk, string mk){
     TheATM the(tk,mk);
     size_t index;
@@ -229,6 +233,7 @@ size_t DanhSachKhachHang::timKiemATM(string tk, string mk){
     return -1;
 }
 
+// Tìm kiếm theo mã thẻ
 size_t DanhSachKhachHang::timKiemATM(string maThe){
     for(size_t index = 0; index < setKhachHang.getCurr(); index++){
         if(setKhachHang[index].the->layMaThe() == maThe)
@@ -255,13 +260,13 @@ void DanhSachKhachHang::caiDatLichSuGiaoDich(DanhSachLichSuGiaoDich& ds){
     }
 }
 
-
 // ----------------------------------------------------------------------------------------------------------------------------------------------
 // THE ATM
+
 TheATM::TheATM(const TheATM& the) : soDu(the.soDu), MaTaiKhoan(the.MaTaiKhoan), 
                                     MatKhau(the.MatKhau), idKhachHang(the.idKhachHang),default_count(the.default_count), set(the.set){}
 
-TheATM& TheATM::operator=(const TheATM& the){
+TheATM& TheATM::operator =(const TheATM& the){
     soDu = the.soDu;
     MaTaiKhoan = the.MaTaiKhoan;
     MatKhau = the.MatKhau;
@@ -275,7 +280,7 @@ double TheATM::laySoDu(){
     return soDu;
 }
 
-bool TheATM::operator== (const TheATM& the){
+bool TheATM::operator ==(const TheATM& the){
     return (the.MaTaiKhoan == MaTaiKhoan && the.MatKhau == MatKhau); 
 }
 
@@ -306,7 +311,7 @@ void TheATM::layThongTinThe(){
 void TheATM::suaFile(double (*func)(double, double), double soTien){
     ifstream fin;
     fin.open("KHACHHANG.txt", ios::in);
-    // Viết vào một file tạm là temp.txt sau đó sẽ xoá file NHANVIEN.txt và đổi tên file temp thành NHANVIEN
+    // Viết vào một file tạm là temp.txt sau đó sẽ xoá file KHACHHANG.txt và đổi tên file temp thành KHACHHANG
     ofstream fout;
     fout.open("temp.txt", ios::app);
     
@@ -358,7 +363,7 @@ void TheATM::suaFile(double (*func)(double, double), double soTien){
 void TheATM::ghiFile(LichSuGiaoDich& lsu){
     ifstream fin;
     fin.open("LichSuGiaoDich.txt", ios::in);
-    // Viết vào một file tạm là temp.txt sau đó sẽ xoá file NHANVIEN.txt và đổi tên file temp thành NHANVIEN
+    // Viết vào một file tạm là temp.txt sau đó sẽ xoá file LichSuGiaoDich.txt và đổi tên file temp thành LichSuGiaoDich
     ofstream fout;
     fout.open("temp.txt", ios::app);
     
@@ -441,7 +446,7 @@ void TheATM::caiDatLichSuGiaoDich(DanhSachLichSuGiaoDich& ds){
 // ----------------------------------------------------------------------------------------------------------------------------------------------
 // LICH SU GIAO DICH
 
-ostream& operator<<(ostream& os, const LichSuGiaoDich& ls){
+ostream& operator <<(ostream& os, const LichSuGiaoDich& ls){
     cout << "Mã giao dịch : " << ls.maGiaoDich << endl;
     cout << "Nội dung giao dịch : " << ls.noiDung;
     return os;
@@ -469,4 +474,3 @@ void DanhSachLichSuGiaoDich::caiDatDanhSach(){
 
     fin.close();
 }
-
