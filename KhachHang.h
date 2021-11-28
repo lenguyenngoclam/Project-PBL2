@@ -144,7 +144,7 @@ class KhachHang : public ThongTinCaNhan{
         KhachHang(string id) : idKhachHang(id), ThongTinCaNhan() {};
 
         ~KhachHang() override{
-            // delete the;
+            delete the;
         }
 
         KhachHang(const KhachHang &kh);
