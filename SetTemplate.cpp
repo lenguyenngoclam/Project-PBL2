@@ -23,7 +23,7 @@ Set<T>::Set(const Set& s) : max_size(s.max_size), size(s.size){
 }
 
 template<typename T>
-Set<T>& Set<T>::operator=(const Set& s){
+Set<T>& Set<T>::operator =(const Set& s){
 
     T *temp = new T[s.max_size];
     for(size_t i = 0; i != s.size; i++)
@@ -93,7 +93,7 @@ void Set<T>::erase(T data){
 }
 
 template<typename T> 
-T& Set<T>::operator[](const size_t& index){
+T& Set<T>::operator [](const size_t& index){
     return arr[index];
 }
 
