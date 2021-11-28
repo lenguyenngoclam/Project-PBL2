@@ -94,9 +94,9 @@ class TheATM{
         string idKhachHang;
         Set<LichSuGiaoDich> set;
     public :    
-        TheATM(string tk, string mk) : MaTaiKhoan(tk), MatKhau(mk), soDu(0), idKhachHang("") {};
-        TheATM(string tk, string mk, double d, string id) : soDu(d), MatKhau(mk), MaTaiKhoan(tk), idKhachHang(id){};
-        TheATM() : soDu(0), MatKhau(""), MaTaiKhoan(""), idKhachHang("") {};
+        TheATM(string tk, string mk) : MaTaiKhoan(tk), MatKhau(mk), soDu(0), idKhachHang(""), set(1) {};
+        TheATM(string tk, string mk, double d, string id) : soDu(d), MatKhau(mk), MaTaiKhoan(tk), idKhachHang(id), set(1){};
+        TheATM() : soDu(0), MatKhau(""), MaTaiKhoan(""), idKhachHang(""), set(1) {};
 
         TheATM(const TheATM&);
 

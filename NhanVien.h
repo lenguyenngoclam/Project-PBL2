@@ -12,11 +12,21 @@ class DanhSachNhanVien;
 class TaiKhoanNhanVien;
 class DanhSachTaiKhoanNhanVien;
 
+string LaySoLuongNhanVien() {
+    ifstream fin;
+    fin.open("NHANVIEN.txt", ios::in);
+    string line;
+    getline(fin, line);
+    fin.close();
+    return line;
+}
+
+string number_NhanVien = LaySoLuongNhanVien();
+int soLuongNhanVien = stoi(number_NhanVien);
+
 class NhanVien : public ThongTinCaNhan{
     private :
         string idNhanVien;
-        TaiKhoanNhanVien *taiKhoanNhanVien;
-        void themTaiKhoan(TaiKhoanNhanVien&);
     public :
         NhanVien() {
             ThongTinCaNhan();
@@ -28,8 +38,6 @@ class NhanVien : public ThongTinCaNhan{
 
         NhanVien(const NhanVien& nv);
         NhanVien& operator =(const NhanVien& nv);
-
-        string LaySoLuong();
 
         void LayThongTinCaNhan() const override;
         void DoiThongTinCaNhan() override;
@@ -51,7 +59,7 @@ class DanhSachNhanVien{
     private :
         Set<NhanVien> set;
     public :
-        DanhSachNhanVien() = default;
+        DanhSachNhanVien() : set(soLuongNhanVien) {}
         ~DanhSachNhanVien() = default;
 
         void CaiDatDanhSach();
@@ -91,8 +99,7 @@ class DanhSachTaiKhoanNhanVien{
     private :
         Set<TaiKhoanNhanVien> set;
     public :
-        DanhSachTaiKhoanNhanVien() : set() {};
-        DanhSachTaiKhoanNhanVien(size_t n) : set(n) {};
+        DanhSachTaiKhoanNhanVien() : set(soLuongNhanVien) {};
         ~DanhSachTaiKhoanNhanVien();
         void caiDatDanhSach();
         // Kiểm tra tài khoản có hợp lệ không
