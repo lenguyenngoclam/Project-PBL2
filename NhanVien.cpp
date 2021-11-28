@@ -8,17 +8,6 @@
 
 using namespace std;
 
-string LaySoLuongNhanVien() {
-    ifstream fin;
-    fin.open("NHANVIEN.txt", ios::in);
-    string line;
-    getline(fin, line);
-    fin.close();
-    return line;
-}
-
-string number_NhanVien = LaySoLuongNhanVien();
-
 // ---------------------------------------------------------------------------------------------------------------------------------------
 // NHANVIEN
 
@@ -33,22 +22,6 @@ NhanVien& NhanVien::operator =(const NhanVien& nv){
     ThongTinCaNhan::operator=(nv);
     idNhanVien = nv.idNhanVien;
     return (*this);
-}
-
-string NhanVien::LaySoLuong()
-{
-    return number_NhanVien;
-}
-
-void NhanVien::themTaiKhoan(TaiKhoanNhanVien& tk){
-    this -> taiKhoanNhanVien = &tk;
-    CaiDatThongTin();
-    ofstream fout;
-    fout.open("NHANVIEN.txt", ios::app);
-    fout << endl;
-    fout << ("NV" + tk.layTaiKhoan()) << endl;
-    fout << tk.layMatKhau();
-    fout.close();
 }
 
 // Đổi thông tin cá nhân
