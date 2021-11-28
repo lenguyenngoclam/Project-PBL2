@@ -84,6 +84,7 @@ class DanhSachLichSuGiaoDich{
         }
 
         friend class TheATM;
+        friend class DanhSachKhachHang;
 };
 
 class TheATM{
@@ -92,11 +93,12 @@ class TheATM{
         string MatKhau;
         double soDu;
         string idKhachHang;
+        size_t default_count = 0;
         Set<LichSuGiaoDich> set;
     public :    
-        TheATM(string tk, string mk) : MaTaiKhoan(tk), MatKhau(mk), soDu(0), idKhachHang(""), set(1) {};
-        TheATM(string tk, string mk, double d, string id) : soDu(d), MatKhau(mk), MaTaiKhoan(tk), idKhachHang(id), set(1){};
-        TheATM() : soDu(0), MatKhau(""), MaTaiKhoan(""), idKhachHang(""), set(1) {};
+        TheATM(string tk, string mk) : MaTaiKhoan(tk), MatKhau(mk), soDu(0), idKhachHang(""), default_count(0) {};
+        TheATM(string tk, string mk, double d, string id) : soDu(d), MatKhau(mk), MaTaiKhoan(tk), idKhachHang(id), default_count(0){};
+        TheATM() : soDu(0), MatKhau(""), MaTaiKhoan(""), idKhachHang(""), default_count(0) {};
 
         TheATM(const TheATM&);
 
@@ -134,11 +136,9 @@ class TheATM{
 class KhachHang : public ThongTinCaNhan{
     private :
         string idKhachHang;
-        TheATM *the;
+        TheATM *the = new TheATM();
     public :
-        KhachHang() {
-            ThongTinCaNhan();
-        }
+        KhachHang() = default;
         KhachHang(string id, string hoten, string diachi, string sodienthoai, string tuoi);
         KhachHang(string id) : idKhachHang(id), ThongTinCaNhan() {};
 
@@ -148,8 +148,6 @@ class KhachHang : public ThongTinCaNhan{
 
         KhachHang(const KhachHang &kh);
         KhachHang &operator =(const KhachHang &kh);
-
-        string LaySoLuong();
 
         void LayThongTinCaNhan() const override;
         void DoiThongTinCaNhan() override;

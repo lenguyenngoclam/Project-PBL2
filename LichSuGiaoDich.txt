@@ -1,4 +1,4 @@
-13
+20
 #0
 Rút tiền từ tài khoản với số tiền : 20000.000000
 102200260
@@ -38,3 +38,24 @@ Nhận tiền từ tài khoản có mã thẻ 111 với số tiền : 20000.0000
 #12
 Rút tiền từ tài khoản với số tiền : 60000.000000
 111
+#13
+Rút tiền từ tài khoản với số tiền : 10000.000000
+111
+#14
+Nạp tiền vào tài khoản với số tiền : 20000.000000
+111
+#15
+Chuyển tiền sang tài khoản có mã thẻ 102200267 với số tiền : 10000.000000
+111
+#16
+Nhận tiền từ tài khoản có mã thẻ 111 với số tiền : 10000.000000
+102200267
+#17
+Rút tiền từ tài khoản với số tiền : 10000.000000
+111
+#18
+Chuyển tiền sang tài khoản có mã thẻ 102200257 với số tiền : 20000.000000
+111
+#19
+Nhận tiền từ tài khoản có mã thẻ 111 với số tiền : 20000.000000
+102200257

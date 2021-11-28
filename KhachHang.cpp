@@ -23,7 +23,8 @@ KhachHang::KhachHang(string id, string ten, string dc, string sdt, string t) : T
 
 KhachHang::KhachHang(const KhachHang &kh) : ThongTinCaNhan(kh) {
     idKhachHang = kh.idKhachHang;
-    the = new TheATM();
+    if(the == NULL)
+        the = new TheATM();
     (*the) = *(kh.the);
 }
 
@@ -37,12 +38,6 @@ KhachHang &KhachHang::operator =(const KhachHang &kh) {
     *the = *(kh.the);
     return *this;
 }
-
-string KhachHang::LaySoLuong()
-{
-    return number_KhachHang;
-}
-
 
 void KhachHang::DoiThongTinCaNhan() {
     ifstream fin;
@@ -157,7 +152,6 @@ void DanhSachKhachHang::CaiDatDanhSach(){
         double d = stod(soDu);
         TheATM theAtm = TheATM(tk,mk,d,temp.idKhachHang);
 
-        temp.the = new TheATM();
         *(temp.the) = theAtm;
 
         setKhachHang.insert(temp);
@@ -251,6 +245,12 @@ size_t DanhSachKhachHang::timKiemKhachHang(string id){
 
 void DanhSachKhachHang::caiDatLichSuGiaoDich(DanhSachLichSuGiaoDich& ds){
     for(size_t i = 0; i < setKhachHang.getCurr(); i++){
+        for(size_t j = 0; j < ds.set.getCurr(); j++)
+            if(setKhachHang[i].the -> MaTaiKhoan == ds.set[j].layMaTaiKhoan()){
+                setKhachHang[i].the -> default_count++;
+            }
+    }
+    for(size_t i = 0; i < setKhachHang.getCurr(); i++){
         setKhachHang[i].the -> caiDatLichSuGiaoDich(ds);
     }
 }
@@ -259,13 +259,14 @@ void DanhSachKhachHang::caiDatLichSuGiaoDich(DanhSachLichSuGiaoDich& ds){
 // ----------------------------------------------------------------------------------------------------------------------------------------------
 // THE ATM
 TheATM::TheATM(const TheATM& the) : soDu(the.soDu), MaTaiKhoan(the.MaTaiKhoan), 
-                                    MatKhau(the.MatKhau), idKhachHang(the.idKhachHang), set(the.set){}
+                                    MatKhau(the.MatKhau), idKhachHang(the.idKhachHang),default_count(the.default_count), set(the.set){}
 
 TheATM& TheATM::operator=(const TheATM& the){
     soDu = the.soDu;
     MaTaiKhoan = the.MaTaiKhoan;
     MatKhau = the.MatKhau;
     idKhachHang = the.idKhachHang;
+    default_count = the.default_count;
     set = the.set;
     return (*this);
 }
@@ -429,9 +430,11 @@ void TheATM::inLichSuGiaoDich(){
 }
 
 void TheATM::caiDatLichSuGiaoDich(DanhSachLichSuGiaoDich& ds){
+    set = Set<LichSuGiaoDich>(default_count);
     for(int i = 0; i < ds.set.getCurr(); i++){
-        if(ds.set[i].layMaTaiKhoan() == MaTaiKhoan)
+        if(ds.set[i].layMaTaiKhoan() == MaTaiKhoan){
             set.insert(ds.set[i]);
+        }
     }
 }
 
