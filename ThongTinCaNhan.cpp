@@ -24,9 +24,9 @@ ThongTinCaNhan& ThongTinCaNhan::operator =(const ThongTinCaNhan& tt){
 
 void ThongTinCaNhan::NhapThongTinCaNhan()
 {
-    cout << "- Nhap ho va ten: "; getline(cin,HoTen);
-    cout << "- Nhap tuoi: "; fflush(stdin); getline(cin, Tuoi);
-    cout << "- Nhap dia chi: "; fflush(stdin); getline(cin,DiaChi);
-    cout << "- Nhap so dien thoai: "; fflush(stdin); getline(cin, SoDienThoai);
+    cout << "\t\t- Nhap ho va ten: "; getline(cin,HoTen);
+    cout << "\t\t- Nhap tuoi: "; fflush(stdin); getline(cin, Tuoi);
+    cout << "\t\t- Nhap dia chi: "; fflush(stdin); getline(cin,DiaChi);
+    cout << "\t\t- Nhap so dien thoai: "; fflush(stdin); getline(cin, SoDienThoai);
 }
 

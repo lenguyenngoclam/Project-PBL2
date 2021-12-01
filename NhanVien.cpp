@@ -126,6 +126,11 @@ bool NhanVien::operator >(const NhanVien& rhs) const{
     return idNhanVien.compare(rhs.idNhanVien) > 0;
 }
 
+ostream& operator <<(ostream& os, const NhanVien& nv){
+    cout << "Xin chao quy khach. Toi la : " << nv.HoTen;
+    return os;
+}
+
 // ---------------------------------------------------------------------------------------------------------------------------------------
 // DANHSACHNHANVIEN 
 
@@ -151,11 +156,6 @@ void DanhSachNhanVien::CaiDatDanhSach(){
         nhanVien_count_line += 7;
     }
     fin.close();
-}
-
-ostream& operator <<(ostream& os, const NhanVien& nv){
-    cout << "Xin chao ! Toi la : " << nv.HoTen;
-    return os;
 }
 
 void DanhSachNhanVien::InDanhSach(){
@@ -186,15 +186,17 @@ TaiKhoanNhanVien::TaiKhoanNhanVien(string ten, string mk) : TaiKhoan(ten,mk), nh
 
 TaiKhoanNhanVien::TaiKhoanNhanVien(const TaiKhoanNhanVien& tk) : TaiKhoan(tk), nhanVien(tk.nhanVien) {}
 
-TaiKhoanNhanVien& TaiKhoanNhanVien::operator=(const TaiKhoanNhanVien& rhs){
-    nhanVien = rhs.nhanVien;
-    TenDangNhap = rhs.TenDangNhap;
-    MatKhau = rhs.MatKhau;
-
+TaiKhoanNhanVien& TaiKhoanNhanVien::operator =(const TaiKhoanNhanVien& rhs){
+    if (this != &rhs)
+    {
+        nhanVien = rhs.nhanVien;
+        TenDangNhap = rhs.TenDangNhap;
+        MatKhau = rhs.MatKhau;
+    }
     return (*this);
 }
 
-bool TaiKhoanNhanVien::operator==(const TaiKhoanNhanVien& rhs){
+bool TaiKhoanNhanVien::operator ==(const TaiKhoanNhanVien& rhs){
     return (TenDangNhap == rhs.TenDangNhap && MatKhau == rhs.MatKhau);
 }
 
