@@ -29,11 +29,11 @@ class ThongTinCaNhan{
 // Vì là hàm ảo nên phải khai báo chung 1 file
 void ThongTinCaNhan::LayThongTinCaNhan() const
 {
-    cout << "- Ho va ten: " << HoTen << endl;
-    cout << "- Tuoi: " << Tuoi << endl;
-    cout << "- Dia chi: " << DiaChi << endl;
-    cout << "- So dien thoai: " << SoDienThoai << endl;
-    cout << "--------------------------------------------------" << endl;
+    cout << "\t\t- Ho va ten: " << HoTen << endl;
+    cout << "\t\t- Tuoi: " << Tuoi << endl;
+    cout << "\t\t- Dia chi: " << DiaChi << endl;
+    cout << "\t\t- So dien thoai: " << SoDienThoai << endl;
+    cout << "\t\t-----------------------------------------------------" << endl;
 }
 
 void ThongTinCaNhan::DoiThongTinCaNhan()

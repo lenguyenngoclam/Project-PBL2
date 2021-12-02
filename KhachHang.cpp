@@ -3,17 +3,6 @@
 using namespace std;
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------
-// HAM CHUC NANG
-
-double add(double a, double b){
-    return a + b;
-}
-
-double sub(double a, double b){
-    return a - b;
-}
-
-// ----------------------------------------------------------------------------------------------------------------------------------------------
 // KHACH HANG
 
 KhachHang::KhachHang(string id, string ten, string dc, string sdt, string t) : ThongTinCaNhan(ten,dc,sdt,t) {
@@ -80,7 +69,7 @@ void KhachHang::DoiThongTinCaNhan() {
 }
 
 void KhachHang::LayThongTinCaNhan() const{
-    cout << "- ID: " << idKhachHang << endl;
+    cout << "\t\t- ID: " << idKhachHang << endl;
     ThongTinCaNhan::LayThongTinCaNhan();
 }
 
@@ -129,6 +118,7 @@ bool KhachHang::operator ==(const KhachHang& rhs) const{
     return idKhachHang.compare(rhs.idKhachHang) == 0;
 }
 
+
 // ----------------------------------------------------------------------------------------------------------------------------------------------
 // DANH SACH KHACH HANG 
 
@@ -168,7 +158,7 @@ ostream& operator <<(ostream& os, const KhachHang& kh){
 }
 
 void DanhSachKhachHang::InDanhSach(){
-    cout << "---------------Danh sach khach hang---------------" << endl;
+    cout << "\t\t--------------- Danh sach khach hang ----------------" << endl;
     for(size_t i = 0; i < setKhachHang.getSize(); i++)
         setKhachHang[i].LayThongTinCaNhan();
 }
@@ -194,7 +184,7 @@ void DanhSachKhachHang::suaThongTinKhachHang(string id){
     KhachHang temp(id);
     size_t index = setKhachHang.findEle(temp);
     if(index == -1){
-        cout << "Khong tim thay khach hang" << endl;
+        cout << "\t\t-> Khong tim thay khach hang" << endl;
     } else {
         setKhachHang[index].DoiThongTinCaNhan();
     }
@@ -259,12 +249,12 @@ void DanhSachKhachHang::caiDatLichSuGiaoDich(DanhSachLichSuGiaoDich& ds){
         setKhachHang[i].the -> caiDatLichSuGiaoDich(ds);
     }
 }
-
+/*
 // ----------------------------------------------------------------------------------------------------------------------------------------------
 // THE ATM
 
 TheATM::TheATM(const TheATM& the) : soDu(the.soDu), MaTaiKhoan(the.MaTaiKhoan), 
-                                    MatKhau(the.MatKhau), idKhachHang(the.idKhachHang),default_count(the.default_count), set(the.set){}
+                                    MatKhau(the.MatKhau), idKhachHang(the.idKhachHang), default_count(the.default_count), set(the.set){}
 
 TheATM& TheATM::operator =(const TheATM& the){
     soDu = the.soDu;
@@ -289,15 +279,15 @@ void TheATM::caiDatTheATM(){
     fout.open("KHACHHANG.txt",ios::app);
     string line;
 
-    cout << "Xin moi nhap ma the ATM : "; fflush(stdin);
+    cout << "- Xin moi nhap ma the ATM : "; fflush(stdin);
     getline(cin,MaTaiKhoan);
     fout << MaTaiKhoan << endl;
 
-    cout << "Xin moi nhap mat khau : "; fflush(stdin);
+    cout << "- Xin moi nhap mat khau : "; fflush(stdin);
     getline(cin, MatKhau);
     fout << MatKhau << endl;
 
-    cout << "So tien nap vao tai khoan : "; fflush(stdin);
+    cout << "-> So tien nap vao tai khoan : "; fflush(stdin);
     cin >> soDu;
     fout << to_string(soDu);
 
@@ -441,36 +431,4 @@ void TheATM::caiDatLichSuGiaoDich(DanhSachLichSuGiaoDich& ds){
             set.insert(ds.set[i]);
         }
     }
-}
-
-// ----------------------------------------------------------------------------------------------------------------------------------------------
-// LICH SU GIAO DICH
-
-ostream& operator <<(ostream& os, const LichSuGiaoDich& ls){
-    cout << "Mã giao dịch : " << ls.maGiaoDich << endl;
-    cout << "Nội dung giao dịch : " << ls.noiDung;
-    return os;
-}
-
-// ----------------------------------------------------------------------------------------------------------------------------------------------
-// DANH SACH LICH SU GIAO DICH
-
-void DanhSachLichSuGiaoDich::caiDatDanhSach(){
-    ifstream fin;
-    fin.open("LichSuGiaoDich.txt", ios::in);
-
-    string line;
-    lichsu_count_line++;
-    getline(fin, line);
-    while(getline(fin, line)){
-        LichSuGiaoDich temp;
-        temp.maGiaoDich = line;
-        getline(fin, temp.noiDung);
-        getline(fin, temp.maTaiKhoan);
-
-        set.insert(temp);
-        lichsu_count_line += 3;
-    }
-
-    fin.close();
-}
+}*/
