@@ -1,4 +1,4 @@
-8
+10
 KH1
 nguyen nho song hoang
 19
@@ -6,7 +6,7 @@ K149 Le Dinh Ly
 0905515517
 102200257
 daylamatkhau
-3020000.000000
+4000000.000000
 KH2
 Ngoc Lam Le Nguyen
 19
@@ -63,3 +63,19 @@ Ngoc Lam 2
 222
 123456
 200000.000000
+KH9
+song hoang
+19
+Hai Chau, Da Nang
+0905515520
+123
+12345678
+5000000.000000
+KH10
+Hoang Nguyen
+21
+Da nang
+012345678
+123
+1234567
+2000000.000000
