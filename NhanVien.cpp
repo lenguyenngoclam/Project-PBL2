@@ -143,7 +143,7 @@ void DanhSachNhanVien::CaiDatDanhSach(){
         getline(fin, temp.DiaChi);
         getline(fin, temp.SoDienThoai);
 
-        set.insert(temp);
+        ls.insert(temp);
         
         // Lấy ra 2 dòng chứa tài khoản và mật khẩu của nhân viên
         getline(fin, line);
@@ -160,8 +160,8 @@ ostream& operator <<(ostream& os, const NhanVien& nv){
 
 void DanhSachNhanVien::InDanhSach(){
     cout << "---------------Danh sach nhan vien---------------" << endl;
-    for(size_t i = 0; i < set.getSize(); i++)
-        set[i].LayThongTinCaNhan();
+    for(size_t i = 0; i < ls.getCurr(); i++)
+        ls[i].LayThongTinCaNhan();
 }
 
 void DanhSachNhanVien::TimKiemNhanVien(string id) // Tìm kiếm nhân viên theo idNhanVien
@@ -170,12 +170,12 @@ void DanhSachNhanVien::TimKiemNhanVien(string id) // Tìm kiếm nhân viên the
     // Tạo một nhân viên tạm để chứa id nhằm tìm kiếm trong tập hợp (Vì đã định nghĩa toán tử == so sánh hai NhanVien theo id)
     NhanVien nv(id);
 
-    int index = set.findEle(nv);
+    int index = ls.findEle(nv);
 
     if(index == -1) 
         cout << "-> Khong co nhan vien co ID " << id << "!" << endl;
     else 
-        set[index].LayThongTinCaNhan();
+        ls[index].LayThongTinCaNhan();
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------
@@ -221,7 +221,7 @@ void DanhSachTaiKhoanNhanVien::caiDatDanhSach(){
             tk.TenDangNhap = line; getline(fin, line);
             tk.MatKhau = line;
             
-            set.insert(tk);
+            ls.insert(tk);
             count += 6;
         } 
         count++;
@@ -229,7 +229,7 @@ void DanhSachTaiKhoanNhanVien::caiDatDanhSach(){
 }
 
 bool DanhSachTaiKhoanNhanVien::kiemTraTaiKhoan(TaiKhoanNhanVien& nv){
-    int index = set.findEle(nv);
+    int index = ls.findEle(nv);
     if(index == -1)
         return false;
     else
@@ -237,18 +237,18 @@ bool DanhSachTaiKhoanNhanVien::kiemTraTaiKhoan(TaiKhoanNhanVien& nv){
 }  
 
 void DanhSachTaiKhoanNhanVien::inDanhSach(){
-    size_t n = set.getSize();
+    size_t n = ls.getCurr();
     for(size_t i = 0; i != n; i++){
-        cout << set[i].TenDangNhap << " " << set[i].MatKhau;
-        set[i].nhanVien.LayThongTinCaNhan();
+        cout << ls[i].TenDangNhap << " " << ls[i].MatKhau;
+        ls[i].nhanVien.LayThongTinCaNhan();
         cout << endl;
     }
 }
 
 TaiKhoanNhanVien& DanhSachTaiKhoanNhanVien::suDungTaiKhoan(string ten, string mk){
     TaiKhoanNhanVien tk(ten,mk);
-    int index = set.findEle(tk);
-    return set[index];
+    int index = ls.findEle(tk);
+    return ls[index];
 }
 
 #endif
