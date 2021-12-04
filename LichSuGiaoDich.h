@@ -29,7 +29,7 @@ class LichSuGiaoDich{
             return (*this);
         } 
 
-        bool operator==(const LichSuGiaoDich& rhs){
+        bool operator ==(const LichSuGiaoDich& rhs){
             return (maGiaoDich == rhs.maGiaoDich);
         }
 

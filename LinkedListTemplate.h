@@ -18,8 +18,8 @@ class Node{
 
         Node(const Node<T>& rhs) : data(rhs.data), next(rhs.next), prev(rhs.prev) {};
         
-        Node<T>& operator= (const Node<T>& rhs){
-            if(rhs != *this){
+        Node<T>& operator =(const Node<T>& rhs){
+            if(this != &rhs){
                 delete next;
                 delete prev;
                 next = rhs.next;
@@ -36,10 +36,11 @@ class Node{
             data = new_data;
         }
 
-        void setNext(Node<T>*& new_next){
+        void setNext(Node<T>*& new_next) {
             next = new_next;
         }
-        void setPrev(Node<T>*& new_prev){
+        
+        void setPrev(Node<T>*& new_prev) {
             prev = new_prev;
         }
 };
@@ -64,7 +65,7 @@ class LinkedList{
 
         LinkedList(const LinkedList<T>& ls);
 
-        LinkedList& operator=(const LinkedList<T>& rhs);
+        LinkedList& operator =(const LinkedList<T>& rhs);
 
         void insert(T data);
         void erase(T data);
@@ -78,7 +79,7 @@ class LinkedList{
 };
 
 template<typename T>
-ostream& operator<<(ostream& os, const LinkedList<T>& ls){
+ostream& operator <<(ostream& os, const LinkedList<T>& ls){
     ls.getInfo(os);
     return os;
 }

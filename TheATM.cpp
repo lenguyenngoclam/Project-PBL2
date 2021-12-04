@@ -42,23 +42,23 @@ void TheATM::caiDatTheATM(){
     fout.open("KHACHHANG.txt",ios::app);
     string line;
 
-    cout << "Xin moi nhap ma the ATM : "; fflush(stdin);
+    cout << "\t\tXin moi nhap ma the ATM : "; fflush(stdin);
     getline(cin,MaTaiKhoan);
     fout << MaTaiKhoan << endl;
 
-    cout << "Xin moi nhap mat khau : "; fflush(stdin);
+    cout << "\t\tXin moi nhap mat khau : "; fflush(stdin);
     getline(cin, MatKhau);
     fout << MatKhau << endl;
 
-    cout << "So tien nap vao tai khoan : "; fflush(stdin);
+    cout << "\t\tSo tien nap vao tai khoan : "; fflush(stdin);
     cin >> soDu;
     fout << to_string(soDu);
 
 }
 
 void TheATM::layThongTinThe(){
-    cout << "- Ma so the ATM : " << MaTaiKhoan << endl;
-    cout << "- So du trong the : " << to_string(soDu) << endl;
+    cout << "\t\t- Ma so the ATM : " << MaTaiKhoan << endl;
+    cout << "-\t\t So du trong the : " << to_string(soDu) << endl;
 }
 
 void TheATM::suaFile(double (*func)(double, double), double soTien){
@@ -183,7 +183,6 @@ void TheATM::chuyenTien(TheATM& the, double tien){
 }
 
 void TheATM::inLichSuGiaoDich(){
-    cout << ls.getCurr() << endl;
     for(int i = 0; i < ls.getCurr(); i++)
         cout << ls[i] << endl;
 }
