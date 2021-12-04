@@ -9,17 +9,6 @@
 
 using namespace std;
 
-string LaySoLuongGiaoDich() {
-    ifstream fin;
-    fin.open("LichSuGiaoDich.txt", ios::in);
-    string line;
-    getline(fin, line);
-    fin.close();
-    return line;
-}
-
-string number_lichsu = LaySoLuongGiaoDich();
-int soLuongGiaoDich = stoi(number_lichsu);
 int lichsu_count_line = 0;
 
 class LichSuGiaoDich{

@@ -18,19 +18,6 @@ string LaySoLuongKhachHang() {
     return line;
 }
 
-string number_KhachHang = LaySoLuongKhachHang();
-int soLuong = stoi(number_KhachHang);
-
-
-string LaySoLuongKhachHang() {
-    ifstream fin;
-    fin.open("KHACHHANG.txt", ios::in);
-    string line;
-    getline(fin, line);
-    fin.close();
-    return line;
-}
-
 string LaySoLuongGiaoDich() {
     ifstream fin;
     fin.open("LichSuGiaoDich.txt", ios::in);
