@@ -4,10 +4,10 @@
 #include "ThongTinCaNhan.cpp"
 #include "TaiKhoan.h"
 #include "SetTemplate.cpp"
+#include "LinkedListTemplate.cpp"
 
 int nhanVien_count_line = 0;
 int khachHang_count_line = 0;
-int lichsu_count_line = 0;
 
 string LaySoLuongKhachHang() {
     ifstream fin;

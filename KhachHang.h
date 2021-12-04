@@ -6,12 +6,10 @@
 #include <string>
 
 #include "include.h"
-#include "LichSuGiaoDich.cpp"
 #include "TheATM.cpp"
 
 using namespace std;
 
-class KhachHang;
 class DanhSachKhachHang;
 
 class KhachHang : public ThongTinCaNhan{
@@ -47,12 +45,9 @@ class KhachHang : public ThongTinCaNhan{
 
 class DanhSachKhachHang{
     private:
-        // Cùng 1 KhachHang sẽ có thẻ ATM của người đó
-        Set<KhachHang> setKhachHang;
+        LinkedList<KhachHang> lsKhachHang;
     public:
-        DanhSachKhachHang() {
-            setKhachHang = Set<KhachHang>(soLuong);
-        }
+        DanhSachKhachHang() = default;
         ~DanhSachKhachHang() = default;
         
         // Đọc dữ liệu ra từ file và lưu vào set
@@ -78,7 +73,7 @@ class DanhSachKhachHang{
 
         void caiDatLichSuGiaoDich(DanhSachLichSuGiaoDich&);
 
-        Set<KhachHang>& getSetKhachHang() { return setKhachHang; }
+        LinkedList<KhachHang>& getListKhachHang(){ return lsKhachHang; }
 
         friend class KhachHang;
 };

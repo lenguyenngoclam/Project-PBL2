@@ -57,9 +57,9 @@ class NhanVien : public ThongTinCaNhan{
 
 class DanhSachNhanVien{
     private :
-        Set<NhanVien> set;
+        LinkedList<NhanVien> ls;
     public :
-        DanhSachNhanVien() : set(soLuongNhanVien) {}
+        DanhSachNhanVien() : ls() {}
         ~DanhSachNhanVien() = default;
 
         void CaiDatDanhSach();
@@ -67,7 +67,7 @@ class DanhSachNhanVien{
 
         void TimKiemNhanVien(string id);
         
-        Set<NhanVien>& getSetNhanVien() { return set; }
+        LinkedList<NhanVien>& getListNhanVien() { return ls; }
 
         friend class NhanVien;
 };
@@ -97,9 +97,9 @@ class TaiKhoanNhanVien : public TaiKhoan{
 
 class DanhSachTaiKhoanNhanVien{
     private :
-        Set<TaiKhoanNhanVien> set;
+        LinkedList<TaiKhoanNhanVien> ls;
     public :
-        DanhSachTaiKhoanNhanVien() : set(soLuongNhanVien) {};
+        DanhSachTaiKhoanNhanVien() : ls() {};
         ~DanhSachTaiKhoanNhanVien();
         void caiDatDanhSach();
         // Kiểm tra tài khoản có hợp lệ không
