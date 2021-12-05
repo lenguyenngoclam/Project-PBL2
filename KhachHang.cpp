@@ -43,7 +43,8 @@ void KhachHang::DoiThongTinCaNhan() {
     while(getline(fin, line)){
         if (count == 1) {
             number_KhachHang = line.substr(0,line.size()-1); // Cắt kí tự "\n" cuối line
-            ++count; fout << line << endl;
+            ++count; 
+            fout << line << endl;
         }
         else if (count == khachHang_count_line) fout << line; 
         else { 
@@ -158,7 +159,7 @@ ostream& operator <<(ostream& os, const KhachHang& kh){
 }
 
 void DanhSachKhachHang::InDanhSach(){
-    cout << "---------------Danh sach khach hang---------------" << endl;
+    cout << "\t\t--------------- Danh sach khach hang ----------------" << endl;
     for(size_t i = 0; i < lsKhachHang.getCurr(); i++)
         lsKhachHang[i].LayThongTinCaNhan();
 }
