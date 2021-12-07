@@ -29,38 +29,38 @@ class ThongTinCaNhan{
 // Vì là hàm ảo nên phải khai báo chung 1 file
 void ThongTinCaNhan::LayThongTinCaNhan() const
 {
-    cout << "\t\t- Ho va ten: " << HoTen << endl;
-    cout << "\t\t- Tuoi: " << Tuoi << endl;
-    cout << "\t\t- Dia chi: " << DiaChi << endl;
-    cout << "\t\t- So dien thoai: " << SoDienThoai << endl;
+    cout << "\t\t- Họ và tên: " << HoTen << endl;
+    cout << "\t\t- Tuổi: " << Tuoi << endl;
+    cout << "\t\t- Địa chỉ: " << DiaChi << endl;
+    cout << "\t\t- Số điện thoại: " << SoDienThoai << endl;
     cout << "\t\t-----------------------------------------------------" << endl;
 }
 
 void ThongTinCaNhan::DoiThongTinCaNhan()
 {
     int opt;
-    cout << "--------Chon thong tin muon thay doi--------" << endl;
-    cout << " + Option 1: Ho va ten" << endl;
-    cout << " + Option 2: Tuoi" << endl;
-    cout << " + Option 3: Dia chi" << endl;
-    cout << " + Option 4: So dien thoai" << endl;
-    cout << "- Chon option: "; cin >> opt; fflush(stdin); 
+    cout << "\t\t-------- Chọn thông tin muốn thay đổi --------" << endl;
+    cout << "\t\t + Option 1: Họ và tên" << endl;
+    cout << "\t\t + Option 2: Tuổi" << endl;
+    cout << "\t\t + Option 3: Địa chỉ" << endl;
+    cout << "\t\t + Option 4: Số điện thoại" << endl;
+    cout << "\t\t -> Option của bạn: "; cin >> opt; fflush(stdin); 
     switch (opt)
     {
         case 1: {
-            cout << "- Nhap ho va ten moi: "; 
+            cout << "\t\t- Nhập họ và tên mới: "; 
             getline(cin,HoTen); fflush(stdin); break;
         }
         case 2: {
-            cout << "- Nhap tuoi: "; 
+            cout << "\t\t- Nhập tuổi: "; 
             getline(cin,Tuoi);  fflush(stdin);break;
         }
         case 3: {
-            cout << "- Nhap dia chi: "; 
+            cout << "\t\t- Nhập địa chỉ: "; 
             getline(cin,DiaChi); fflush(stdin); break;
         }
         case 4: {
-            cout << "- Nhap so dien thoai: "; 
+            cout << "\t\t- Nhập số điện thoại: "; 
             getline(cin,SoDienThoai); fflush(stdin); break;
         }
     }

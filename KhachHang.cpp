@@ -159,7 +159,7 @@ ostream& operator <<(ostream& os, const KhachHang& kh){
 }
 
 void DanhSachKhachHang::InDanhSach(){
-    cout << "\t\t--------------- Danh sach khach hang ----------------" << endl;
+    cout << "\t\t--------------- Danh sách khách hàng ----------------" << endl;
     for(size_t i = 0; i < lsKhachHang.getCurr(); i++)
         lsKhachHang[i].LayThongTinCaNhan();
 }
@@ -185,7 +185,7 @@ void DanhSachKhachHang::suaThongTinKhachHang(string id){
     KhachHang temp(id);
     size_t index = lsKhachHang.findEle(temp);
     if(index == -1){
-        cout << "\t\t-> Khong tim thay khach hang" << endl;
+        cout << "\t\t-> Không tìm thấy khách hàng" << endl;
     } else {
         lsKhachHang[index].DoiThongTinCaNhan();
     }
