@@ -57,12 +57,12 @@ class DanhSachViDienTu{
         
         void capNhatDanhSach();
         void caiDatDanhSach();
-        void taoTaiKhoan();
+        void taoViDienTu();
         bool kiemTraDangNhap(string tk, string mk);
         ViDienTu& suDungVi(string tk, string mk);
         size_t suDungVi(string id);
 
-        LinkedList<ViDienTu>& getListVi(){ return lsViDienTu; }
+        LinkedList<ViDienTu>& getListVi() { return lsViDienTu; }
 
 };
 

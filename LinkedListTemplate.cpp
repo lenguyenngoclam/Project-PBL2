@@ -112,7 +112,7 @@ ostream& LinkedList<T>::getInfo(ostream& os) const{
     Node<T>* current = head;
     int index = 1;
     while(current != NULL) {
-        cout << index << ". ";
+        cout << "\t\t" <<  index << ". ";
         index++;
         cout << current -> getData() << endl;
         current = current -> getNext();
