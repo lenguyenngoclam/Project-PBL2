@@ -61,19 +61,22 @@ class DanhSachKhachHang{
 
         // Kiểm tra tài khoản ATM có hợp lệ không
         bool kiemTraTheATM(string, string);
+        
         // Trả về thẻ ATM sử dụng idKhachHang
         TheATM& layThongTinTheATM(string idKhachHang);
         // Trả về thẻ ATM sử dụng tài khoản và mật khẩu
         TheATM& layThongTinTheATM(string tk, string mk);
+
         // Trả về index trong set dựa trên mã thẻ cung cấp
         size_t timKiemATM(string maThe);
         size_t timKiemATM(string tk, string mk);
+
         //Tìm kiếm khách hàng theo id
         size_t timKiemKhachHang(string id);
 
         void caiDatLichSuGiaoDich(DanhSachLichSuGiaoDich&);
 
-        LinkedList<KhachHang>& getListKhachHang(){ return lsKhachHang; }
+        LinkedList<KhachHang>& getListKhachHang() { return lsKhachHang; }
 
         friend class KhachHang;
 };

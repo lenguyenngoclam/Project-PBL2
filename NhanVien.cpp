@@ -1,5 +1,6 @@
 #ifndef Nhanvien_cpp
 #define Nhanvien_cpp
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -127,7 +128,7 @@ bool NhanVien::operator >(const NhanVien& rhs) const{
 }
 
 ostream& operator <<(ostream& os, const NhanVien& nv){
-    cout << "Xin chao quy khach. Toi la : " << nv.HoTen;
+    cout << "\t\tXin chao quy khach. Toi la : " << nv.HoTen;
     return os;
 }
 
@@ -159,21 +160,21 @@ void DanhSachNhanVien::CaiDatDanhSach(){
 }
 
 void DanhSachNhanVien::InDanhSach(){
-    cout << "---------------Danh sach nhan vien---------------" << endl;
+    cout << "\t\t---------------Danh sach nhan vien---------------" << endl;
     for(size_t i = 0; i < ls.getCurr(); i++)
         ls[i].LayThongTinCaNhan();
 }
 
 void DanhSachNhanVien::TimKiemNhanVien(string id) // Tìm kiếm nhân viên theo idNhanVien
 {
-    cout << "------------------Nhan Vien " << id << "-------------------" << endl;
+    cout << "\t\t------------------Nhan Vien " << id << "-------------------" << endl;
     // Tạo một nhân viên tạm để chứa id nhằm tìm kiếm trong tập hợp (Vì đã định nghĩa toán tử == so sánh hai NhanVien theo id)
     NhanVien nv(id);
 
     int index = ls.findEle(nv);
 
     if(index == -1) 
-        cout << "-> Khong co nhan vien co ID " << id << "!" << endl;
+        cout << "\t\t-> Khong co nhan vien co ID " << id << "!" << endl;
     else 
         ls[index].LayThongTinCaNhan();
 }

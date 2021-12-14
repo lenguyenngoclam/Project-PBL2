@@ -2,6 +2,7 @@
 #include <string>
 #include <cstring>
 #include <iomanip>
+#include <conio.h>
 
 #include "NhanVien.cpp"
 #include "includeKhachHang.h"
@@ -11,13 +12,13 @@ using namespace std;
 
 void giaoDienDangNhap(string &tk, string &mk){
     char s[50];
-    cout << "\t\t-------- Xin moi dang nhap -------" << endl;
-    cout << "\t\tTai khoan : "; getline(cin,tk); fflush(stdin);
-    cout << "\t\tMat khau : "; getpassword(s,50); mk = s; fflush(stdin);
+    cout << "\t\t-------- Xin mời đăng nhâp -------" << endl;
+    cout << "\t\tTài khoản : "; getline(cin,tk); fflush(stdin);
+    cout << "\t\tMật khẩu : "; getpassword(s,50); mk = s; fflush(stdin);
 }
 
 void giaoDienNhapID(string& id){
-    cout << "\t\t- Xin moi nhap ID : ";
+    cout << "\t\t- Xin mời nhập ID : ";
     getline(cin, id); fflush(stdin);
 }
 
@@ -35,17 +36,20 @@ int main(){
 
     dsKhachHang.caiDatLichSuGiaoDich(dsLichSu);
 
-    cout << "------------ NGAN HANG VIETCOMBANK XIN CHAO QUY KHACH -------------" << endl;
-    while(true){
+    string hello = "----------------- NGÂN HÀNG VIETCOMBANK XIN KÍNH CHÀO QUÝ KHÁCH ------------------";
+    goodbye(hello,30); cout << endl;
 
+
+    while(true) {
+        cout << "\t\tBạn là: " << endl;
         cout << "\t\t+-----------+--------------------+" << endl;
-        cout << "\t\t|" << setw(9) << "Option" << setw(3) << "|" << setw(15) << "Chuc nang" << setw(6) << "|" << endl;
+        cout << "\t\t|" << setw(9) << "Option" << setw(3) << "|" << setw(18) << "Chức năng" << setw(6) << "|" << endl;
         cout << "\t\t+-----------|--------------------+" << endl;
-        cout << "\t\t|" << setw(6) << "1" << setw(6) << "|" << setw(15) << "Nhan vien" << setw(6) << "|" << endl;
-        cout << "\t\t|" << setw(6) << "2" << setw(6) << "|" << setw(16) << "Khach hang" << setw(5) << "|" << endl;
+        cout << "\t\t|" << setw(6) << "1" << setw(6) << "|" << setw(17) << "Nhân viên" << setw(6) << "|" << endl;
+        cout << "\t\t|" << setw(6) << "2" << setw(6) << "|" << setw(18) << "Khách hàng" << setw(5) << "|" << endl;
         cout << "\t\t|" << setw(6) << "3" << setw(6) << "|" << setw(10) << "Exit" << setw(11) << "|" << endl;
         cout << "\t\t+-----------+--------------------+" << endl;
-        fflush(stdin); cout << "\t\t-> Lua chon cua ban: ";
+        fflush(stdin); cout << "\t\t-> Option của bạn: ";
 
         string first_choice,choice;
         getline(cin,choice);
@@ -57,9 +61,10 @@ int main(){
 
         if (choice == "1") first_choice = "nv";
         else if (choice == "2") first_choice = "kh";
-        else first_choice = "exit";
+        else if (choice == "3") first_choice = "exit";
+        else first_choice = choice;
 
-        if(first_choice == "nv"){
+        if(first_choice == "nv") {
 
             giaoDienDangNhap(tenDangNhap, matKhau);
             tenDangNhap = "NV" + tenDangNhap;
@@ -67,38 +72,37 @@ int main(){
             TaiKhoanNhanVien tk(tenDangNhap,matKhau);
 
             while(!dsTaiKhoan.kiemTraTaiKhoan(tk)){
-                cout << "\t\tTai khoan hoac mat khau bi sai. Vui long dang nhap lai....." << endl;
+                cout << "\t\tTài khoản hoặc mật khẩu bị sai. Vui lòng đăng nhập lại....." << endl;
                 giaoDienDangNhap(tenDangNhap,matKhau);
                 tenDangNhap = "NV" + tenDangNhap;
                 tk = TaiKhoanNhanVien (tenDangNhap,matKhau);    
             }
 
             tk = dsTaiKhoan.suDungTaiKhoan(tenDangNhap, matKhau);
-            cout << "\t\t------------ Xin chao ------------" << endl;
+            cout << "\t\t------------ Xin chào ------------" << endl;
             cout << "\t\t"; tk.layNhanVien().LayThongTinCaNhan();
 
             string tempString = "n";
-            while(tempString == "n"){
+            while(tempString == "n") {
+                cout << "\t\t# Các option của nhân viên: " << endl;
+                cout << "\t\t+-----------+---------------------------------------+" << endl;
+                cout << "\t\t|" << setw(9) << "Option" << setw(3) << "|" << setw(25) << "Chức năng" << setw(18) << "|" << endl;
+                cout << "\t\t+-----------+---------------------------------------+" << endl;
+                cout << "\t\t|" << setw(6) << "1" << setw(6) << "|" << setw(33) << "Xem danh sách khách hàng" << setw(10) << "|" << endl;
+                cout << "\t\t|" << setw(6) << "2" << setw(6) << "|" << setw(41) << "Tạo tài khoản cho khách hàng" << setw(6) << "|" << endl;
+                cout << "\t\t|" << setw(6) << "3" << setw(6) << "|" << setw(35) << "Sửa thông tin khách hàng" << setw(10) << "|" << endl;
+                cout << "\t\t|" << setw(6) << "4" << setw(6) << "|" << setw(41) << "Lấy thông tin của khách hàng" << setw(6) << "|" << endl;
+                cout << "\t\t|" << setw(6) << "5" << setw(6) << "|" << setw(19) << "Đăng xuất" << setw(25) << "|" << endl;
+                cout << "\t\t+-----------+---------------------------------------+" << endl;
+                fflush(stdin); cout << "\t\t-> Option của bạn: ";
+                getline(cin, choice);
 
-                cout << "\t\t+-----------+---------------------------------------+" << endl;
-                cout << "\t\t|" << setw(9) << "Option" << setw(3) << "|" << setw(21) << "Chuc nang" << setw(19) << "|" << endl;
-                cout << "\t\t+-----------+---------------------------------------+" << endl;
-                cout << "\t\t|" << setw(6) << "1" << setw(6) << "|" << setw(30) << "Xem danh sach khach hang" << setw(10) << "|" << endl;
-                cout << "\t\t|" << setw(6) << "2" << setw(6) << "|" << setw(34) << "Tao tai khoan cho khach hang" << setw(6) << "|" << endl;
-                cout << "\t\t|" << setw(6) << "3" << setw(6) << "|" << setw(30) << "Sua thong tin khach hang" << setw(10) << "|" << endl;
-                cout << "\t\t|" << setw(6) << "4" << setw(6) << "|" << setw(34) << "Lay thong tin cua khach hang" << setw(6) << "|" << endl;
-                cout << "\t\t|" << setw(6) << "5" << setw(6) << "|" << setw(15) << "Dang xuat" << setw(25) << "|" << endl;
-                cout << "\t\t+-----------+---------------------------------------+" << endl;
-                fflush(stdin); cout << "\t\t-> Lua chon cua ban: ";
-                
-                string choose;
-                getline(cin, choose);
                 cout << "\t\t+---------------------------------------------------+" << endl;
 
                 string tempID;
                 size_t tempIndex;
 
-                switch(stoi(choose)){
+                switch(stoi(choice)){
                     case 1: 
                         dsKhachHang.InDanhSach();
                         break;
@@ -113,17 +117,25 @@ int main(){
                         giaoDienNhapID(tempID);
                         tempIndex = dsKhachHang.timKiemKhachHang(tempID);
                         while(tempIndex == -1){
-                            cout << "\t\t->ID khach hang khong ton tai !. Moi quy khach nhap lai....." << endl;
+                            cout << "\t\t->ID khách hàng không tồn tại!. Mời quý khách nhập lại....." << endl;
                             giaoDienNhapID(tempID);
                             tempIndex = dsKhachHang.timKiemKhachHang(tempID);
                         }
+                        cout << "\t\t------------------ Khách hàng " << tempID << " ------------------" << endl;
                         (dsKhachHang.getListKhachHang())[tempIndex].LayThongTinCaNhan();
+                        break;
+                    case 5:
+                        tempString = "c";
+                        string gb = "Tạm biệt " + tk.layNhanVien().LayTen() + ".....";
+                        goodbye(gb,50);
+                        cout << endl << endl;
+                        //system("cls"); // clear màn hình
                         break;
                 }
 
             }
         } 
-        else if(first_choice == "kh"){
+        else if(first_choice == "kh") {
 
             size_t tempIndex;
             double soTien;
@@ -131,18 +143,27 @@ int main(){
             string temp, tempString = "n";
 
             while (tempString == "n") {
+                cout << "\t\t# Các option của khách hàng: " << endl;
+                cout << "\t\t+-----------+------------------------------------------------------------+" << endl;
+                cout << "\t\t|" << setw(9) << "Option" << setw(3) << "|" << setw(34) << "Chức năng" << setw(30) << "|" << endl;
+                cout << "\t\t+-----------+------------------------------------------------------------+" << endl;
+                cout << "\t\t|" << setw(6) << "1" << setw(6) << "|" << setw(30) << "Sử dụng thẻ ATM" << setw(37) << "|" << endl;
+                cout << "\t\t|" << setw(6) << "2" << setw(6) << "|" << setw(67) << "Muốn đăng kí là thành viên mới của ngân hàng" << setw(8) << "|" << endl;
+                cout << "\t\t|" << setw(6) << "3" << setw(6) << "|" << setw(22) << "Đăng xuất" << setw(43) << "|" << endl;
+                cout << "\t\t+-----------+------------------------------------------------------------+" << endl;
+                fflush(stdin); cout << "\t\t-> Option của bạn: ";
+                            
+                getline(cin, choice);
+                cout << "\t\t+------------------------------------------------------------------------+" << endl;
+                if (choice == "1" || choice == "2") 
+                    cout << "\t\t----------------- XIN CHÀO QUÝ KHÁCH --------------" << endl << endl;
 
-                cout << "Lua chon: " << endl;
-                cout << "1. Su dung the ATM" << endl;
-                cout << "2. Muon dang ki la thanh vien cua ngan hang" << endl;
-                fflush(stdin); cout << "-> Lua chon cua ban: ";
-                getline(cin,choice);
-
-                switch(stoi(choice)){
+                switch(stoi(choice)) {
+                    
                     case 1 :
                         giaoDienDangNhap(tenDangNhap, matKhau);
                         while(!dsKhachHang.kiemTraTheATM(tenDangNhap, matKhau)){
-                            cout << "Tai khoan mat khau bi sai. Vui long dang nhap lai....." << endl;
+                            cout << "\t\tTài khoản hoặc mật khẩu bị sai. Vui lòng đăng nhập lại....." << endl;
                             giaoDienDangNhap(tenDangNhap,matKhau);
                         }
 
@@ -150,25 +171,31 @@ int main(){
                             size_t viTriKhachHang = dsKhachHang.timKiemATM(tenDangNhap, matKhau);
                             TheATM &the = (dsKhachHang.getListKhachHang()[viTriKhachHang]).layThongTinThe();
 
-                            cout << "------ Moi quy khach thuc hien giao dich ------" << endl;
-                            cout << "\t1. Xem so du" << endl;
-                            cout << "\t2. Rut tien" << endl;
-                            cout << "\t3. Nap tien" << endl;
-                            cout << "\t4. Chuyen tien" << endl;
-                            cout << "\t5. In lich su giao dich" << endl;
-                            cout << "\t6. Ket thuc giao dich" << endl;
-                            fflush(stdin); cout << "-> Lua chon cua ban: ";
+                            cout << "\t\t-------- Mời quý khách thực hiện giao dịch --------" << endl << endl;
+                            cout << "\t\t+-----------+-------------------------------------+" << endl;
+                            cout << "\t\t|" << setw(9) << "Option" << setw(3) << "|" << setw(25) << "Chức năng" << setw(16) << "|" << endl;
+                            cout << "\t\t+-----------+-------------------------------------+" << endl;
+                            cout << "\t\t|" << setw(6) << "1" << setw(6) << "|" << setw(21) << "Xem số dư" << setw(20) << "|" << endl;
+                            cout << "\t\t|" << setw(6) << "2" << setw(6) << "|" << setw(20) << "Rút tiền" << setw(21) << "|" << endl;
+                            cout << "\t\t|" << setw(6) << "3" << setw(6) << "|" << setw(21) << "Nạp tiền" << setw(21) << "|" << endl;
+                            cout << "\t\t|" << setw(6) << "4" << setw(6) << "|" << setw(24) << "Chuyển tiền" << setw(18) << "|" << endl;
+                            cout << "\t\t|" << setw(6) << "5" << setw(6) << "|" << setw(35) << "In lịch sử giao dịch" << setw(9) << "|" << endl;
+                            cout << "\t\t|" << setw(6) << "6" << setw(6) << "|" << setw(32) << "Kết thúc giao dịch" << setw(11) << "|" << endl;
+                            cout << "\t\t+-----------+-------------------------------------+" << endl;
+                            fflush(stdin); cout << "\t\t-> Option của bạn: ";
                             getline(cin, choice);
+
+                            cout << "\t\t+-------------------------------------------------+" << endl;
 
                             double d;
                             switch(stoi(choice)){
                                 case 1 :    
-                                    cout << "So du = " << to_string(the.laySoDu()) << endl;
+                                    cout << "\t\tSố dư của bạn = " << to_string(the.laySoDu()) << endl;
                                     break;
                                 case 2 :
-                                    cout << "So tien muon rut = "; cin >> d;
+                                    cout << "\t\tSố tiền muốn rút = "; cin >> d;
                                     if(the.laySoDu() < d)
-                                        cout << "So tien can rut khong hop le !" << endl;
+                                        cout << "\t\tSố tiền cần rút không hợp lệ !" << endl;
                                     else {
                                         the.RutTien(d, "Rút tiền từ tài khoản với số tiền : " + to_string(d));
                                         cout << "So du hien tai = " << to_string(the.laySoDu()) << endl;
@@ -180,23 +207,23 @@ int main(){
                                     cout << "So du hien tai = " << to_string(the.laySoDu()) << endl;
                                     break;
                                 case 4 : 
-                                    cout << "Nhap so tai khoan nguoi nhan : ";
+                                    cout << "\t\tNhập số tài khoản người nhận : ";
                                     getline(cin, maTaiKhoan);
                                     tempIndex = dsKhachHang.timKiemATM(maTaiKhoan);
                                     if(tempIndex == -1)
-                                        cout << "Khong tim thay ma tai khoan !" << endl;
+                                        cout << "\t\tKhông tìm thấy số tài khoản !" << endl;
                                     else {
-                                        cout << "Thong tin nguoi nhan : " << endl;
+                                        cout << "\t\t--------- Thông tin người nhận ---------" << endl;
                                         (dsKhachHang.getListKhachHang())[tempIndex].LayThongTinCaNhan();
                                         TheATM& nguoiNhan = dsKhachHang.getListKhachHang()[tempIndex].layThongTinThe();
-                                        cout << "Nhap so tien can chuyen : ";
+                                        cout << "\t\tNhập số tiền cần chuyển : ";
                                         cin >> soTien;
 
                                         if(soTien > the.laySoDu())
-                                            cout << "So du tai khoan khong du !" << endl;
+                                            cout << "\t\tSố dư tài khoản không đủ !" << endl;
                                         else {
                                             the.chuyenTien(nguoiNhan, soTien);
-                                            cout << "-> So du hien tai = " << to_string(the.laySoDu()) << endl;
+                                            cout << "\t\t-> Số dư hiện tại = " << to_string(the.laySoDu()) << endl;
                                         }
                                     }
                                     break;
@@ -204,14 +231,17 @@ int main(){
                                     the.inLichSuGiaoDich();
                                     break;
                                 case 6 : 
-                                    cout << "Giao dich da ket thuc. Xin chao quy khach....." << endl;
+                                    string gb = "Giao dịch đã kết thúc. Xin kính chào quý khách.....";
+                                    goodbye(gb,45);
+                                    cout << endl << endl;
                                     break;
                             }
-                            if(choice == "6") break; 
+                            if (choice == "6") break;
                         }
                         break;
-                    
+
                     case 2 :
+                    {
                         srand(time(0));
                         size_t index = rand() % dsKhachHang.getListKhachHang().getCurr();
 
@@ -219,23 +249,30 @@ int main(){
 
                         cout << nv << endl;
 
-                        cout << "Vui long nhap cac thong tin duoi day !" << endl;
+                        cout << "\t\tVui lòng nhập các thông tin dưới đây !" << endl;
                         dsKhachHang.taoTaiKhoanKhachHang(); 
+                        cout << "\t\t-> Đã tạo tài khoản thành công!" << endl;
+                    }
+                        break;
+
+                    case 3 :
+                        tempString = "c";
+                        string gb = "Tạm biệt quý khách.....";
+                        goodbye(gb,50);
+                        cout << endl << endl;
                         break;
                 }
-                cout << "Dang xuat ? (c/n) "; fflush(stdin);
-                getline(cin, tempString);
-                if(tempString == "c")
-                    break;
 
             }
 
         } else if (first_choice == "exit") {
-            cout << "XIN CHAO TAM BIET VA HEN GAP LAI QUY KHACH.....";   
+            string gb = "XIN CHÀO TẠM BIỆT VÀ HẸN GẶP LẠI QUÝ KHÁCH.....";
+            goodbye(gb,50);   
             break;
         }
         else {
-            cout << "Moi ban nhap lai....." << endl;
+            string s = "Option không hợp lệ. Mời bạn chọn lại.....";
+            goodbye(s,30); cout << endl;
         }  
         
     }

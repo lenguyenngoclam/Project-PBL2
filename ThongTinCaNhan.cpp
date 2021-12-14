@@ -24,9 +24,9 @@ ThongTinCaNhan& ThongTinCaNhan::operator =(const ThongTinCaNhan& tt){
 
 void ThongTinCaNhan::NhapThongTinCaNhan()
 {
-    cout << "\t\t- Nhap ho va ten: "; getline(cin,HoTen);
-    cout << "\t\t- Nhap tuoi: "; fflush(stdin); getline(cin, Tuoi);
-    cout << "\t\t- Nhap dia chi: "; fflush(stdin); getline(cin,DiaChi);
-    cout << "\t\t- Nhap so dien thoai: "; fflush(stdin); getline(cin, SoDienThoai);
+    cout << "\t\t- Nhập họ và tên: "; getline(cin,HoTen);
+    cout << "\t\t- Nhập tuổi: "; fflush(stdin); getline(cin, Tuoi);
+    cout << "\t\t- Nhập địa chỉ: "; fflush(stdin); getline(cin,DiaChi);
+    cout << "\t\t- Nhập số điện thoại: "; fflush(stdin); getline(cin, SoDienThoai);
 }
 

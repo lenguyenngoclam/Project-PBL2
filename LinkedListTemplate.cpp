@@ -22,7 +22,7 @@ LinkedList<T>::LinkedList(const LinkedList<T>& ls){
 }
 
 template<typename T>  
-LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& rhs){
+LinkedList<T>& LinkedList<T>::operator =(const LinkedList<T>& rhs){
 
     if(this != &rhs){
         Node<T>* current = head;
@@ -60,7 +60,7 @@ void LinkedList<T>::insert(T data){
         last = last -> getNext();
 
     last -> getNext() = new_node;
-    new_node->setPrev(last);
+    new_node -> setPrev(last);
 
 }
 
@@ -99,7 +99,7 @@ size_t LinkedList<T>::findEle(const T& data){
 }
 
 template<typename T>
-T& LinkedList<T>::operator[](const size_t& index){
+T& LinkedList<T>::operator [](const size_t& index){
     Node<T>* current = head;
     for(int i = 0; i != index; i++){
         current = current -> getNext();

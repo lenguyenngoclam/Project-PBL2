@@ -1,6 +1,8 @@
 #ifndef INCLUDE_H
 #define INCLUDE_H
 
+#include <windows.h>
+
 #include "ThongTinCaNhan.cpp"
 #include "TaiKhoan.h"
 #include "LinkedListTemplate.cpp"
@@ -73,5 +75,16 @@ double sub(double a, double b){
 // ----------------------------------------------------------------------------------------------------------------------------------------------
 
 
+
+void goodbye(string &str,int t)
+{
+    string s = str;
+    cout << "\t\t";
+    for (int i=0;i<s.size();i++)
+    {
+        cout << s[i];
+        Sleep(t);
+    }
+}
 
 #endif
