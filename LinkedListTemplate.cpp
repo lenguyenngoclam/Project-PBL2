@@ -24,26 +24,20 @@ LinkedList<T>::LinkedList(const LinkedList<T>& ls){
 template<typename T>  
 LinkedList<T>& LinkedList<T>::operator =(const LinkedList<T>& rhs){
 
-    Node<T>* current = rhs.head;
-    LinkedList<T> temp;
-    while(current != NULL){
-        temp.insert(current -> getData());
-        current = current -> getNext();
-    }
+    if(this != &rhs){
+        Node<T>* current = head;
+        while(current != NULL){
+            Node<T>* t = current -> getNext();
+            delete current;
+            current = t;
+        }
+        head = nullptr;
 
-    current = head;
-    while(current != NULL){
-        Node<T>* t = current -> getNext();
-        delete current;
-        current = t;
-    }
-
-    current = temp.head;
-    while(current != NULL){
-        Node<T>* t = current -> getNext();
-        insert(current -> getData());
-        delete current;
-        current = t;
+        current = rhs.head;
+        while(current != NULL){
+            insert(current -> getData());
+            current = current -> getNext();
+        }
     }
     
     return *this;
@@ -116,7 +110,10 @@ T& LinkedList<T>::operator [](const size_t& index){
 template<typename T> 
 ostream& LinkedList<T>::getInfo(ostream& os) const{
     Node<T>* current = head;
+    int index = 1;
     while(current != NULL) {
+        cout << index << ". ";
+        index++;
         cout << current -> getData() << endl;
         current = current -> getNext();
     }

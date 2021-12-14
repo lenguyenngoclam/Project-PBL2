@@ -4,17 +4,6 @@
 #include "TheATM.h"
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------
-// HAM CHUC NANG
-
-double add(double a, double b){
-    return a + b;
-}
-
-double sub(double a, double b){
-    return a - b;
-}
-
-// ----------------------------------------------------------------------------------------------------------------------------------------------
 // THE ATM
 
 TheATM::TheATM(const TheATM& the) : soDu(the.soDu), MaTaiKhoan(the.MaTaiKhoan), 
@@ -145,19 +134,17 @@ void TheATM::ghiFile(LichSuGiaoDich& lsu){
     rename("temp.txt","LichSuGiaoDich.txt");  
 }
 
-void TheATM::NapTien(double d){
+void TheATM::NapTien(double d, string nd){
     suaFile(add,d);
     string maGD = "#" + to_string(soLuongGiaoDich);
-    string nd = "Nạp tiền vào tài khoản với số tiền : " + to_string(d);
     LichSuGiaoDich lsu(maGD,nd,MaTaiKhoan);
     ghiFile(lsu);
     ls.insert(lsu);
 }
 
-void TheATM::RutTien(double d){
+void TheATM::RutTien(double d, string nd){
     suaFile(sub,d);
     string maGD = "#" + to_string(soLuongGiaoDich);
-    string nd = "Rút tiền từ tài khoản với số tiền : " + to_string(d);
     LichSuGiaoDich lsu(maGD,nd,MaTaiKhoan);
     ghiFile(lsu);
     ls.insert(lsu);

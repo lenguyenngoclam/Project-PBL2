@@ -31,8 +31,8 @@ class KhachHang : public ThongTinCaNhan{
         void LayThongTinCaNhan() const override;
         void DoiThongTinCaNhan() override;
 
-        // Ghi thông tin do người dùng nhập vào file
-        void CaiDatThongTin();
+        //Ghi thông tin do người dùng nhập vào file
+        void CaiDatThongTin() override;
 
         string layIdKhachHang() { return idKhachHang; }
         string layTenKhachHang() { return HoTen; }

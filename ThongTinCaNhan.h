@@ -21,7 +21,7 @@ class ThongTinCaNhan{
         ThongTinCaNhan& operator =(const ThongTinCaNhan&);
 
         virtual void LayThongTinCaNhan() const;
-        void NhapThongTinCaNhan();
+        virtual void CaiDatThongTin();
         virtual void DoiThongTinCaNhan();
 
 };

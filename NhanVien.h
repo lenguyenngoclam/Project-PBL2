@@ -42,7 +42,7 @@ class NhanVien : public ThongTinCaNhan{
         string LayTen() const { return HoTen; }
         void LayThongTinCaNhan() const override;
         void DoiThongTinCaNhan() override;
-        void CaiDatThongTin();
+        void CaiDatThongTin() override;
 
         bool operator ==(const NhanVien& rhs) const;
         bool operator <(const NhanVien& rhs) const;
