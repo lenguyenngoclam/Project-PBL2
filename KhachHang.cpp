@@ -211,6 +211,8 @@ void DanhSachKhachHang::taoTaiKhoanKhachHang(){
     TheATM the;
     the.caiDatTheATM();
 
+    khachHang_count_line += 8;
+
     the.idKhachHang = temp.idKhachHang;
     temp.the = new TheATM();
     *(temp.the) = the;
