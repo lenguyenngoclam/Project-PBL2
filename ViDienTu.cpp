@@ -3,7 +3,7 @@
 
 using namespace std;
 
-ViDienTu& ViDienTu::operator=(const ViDienTu& vi){
+ViDienTu& ViDienTu::operator =(const ViDienTu& vi){
     TaiKhoan::operator=(vi);
     lsID = vi.lsID;
     tongSoDu = vi.tongSoDu;
@@ -13,7 +13,7 @@ ViDienTu& ViDienTu::operator=(const ViDienTu& vi){
 void ViDienTu::suaFile(double (*func)(double, double), double soTien){
     ifstream fin;
     fin.open("ViDienTu.txt", ios::in);
-    // Viết vào một file tạm là temp.txt sau đó sẽ xoá file KHACHHANG.txt và đổi tên file temp thành KHACHHANG
+    // Viết vào một file tạm là temp.txt sau đó sẽ xoá file ViDienTu.txt và đổi tên file temp thành ViDienTu
     ofstream fout;
     fout.open("temp.txt", ios::app);
     
@@ -117,15 +117,15 @@ void ViDienTu::themLienKetTheATM(TheATM& the){
 void ViDienTu::rutTien(DanhSachKhachHang& ds){
     cout << lsID << endl;
     string choice;
-    cout << "Chọn thẻ muốn rút tiền về (Nhập mã thẻ) : "; cin >> choice;
+    cout << "\t\tChọn thẻ muốn rút tiền về (Nhập mã thẻ) : "; cin >> choice;
     size_t index = ds.timKiemATM(choice);
     TheATM& the = ds.getListKhachHang()[index].layThongTinThe();
     string soTien;
-    cout << "Số tiền muốn rút = "; cin >> soTien;
+    cout << "\t\tSố tiền muốn rút = "; cin >> soTien;
     if(stod(soTien) > tongSoDu)
-        cout << "Không đủ số dư" << endl;
+        cout << "\t\tSố dư quý khách không đủ!" << endl;
     else {
-        the.NapTien(stod(soTien), "Nạp tiền vào tài khoản từ ví điện tử với số tiền : " + soTien);
+        the.NapTien(stod(soTien), "\t\tRút tiền về tài khoản từ ví điện tử với số tiền : " + soTien);
         suaFile(sub,stod(soTien));
     }
 }
@@ -133,22 +133,22 @@ void ViDienTu::rutTien(DanhSachKhachHang& ds){
 void ViDienTu::napTien(DanhSachKhachHang& ds){
     cout << lsID << endl;
     string choice;
-    cout << "Chọn thẻ muốn sử dụng để nạp tiền vào ví (Nhập mã thẻ) : "; cin >> choice; 
+    cout << "\t\tChọn thẻ muốn sử dụng để nạp tiền vào ví (Nhập mã thẻ) : "; cin >> choice; 
     size_t index = ds.timKiemATM(choice);
     TheATM& the = ds.getListKhachHang()[index].layThongTinThe();
 
     string soTien;
-    cout << "Số tiền muốn nạp = "; cin >> soTien;
+    cout << "\t\tSố tiền muốn nạp = "; cin >> soTien;
     if(stod(soTien) > the.laySoDu())
         cout << "Không đủ số dư trong thẻ" << endl;
     else {
-        the.RutTien(stod(soTien), "Rút tiền từ tài khoản để nạp vào ví điện tử với số tiền : " + soTien);
+        the.RutTien(stod(soTien), "\t\tNạp tiền vào ví điện tử từ tài khoản với số tiền : " + soTien);
         suaFile(add,stod(soTien));
     }    
 }
 
 void ViDienTu::chuyenTienDenThe(TheATM& the, double soTien){
-    the.NapTien(soTien, "Tiền được chuyển từ ví điện tử " + TenDangNhap + " với số tiền : " + to_string(soTien));
+    the.NapTien(soTien, "\t\tTiền được chuyển từ ví điện tử " + TenDangNhap + " với số tiền : " + to_string(soTien));
     suaFile(sub,soTien);
 }
 
@@ -164,11 +164,11 @@ void ViDienTu::caiDatVi(){
     
     fout << endl;
 
-    cout << "Nhập tên đăng nhập : "; fflush(stdin);
+    cout << "\t\tNhập tên đăng nhập : "; fflush(stdin);
     getline(cin, TenDangNhap);
     fout << TenDangNhap << endl;
 
-    cout << "Nhập mật khẩu : "; fflush(stdin);
+    cout << "\t\tNhập mật khẩu : "; fflush(stdin);
     getline(cin, MatKhau);
     fout << MatKhau << endl;
 
@@ -178,7 +178,7 @@ void ViDienTu::caiDatVi(){
     fout.close();
 }
 
-bool ViDienTu::operator==(const ViDienTu& rhs){
+bool ViDienTu::operator ==(const ViDienTu& rhs){
     return (rhs.TenDangNhap == TenDangNhap && rhs.MatKhau == MatKhau);
 }
 
@@ -211,7 +211,7 @@ void DanhSachViDienTu::caiDatDanhSach(){
         getline(fin,line);
         vi.tongSoDu = stod(line);
 
-        ls.insert(vi);
+        lsViDienTu.insert(vi);
 
         vi_count_line += 2 + stoi(number_of_atm) + 1;
     }
@@ -222,12 +222,12 @@ void DanhSachViDienTu::caiDatDanhSach(){
 void DanhSachViDienTu::taoTaiKhoan(){
     ViDienTu vi;
     vi.caiDatVi();
-    ls.insert(vi);
+    lsViDienTu.insert(vi);
 }
 
 bool DanhSachViDienTu::kiemTraDangNhap(string tk, string mk){
     ViDienTu vi(tk,mk);
-    size_t index = ls.findEle(vi);
+    size_t index = lsViDienTu.findEle(vi);
     if(index == -1)
         return false;
     else
@@ -236,18 +236,18 @@ bool DanhSachViDienTu::kiemTraDangNhap(string tk, string mk){
 
 ViDienTu& DanhSachViDienTu::suDungVi(string tk, string mk){
     ViDienTu vi(tk,mk);
-    size_t index = ls.findEle(vi);
-    return ls[index];
+    size_t index = lsViDienTu.findEle(vi);
+    return lsViDienTu[index];
 }
 
 size_t DanhSachViDienTu::suDungVi(string id){
     int index = 0;
-    for(index = 0; index < ls.getCurr(); index++){
-        if(ls[index].layTaiKhoan() == id)
+    for(index = 0; index < lsViDienTu.getCurr(); index++){
+        if(lsViDienTu[index].layTaiKhoan() == id)
             break;
     }
 
-    if(index < ls.getCurr())
+    if(index < lsViDienTu.getCurr())
         return index;
     else 
         return -1;

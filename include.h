@@ -2,6 +2,7 @@
 #define INCLUDE_H
 
 #include <windows.h>
+#include <conio.h>
 
 #include "ThongTinCaNhan.cpp"
 #include "TaiKhoan.h"
@@ -61,6 +62,7 @@ void getpassword(char s[], int size) // Nhập mật khẩu dạng dấu *
     cout << endl;
     fflush(stdin);
 }
+
 // ----------------------------------------------------------------------------------------------------------------------------------------------
 // HAM CHUC NANG
 
@@ -73,8 +75,6 @@ double sub(double a, double b){
 }
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------
-
-
 
 void goodbye(string &str,int t)
 {

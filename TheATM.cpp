@@ -45,7 +45,7 @@ void TheATM::caiDatTheATM(){
 
 }
 
-void TheATM::layThongTinThe(){
+void TheATM::layThongTinThe() const{
     cout << "\t\t- Ma so the ATM : " << MaTaiKhoan << endl;
     cout << "-\t\t So du trong the : " << to_string(soDu) << endl;
 }

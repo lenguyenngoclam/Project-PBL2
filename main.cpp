@@ -92,7 +92,8 @@ int main(){
                 cout << "\t\t|" << setw(6) << "2" << setw(6) << "|" << setw(41) << "Tạo tài khoản cho khách hàng" << setw(6) << "|" << endl;
                 cout << "\t\t|" << setw(6) << "3" << setw(6) << "|" << setw(35) << "Sửa thông tin khách hàng" << setw(10) << "|" << endl;
                 cout << "\t\t|" << setw(6) << "4" << setw(6) << "|" << setw(41) << "Lấy thông tin của khách hàng" << setw(6) << "|" << endl;
-                cout << "\t\t|" << setw(6) << "5" << setw(6) << "|" << setw(19) << "Đăng xuất" << setw(25) << "|" << endl;
+                cout << "\t\t|" << setw(6) << "5" << setw(6) << "|" << setw(37) << "Xóa thẻ ATM cho khách hàng" << setw(8) << "|" << endl;
+                cout << "\t\t|" << setw(6) << "6" << setw(6) << "|" << setw(19) << "Đăng xuất" << setw(25) << "|" << endl;
                 cout << "\t\t+-----------+---------------------------------------+" << endl;
                 fflush(stdin); cout << "\t\t-> Option của bạn: ";
                 getline(cin, choice);
