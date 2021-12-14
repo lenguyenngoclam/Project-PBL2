@@ -55,12 +55,7 @@ class LinkedList{
         LinkedList() = default;
 
         ~LinkedList() {
-            Node<T>* current = head;
-            while(current != NULL){
-                Node<T>* temp = current -> getNext();
-                delete current;
-                current = temp;
-            }
+            deleteList();
         }
 
         LinkedList(const LinkedList<T>& ls);
@@ -69,7 +64,7 @@ class LinkedList{
 
         void insert(T data);
         void erase(T data);
-
+        void deleteList();
         size_t findEle(const T& data);
         size_t getCurr() { return curr; }
 
