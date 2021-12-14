@@ -3,11 +3,11 @@
 
 #include "ThongTinCaNhan.cpp"
 #include "TaiKhoan.h"
-#include "SetTemplate.cpp"
 #include "LinkedListTemplate.cpp"
 
 int nhanVien_count_line = 0;
 int khachHang_count_line = 0;
+int vi_count_line = 0;
 
 string LaySoLuongKhachHang() {
     ifstream fin;
@@ -20,6 +20,20 @@ string LaySoLuongKhachHang() {
 
 string number_KhachHang = LaySoLuongKhachHang();
 int soLuong = stoi(number_KhachHang);
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------
+// HAM CHUC NANG
+
+double add(double a, double b){
+    return a + b;
+}
+
+double sub(double a, double b){
+    return a - b;
+}
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
 #endif

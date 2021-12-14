@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
 #include "NhanVien.cpp"
-#include "KhachHang.cpp"
+#include "includeKhachHang.h"
+#include "ViDienTu.cpp"
 
 using namespace std;
 
@@ -21,10 +22,12 @@ int main(){
     DanhSachKhachHang dsKhachHang;
     DanhSachNhanVien dsNhanVien;
     DanhSachLichSuGiaoDich dsLichSu;
+    DanhSachViDienTu dsVi;
     dsLichSu.caiDatDanhSach();
     dsNhanVien.CaiDatDanhSach();
     dsKhachHang.CaiDatDanhSach();
     dsTaiKhoan.caiDatDanhSach();
+    dsVi.caiDatDanhSach();
 
     dsKhachHang.caiDatLichSuGiaoDich(dsLichSu);
 
@@ -155,13 +158,13 @@ int main(){
                                     if(the.laySoDu() < d)
                                         cout << "So tien can rut khong hop le" << endl;
                                     else {
-                                        the.RutTien(d);
+                                        the.RutTien(d, "Rút tiền từ tài khoản với số tiền : " + to_string(d));
                                         cout << "So du hien tai = " << to_string(the.laySoDu()) << endl;
                                     }
                                     break;
                                 case 3 :
                                     cout << "So tien muon nap = "; cin >> d;
-                                    the.NapTien(d);
+                                    the.NapTien(d, "Nạp tiền vào tài khoản với số tiền : " + to_string(d));
                                     cout << "So du hien tai = " << to_string(the.laySoDu()) << endl;
                                     break;
                                 case 4 : 
