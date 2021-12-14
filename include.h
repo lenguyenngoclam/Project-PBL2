@@ -3,11 +3,11 @@
 
 #include "ThongTinCaNhan.cpp"
 #include "TaiKhoan.h"
-#include "SetTemplate.cpp"
 #include "LinkedListTemplate.cpp"
 
 int nhanVien_count_line = 0;
 int khachHang_count_line = 0;
+int vi_count_line = 0;
 
 string LaySoLuongKhachHang() {
     ifstream fin;
@@ -59,5 +59,19 @@ void getpassword(char s[], int size) // Nhập mật khẩu dạng dấu *
     cout << endl;
     fflush(stdin);
 }
+// ----------------------------------------------------------------------------------------------------------------------------------------------
+// HAM CHUC NANG
+
+double add(double a, double b){
+    return a + b;
+}
+
+double sub(double a, double b){
+    return a - b;
+}
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 #endif

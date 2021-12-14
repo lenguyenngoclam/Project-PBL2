@@ -24,8 +24,8 @@ class TheATM{
 
         TheATM& operator =(const TheATM& the);
 
-        void NapTien(double soTien);
-        void RutTien(double );
+        void NapTien(double soTien, string);
+        void RutTien(double , string);
         double laySoDu();
 
         string layMaThe() { return MaTaiKhoan; }
@@ -39,7 +39,7 @@ class TheATM{
         // Ghi dữ liệu người dùng nhập vào file 
         void caiDatTheATM();
         // Hiển thị mã tài khoản và số dư của thẻ
-        void layThongTinThe();
+        void layThongTinThe() const;
         // Chuyển tiền cho thẻ ATM khác
         void chuyenTien(TheATM& maThe, double tien);
         //In lịch sử giao dịch
@@ -49,8 +49,14 @@ class TheATM{
 
         friend class KhachHang;
         friend class DanhSachKhachHang;
+        friend ostream& operator<<(ostream& os, const TheATM& the);
 
         bool operator==(const TheATM& the);
 };
+
+ostream& operator<<(ostream& os, const TheATM& the){
+    the.layThongTinThe();
+    return os;
+}
 
 #endif
