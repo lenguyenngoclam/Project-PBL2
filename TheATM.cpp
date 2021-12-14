@@ -26,6 +26,13 @@ bool TheATM::operator ==(const TheATM& the){
     return (the.MaTaiKhoan == MaTaiKhoan && the.MatKhau == MatKhau); 
 }
 
+void TheATM::xoaTheATM(){
+    for(int i = 0; i < ls.getCurr(); i++){
+        ls[i].xoaLichSuGiaoDich();
+    }
+    ls.deleteList();
+}
+
 void TheATM::caiDatTheATM(){
     ofstream fout;
     fout.open("KHACHHANG.txt",ios::app);

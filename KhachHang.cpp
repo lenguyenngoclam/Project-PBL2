@@ -69,9 +69,9 @@ void KhachHang::DoiThongTinCaNhan() {
     rename("temp.txt","KHACHHANG.txt");
 }
 
-void KhachHang::LayThongTinCaNhan() const{
-    cout << "\t\t- ID: " << idKhachHang << endl;
-    ThongTinCaNhan::LayThongTinCaNhan();
+void KhachHang::InThongTin() const{
+    cout << "- ID: " << idKhachHang << endl;
+    ThongTinCaNhan::InThongTin();
 }
 
 void KhachHang::CaiDatThongTin()
@@ -115,6 +115,47 @@ void KhachHang::CaiDatThongTin()
     rename("temp.txt","KHACHHANG.txt");  
 }
 
+void KhachHang::xoaKhachHang(){
+    the -> xoaTheATM();
+    ifstream fin;
+    fin.open("KHACHHANG.txt", ios::in);
+    ofstream fout;
+    fout.open("temp.txt", ios::app);
+
+    int count = 1;
+    string line;
+    getline(fin, line);
+    fout << line << endl;
+    count++;
+
+    khachHang_count_line -= 8;
+    string arr[8];
+    while(getline(fin,line)){
+        arr[0] = line;
+        for(int i = 0; i < 7; i++){
+            getline(fin,line);
+            arr[i + 1] = line;
+        }
+        if(idKhachHang != arr[0]){
+            for(int i = 0; i < 7; i++){
+                fout << arr[i] << endl;
+                count++;
+            }
+            if(count == khachHang_count_line)
+                fout << arr[7];
+            else 
+                fout << arr[7] << endl;
+            count++;
+        }
+    }   
+
+    remove("KHACHHANG.txt");
+    rename("temp.txt", "KHACHHANG.txt");
+    
+    fin.close();
+    fout.close();
+}  
+
 bool KhachHang::operator ==(const KhachHang& rhs) const{
     return idKhachHang.compare(rhs.idKhachHang) == 0;
 }
@@ -154,14 +195,14 @@ void DanhSachKhachHang::CaiDatDanhSach(){
 }
 
 ostream& operator <<(ostream& os, const KhachHang& kh){
-    kh.LayThongTinCaNhan();
+    kh.InThongTin();
     return os;
 }
 
 void DanhSachKhachHang::InDanhSach(){
     cout << "\t\t--------------- Danh sách khách hàng ----------------" << endl;
     for(size_t i = 0; i < lsKhachHang.getCurr(); i++)
-        lsKhachHang[i].LayThongTinCaNhan();
+        lsKhachHang[i].InThongTin();
 }
 
 void DanhSachKhachHang::taoTaiKhoanKhachHang(){
@@ -171,6 +212,8 @@ void DanhSachKhachHang::taoTaiKhoanKhachHang(){
 
     TheATM the;
     the.caiDatTheATM();
+
+    khachHang_count_line += 8;
 
     the.idKhachHang = temp.idKhachHang;
     temp.the = new TheATM();

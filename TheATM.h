@@ -46,6 +46,7 @@ class TheATM{
         void inLichSuGiaoDich();
         //Thêm lịch sử giao dịch tử file
         void caiDatLichSuGiaoDich(DanhSachLichSuGiaoDich&);
+        void xoaTheATM();
 
         friend class KhachHang;
         friend class DanhSachKhachHang;

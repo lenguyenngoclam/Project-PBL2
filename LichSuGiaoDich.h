@@ -36,6 +36,7 @@ class LichSuGiaoDich{
         string layMaGiaoDich() { return maGiaoDich; }
         string layMaTaiKhoan() { return maTaiKhoan; }
         string layNoiDung() { return noiDung; }
+        void xoaLichSuGiaoDich();
 
         friend ostream& operator <<(ostream&, const LichSuGiaoDich&);
         friend class DanhSachLichSuGiaoDich;
@@ -53,10 +54,12 @@ class DanhSachLichSuGiaoDich{
             return (*this);
         }
 
+        void capNhatDanhSach();
         void caiDatDanhSach();
         void themLichSuGiaoDich(LichSuGiaoDich& lsu){
             ls.insert(lsu);
         }
+        LinkedList<LichSuGiaoDich>& getListLsu() { return ls; }
 
         friend class TheATM;
         friend class DanhSachKhachHang;

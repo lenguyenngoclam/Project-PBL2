@@ -30,7 +30,8 @@ class ViDienTu : public TaiKhoan{
         void chuyenTienDenThe(TheATM& the, double soTien);
         void chuyenTienDenVi(ViDienTu& vi, double soTien);
         void caiDatVi();
-
+        void goLienKetTheATM(string maThe);
+        
         string layTaiKhoan() { return TenDangNhap; }
         LinkedList<string>& getList() { return lsID; }
         double laySoDu() { return tongSoDu; }
@@ -53,7 +54,8 @@ class DanhSachViDienTu{
         DanhSachViDienTu() = default;
 
         ~DanhSachViDienTu() = default;
-
+        
+        void capNhatDanhSach();
         void caiDatDanhSach();
         void taoViDienTu();
         bool kiemTraDangNhap(string tk, string mk);
