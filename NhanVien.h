@@ -41,7 +41,7 @@ class NhanVien : public ThongTinCaNhan{
 
         void LayThongTinCaNhan() const override;
         void DoiThongTinCaNhan() override;
-        void CaiDatThongTin();
+        void CaiDatThongTin() override;
 
         bool operator ==(const NhanVien& rhs) const;
         bool operator <(const NhanVien& rhs) const;

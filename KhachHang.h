@@ -32,7 +32,7 @@ class KhachHang : public ThongTinCaNhan{
         void DoiThongTinCaNhan() override;
 
         //Ghi thông tin do người dùng nhập vào file
-        void CaiDatThongTin();
+        void CaiDatThongTin() override;
 
         string layIdKhachHang(){ return idKhachHang; }
         TheATM& layThongTinThe() { return *the; }
