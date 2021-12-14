@@ -65,7 +65,7 @@ int main(){
 
             tk = dsTaiKhoan.suDungTaiKhoan(tenDangNhap, matKhau);
             cout << "-------------- Xin chao --------------" << endl;
-            tk.layNhanVien().LayThongTinCaNhan();
+            tk.layNhanVien().InThongTin();
 
             string tempString = "n";
             while(tempString == "n"){
@@ -104,7 +104,7 @@ int main(){
                             giaoDienNhapID(tempID);
                             tempIndex = dsKhachHang.timKiemKhachHang(tempID);
                         }
-                        (dsKhachHang.getListKhachHang())[tempIndex].LayThongTinCaNhan();
+                        (dsKhachHang.getListKhachHang())[tempIndex].InThongTin();
                         break;
                 }
                 cout << "Dang xuat ? (c/n) "; fflush(stdin);
@@ -175,7 +175,7 @@ int main(){
                                         cout << "Khong tim thay ma tai khoan" << endl;
                                     else {
                                         cout << "Thong tin nguoi nhan : " << endl;
-                                        (dsKhachHang.getListKhachHang())[tempIndex].LayThongTinCaNhan();
+                                        (dsKhachHang.getListKhachHang())[tempIndex].InThongTin();
                                         TheATM& nguoiNhan = dsKhachHang.getListKhachHang()[tempIndex].layThongTinThe();
                                         cout << "Nhap so tien can chuyen : ";
                                         cin >> soTien;

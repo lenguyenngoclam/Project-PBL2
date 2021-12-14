@@ -39,7 +39,7 @@ class NhanVien : public ThongTinCaNhan{
         NhanVien(const NhanVien& nv);
         NhanVien& operator =(const NhanVien& nv);
 
-        void LayThongTinCaNhan() const override;
+        void InThongTin() const override;
         void DoiThongTinCaNhan() override;
         void CaiDatThongTin() override;
 

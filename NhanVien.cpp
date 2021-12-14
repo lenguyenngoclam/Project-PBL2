@@ -65,9 +65,9 @@ void NhanVien::DoiThongTinCaNhan(){
     rename("temp.txt","NHANVIEN.txt");
 }
 
-void NhanVien::LayThongTinCaNhan() const{
+void NhanVien::InThongTin() const{
     cout << "- ID: " << idNhanVien << endl;
-    ThongTinCaNhan::LayThongTinCaNhan();
+    ThongTinCaNhan::InThongTin();
 }
 
 void NhanVien::CaiDatThongTin()
@@ -161,7 +161,7 @@ ostream& operator <<(ostream& os, const NhanVien& nv){
 void DanhSachNhanVien::InDanhSach(){
     cout << "---------------Danh sach nhan vien---------------" << endl;
     for(size_t i = 0; i < ls.getCurr(); i++)
-        ls[i].LayThongTinCaNhan();
+        ls[i].InThongTin();
 }
 
 void DanhSachNhanVien::TimKiemNhanVien(string id) // Tìm kiếm nhân viên theo idNhanVien
@@ -175,7 +175,7 @@ void DanhSachNhanVien::TimKiemNhanVien(string id) // Tìm kiếm nhân viên the
     if(index == -1) 
         cout << "-> Khong co nhan vien co ID " << id << "!" << endl;
     else 
-        ls[index].LayThongTinCaNhan();
+        ls[index].InThongTin();
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------
@@ -240,7 +240,7 @@ void DanhSachTaiKhoanNhanVien::inDanhSach(){
     size_t n = ls.getCurr();
     for(size_t i = 0; i != n; i++){
         cout << ls[i].TenDangNhap << " " << ls[i].MatKhau;
-        ls[i].nhanVien.LayThongTinCaNhan();
+        ls[i].nhanVien.InThongTin();
         cout << endl;
     }
 }

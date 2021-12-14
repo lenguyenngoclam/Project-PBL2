@@ -129,4 +129,5 @@ void LinkedList<T>::deleteList(){
         erase(data);
         current = temp;
     }
+    curr = 0;
 }

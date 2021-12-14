@@ -44,6 +44,7 @@ void ViDienTu::suaFile(double (*func)(double, double), double soTien){
             
             getline(fin,line);
             double temp = (*func)(stod(line),soTien);
+            tongSoDu = temp;
 
             if(count == vi_count_line) fout << to_string(temp);
             else fout << to_string(temp) << endl;
@@ -182,6 +183,11 @@ void ViDienTu::rutTien(DanhSachKhachHang& ds){
     string choice;
     cout << "Chọn thẻ muốn rút tiền về (Nhập mã thẻ) : "; cin >> choice;
     size_t index = ds.timKiemATM(choice);
+    if(index == -1){
+        cout << "Thẻ không còn tồn tại";
+        goLienKetTheATM(choice);
+        return;
+    }
     TheATM& the = ds.getListKhachHang()[index].layThongTinThe();
     string soTien;
     cout << "Số tiền muốn rút = "; cin >> soTien;
@@ -198,6 +204,11 @@ void ViDienTu::napTien(DanhSachKhachHang& ds){
     string choice;
     cout << "Chọn thẻ muốn sử dụng để nạp tiền vào ví (Nhập mã thẻ) : "; cin >> choice; 
     size_t index = ds.timKiemATM(choice);
+    if(index == -1){
+        cout << "Thẻ không còn tồn tại";
+        goLienKetTheATM(choice);
+        return;
+    }
     TheATM& the = ds.getListKhachHang()[index].layThongTinThe();
 
     string soTien;

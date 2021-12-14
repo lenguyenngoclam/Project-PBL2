@@ -20,14 +20,14 @@ class ThongTinCaNhan{
         ThongTinCaNhan(const ThongTinCaNhan&);
         ThongTinCaNhan& operator =(const ThongTinCaNhan&);
 
-        virtual void LayThongTinCaNhan() const;
+        virtual void InThongTin() const;
         virtual void CaiDatThongTin();
         virtual void DoiThongTinCaNhan();
 
 };
 
 // Vì là hàm ảo nên phải khai báo chung 1 file
-void ThongTinCaNhan::LayThongTinCaNhan() const
+void ThongTinCaNhan::InThongTin() const
 {
     cout << "- Ho va ten: " << HoTen << endl;
     cout << "- Tuoi: " << Tuoi << endl;
