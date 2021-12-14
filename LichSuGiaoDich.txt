@@ -1,13 +1,10 @@
 46
-<<<<<<< HEAD
 #0
 Rút tiền từ tài khoản với số tiền : 20000.000000
 102200260
 #1
 Nạp tiền vào tài khoản với số tiền : 100000.000000
 102200260
-=======
->>>>>>> main
 #2
 Chuyển tiền sang tài khoản có mã thẻ 102200260 với số tiền : 10000.000000
 111
@@ -128,12 +125,3 @@ Rút tiền về tài khoản từ ví điện tử với số tiền : 10000
 #42
 Nạp tiền vào ví điện tử từ tài khoản với số tiền : 20000
 111
-#43
-		Nạp tiền vào ví điện tử từ tài khoản với số tiền : 500000
-102200257
-#44
-		Nạp tiền vào ví điện tử từ tài khoản với số tiền : 500000
-102200257
-#45
-		Nạp tiền vào ví điện tử từ tài khoản với số tiền : 500000
-102200257
