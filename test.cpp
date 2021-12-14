@@ -27,7 +27,7 @@ int main(){
 
     cout << vi_count_line << endl;
 
-    //Kiểm tra đăng nhập
+    // Kiểm tra đăng nhập
     /*
     while(dsVi.kiemTraDangNhap(tk,mk)){
         string choice;
@@ -39,27 +39,27 @@ int main(){
 
         }
     }
-    */
+    
 
-    //Chức năng thêm liên kết cho ví
-    /*
+    // Chức năng thêm liên kết cho ví
+    
     ViDienTu& vi = dsVi.suDungVi(tk,mk);
     string IDAtm = "102200267";
     size_t index = dsKhachHang.timKiemATM(IDAtm);
     TheATM& the = dsKhachHang.getListKhachHang()[index].layThongTinThe();
     vi.themLienKetTheATM(the);
-    */
+    
 
 
-    //Rút tiền và chuyển tiền
-    /*
+    // Rút tiền và chuyển tiền
+    
     ViDienTu& vi = dsVi.suDungVi(tk,mk);
     vi.napTien(dsKhachHang);
     vi.rutTien(dsKhachHang);
-    */
+    
 
-    //Chuyển tiền vào ví
-    /*
+    // Nạp tiền vào ví
+    
     ViDienTu& vi = dsVi.suDungVi(tk,mk);
     string IDVi = "0357751719";
     size_t index = dsVi.suDungVi(IDVi);
@@ -69,7 +69,7 @@ int main(){
     }
     */
 
-    //Chuyển tiền vào thẻ
+    // Rút tiền về thẻ
     string IDAtm = "111";
     ViDienTu& vi = dsVi.suDungVi(tk,mk);
     size_t index = dsKhachHang.timKiemATM(IDAtm);

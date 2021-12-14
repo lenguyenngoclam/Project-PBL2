@@ -19,7 +19,7 @@ class ViDienTu : public TaiKhoan{
         ViDienTu(string tk, string mk) : TaiKhoan(tk,mk), tongSoDu(0) {}
         ViDienTu(const ViDienTu& vi) : TaiKhoan(vi.TenDangNhap, vi.MatKhau), lsID(vi.lsID), tongSoDu(vi.tongSoDu) {};
 
-        ViDienTu& operator=(const ViDienTu& vi);
+        ViDienTu& operator =(const ViDienTu& vi);
 
         ~ViDienTu() = default;
         
@@ -35,20 +35,20 @@ class ViDienTu : public TaiKhoan{
         LinkedList<string>& getList() { return lsID; }
         double laySoDu() { return tongSoDu; }
 
-        bool operator==(const ViDienTu& rhs);
+        bool operator ==(const ViDienTu& rhs);
 
         friend class DanhSachViDienTu;
-        friend ostream& operator<<(ostream& os, const ViDienTu& vi);
+        friend ostream& operator <<(ostream& os, const ViDienTu& vi);
 };
 
-ostream& operator<<(ostream& os, const ViDienTu& vi){
+ostream& operator <<(ostream& os, const ViDienTu& vi){
     cout << vi.TenDangNhap << " " << vi.MatKhau << " " << vi.tongSoDu << endl;
     return os;
 }
 
 class DanhSachViDienTu{
     private :
-        LinkedList<ViDienTu> ls;
+        LinkedList<ViDienTu> lsViDienTu;
     public :
         DanhSachViDienTu() = default;
 
@@ -60,7 +60,7 @@ class DanhSachViDienTu{
         ViDienTu& suDungVi(string tk, string mk);
         size_t suDungVi(string id);
 
-        LinkedList<ViDienTu>& getListVi(){ return ls; }
+        LinkedList<ViDienTu>& getListVi(){ return lsViDienTu; }
 
 };
 
