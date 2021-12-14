@@ -126,6 +126,8 @@ int main(){
                         (dsKhachHang.getListKhachHang())[tempIndex].LayThongTinCaNhan();
                         break;
                     case 5:
+                        break;
+                    case 6:
                         tempString = "c";
                         string gb = "Tạm biệt " + tk.layNhanVien().LayTen() + ".....";
                         goodbye(gb,50);
