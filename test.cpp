@@ -74,8 +74,8 @@ int main(){
     ViDienTu& vi = dsVi.suDungVi(tk,mk);
     size_t index = dsKhachHang.timKiemATM(IDAtm);
     TheATM& the = dsKhachHang.getListKhachHang()[index].layThongTinThe();
-    vi.chuyenTienDenThe(the, 10000); 
-    
+    vi.chuyenTienDenThe(the, 3456); 
+    cout << vi.laySoDu();
 
     return 0;
 }
