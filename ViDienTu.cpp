@@ -44,6 +44,7 @@ void ViDienTu::suaFile(double (*func)(double, double), double soTien){
             
             getline(fin,line);
             double temp = (*func)(stod(line),soTien);
+            tongSoDu = temp;
 
             if(count == vi_count_line) fout << to_string(temp);
             else fout << to_string(temp) << endl;
@@ -114,11 +115,79 @@ void ViDienTu::themLienKetTheATM(TheATM& the){
 
 }
 
+void ViDienTu::goLienKetTheATM(string maThe){
+    ifstream fin;
+    fin.open("ViDienTu.txt", ios::in);
+    // Viết vào một file tạm là temp.txt sau đó sẽ xoá file ViDienTu.txt và đổi tên file temp thành ViDienTu
+    ofstream fout;
+    fout.open("temp.txt", ios::app);
+
+    lsID.erase(maThe);
+
+    string line;
+    int count = 1;
+    while(getline(fin,line)){
+        if(count == vi_count_line) 
+            fout << line;
+        else {
+            fout << line << endl;
+            count++;
+        }
+
+        if(line == TenDangNhap){
+            getline(fin,line);
+            fout << line << endl;
+            count++;
+
+            string number_atm;
+            getline(fin,number_atm);
+            int soLuongATM = stoi(number_atm);
+            string arr[soLuongATM];
+
+            for(int i = 1; i <= stoi(number_atm); i++){
+                getline(fin,line);
+                arr[i - 1] = line;
+                if(line == maThe){
+                    vi_count_line--;
+                    soLuongATM--;
+                }
+            }
+
+            fout << to_string(soLuongATM) << endl;
+            count++;
+            for(int i = 1; i <= stoi(number_atm); i++){
+                if(arr[i - 1] != maThe){
+                    fout << arr[i - 1] << endl;
+                    count++;
+                }
+            }
+
+            getline(fin,line);
+            if(count == vi_count_line) 
+                fout << line;
+            else 
+                fout << line << endl;
+            count++;
+        }
+    }
+
+    fin.close();
+    fout.close();
+
+    remove("ViDienTu.txt");
+    rename("temp.txt","ViDienTu.txt");  
+}
+
 void ViDienTu::rutTien(DanhSachKhachHang& ds){
     cout << lsID << endl;
     string choice;
     cout << "\t\tChọn thẻ muốn rút tiền về (Nhập mã thẻ) : "; cin >> choice;
     size_t index = ds.timKiemATM(choice);
+    if(index == -1){
+        cout << "Thẻ không còn tồn tại";
+        goLienKetTheATM(choice);
+        return;
+    }
     TheATM& the = ds.getListKhachHang()[index].layThongTinThe();
     string soTien;
     cout << "\t\tSố tiền muốn rút = "; cin >> soTien;
@@ -135,6 +204,11 @@ void ViDienTu::napTien(DanhSachKhachHang& ds){
     string choice;
     cout << "\t\tChọn thẻ muốn sử dụng để nạp tiền vào ví (Nhập mã thẻ) : "; cin >> choice; 
     size_t index = ds.timKiemATM(choice);
+    if(index == -1){
+        cout << "Thẻ không còn tồn tại";
+        goLienKetTheATM(choice);
+        return;
+    }
     TheATM& the = ds.getListKhachHang()[index].layThongTinThe();
 
     string soTien;
@@ -173,7 +247,10 @@ void ViDienTu::caiDatVi(){
     fout << MatKhau << endl;
 
     fout << "0" << endl;
+    tongSoDu = 0;
     fout << "0.0";
+
+    vi_count_line += 4;
 
     fout.close();
 }
@@ -184,6 +261,11 @@ bool ViDienTu::operator ==(const ViDienTu& rhs){
 
 // ------------------------------------------------------------------------------------------------------------------------------
 // DANH SACH VI DIEN TU
+
+void DanhSachViDienTu::capNhatDanhSach(){
+    ls.deleteList();
+    caiDatDanhSach();
+}
 
 void DanhSachViDienTu::caiDatDanhSach(){
     ifstream fin;

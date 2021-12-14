@@ -28,7 +28,8 @@ class KhachHang : public ThongTinCaNhan{
         KhachHang(const KhachHang &kh);
         KhachHang &operator =(const KhachHang &kh);
 
-        void LayThongTinCaNhan() const override;
+        void xoaKhachHang();
+        void InThongTin() const override;
         void DoiThongTinCaNhan() override;
 
         //Ghi thông tin do người dùng nhập vào file
@@ -50,6 +51,11 @@ class DanhSachKhachHang{
         DanhSachKhachHang() = default;
         ~DanhSachKhachHang() = default;
         
+        void capNhatDanhSach(){
+            lsKhachHang.deleteList();
+            khachHang_count_line = 0;
+            CaiDatDanhSach();
+        }
         // Đọc dữ liệu ra từ file và lưu vào set
         void CaiDatDanhSach();
         // In danh sách khách hàng

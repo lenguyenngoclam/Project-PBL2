@@ -1,10 +1,4 @@
-38
-#0
-Rút tiền từ tài khoản với số tiền : 20000.000000
-102200260
-#1
-Nạp tiền vào tài khoản với số tiền : 100000.000000
-102200260
+46
 #2
 Chuyển tiền sang tài khoản có mã thẻ 102200260 với số tiền : 10000.000000
 111
@@ -56,9 +50,6 @@ Rút tiền từ tài khoản với số tiền : 10000.000000
 #18
 Chuyển tiền sang tài khoản có mã thẻ 102200257 với số tiền : 20000.000000
 111
-#19
-Nhận tiền từ tài khoản có mã thẻ 111 với số tiền : 20000.000000
-102200257
 #20
 Rút tiền từ tài khoản với số tiền : 100000.000000
 111
@@ -113,3 +104,12 @@ Rút tiền từ tài khoản để nạp vào ví điện tử với số tiề
 #37
 Tiền được chuyển từ ví điện tử 0962814899 với số tiền : 10000.000000
 111
+#41
+Nhận tiền từ tài khoản có mã thẻ 222 với số tiền : 100000.000000
+102200267
+#44
+Rút tiền từ tài khoản để nạp vào ví điện tử với số tiền : 100000
+102200267
+#45
+Nạp tiền vào tài khoản từ ví điện tử với số tiền : 200
+102200267

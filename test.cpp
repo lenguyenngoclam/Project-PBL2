@@ -22,9 +22,6 @@ int main(){
 
     dsKhachHang.caiDatLichSuGiaoDich(dsLichSu);
 
-    string tk = "0962814899";
-    string mk = "123456";
-
     cout << vi_count_line << endl;
 
     // Kiểm tra đăng nhập
@@ -41,10 +38,12 @@ int main(){
     }
     
 
-    // Chức năng thêm liên kết cho ví
+    //Chức năng thêm liên kết cho ví
     
-    ViDienTu& vi = dsVi.suDungVi(tk,mk);
-    string IDAtm = "102200267";
+    ViDienTu vi;
+    vi.caiDatVi();
+    dsVi.getListVi().insert(vi);
+    string IDAtm = "102200257";
     size_t index = dsKhachHang.timKiemATM(IDAtm);
     TheATM& the = dsKhachHang.getListKhachHang()[index].layThongTinThe();
     vi.themLienKetTheATM(the);
@@ -69,13 +68,36 @@ int main(){
     }
     */
 
-    // Rút tiền về thẻ
+    //Chuyển tiền vào thẻ
+    /*
     string IDAtm = "111";
     ViDienTu& vi = dsVi.suDungVi(tk,mk);
     size_t index = dsKhachHang.timKiemATM(IDAtm);
     TheATM& the = dsKhachHang.getListKhachHang()[index].layThongTinThe();
     vi.chuyenTienDenThe(the, 10000); 
-    
+    */
+
+
+    //Xoá khách hàng
+    /*
+    string idKhachHang = "KH7";
+    size_t index = dsKhachHang.timKiemKhachHang(idKhachHang);
+    dsKhachHang.getListKhachHang()[index].xoaKhachHang();
+    dsLichSu.capNhatDanhSach();
+    dsKhachHang.capNhatDanhSach();
+    dsKhachHang.caiDatLichSuGiaoDich(dsLichSu);
+    */
+
+    //Gỡ liên kết ATM
+    /*
+    string choice;
+    ViDienTu& vi = dsVi.suDungVi(tk,mk);
+    cout << vi.getList();
+    cout << "Chọn thẻ muốn gỡ : " ; fflush(stdin); 
+    getline(cin,choice);
+    vi.goLienKetTheATM(choice);
+    */
+
 
     return 0;
 }
