@@ -39,8 +39,7 @@ class NhanVien : public ThongTinCaNhan{
         NhanVien(const NhanVien& nv);
         NhanVien& operator =(const NhanVien& nv);
 
-        string LayTen() const { return HoTen; }
-        void LayThongTinCaNhan() const override;
+        void InThongTin() const override;
         void DoiThongTinCaNhan() override;
         void CaiDatThongTin() override;
 

@@ -69,9 +69,9 @@ void KhachHang::DoiThongTinCaNhan() {
     rename("temp.txt","KHACHHANG.txt");
 }
 
-void KhachHang::LayThongTinCaNhan() const{
-    cout << "\t\t- ID: " << idKhachHang << endl;
-    ThongTinCaNhan::LayThongTinCaNhan();
+void KhachHang::InThongTin() const{
+    cout << "- ID: " << idKhachHang << endl;
+    ThongTinCaNhan::InThongTin();
 }
 
 void KhachHang::CaiDatThongTin()
@@ -195,14 +195,14 @@ void DanhSachKhachHang::CaiDatDanhSach(){
 }
 
 ostream& operator <<(ostream& os, const KhachHang& kh){
-    kh.LayThongTinCaNhan();
+    kh.InThongTin();
     return os;
 }
 
 void DanhSachKhachHang::InDanhSach(){
     cout << "\t\t--------------- Danh sách khách hàng ----------------" << endl;
     for(size_t i = 0; i < lsKhachHang.getCurr(); i++)
-        lsKhachHang[i].LayThongTinCaNhan();
+        lsKhachHang[i].InThongTin();
 }
 
 void DanhSachKhachHang::taoTaiKhoanKhachHang(){
