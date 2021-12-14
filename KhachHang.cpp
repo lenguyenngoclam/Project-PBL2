@@ -114,6 +114,47 @@ void KhachHang::CaiDatThongTin()
     rename("temp.txt","KHACHHANG.txt");  
 }
 
+void KhachHang::xoaKhachHang(){
+    the -> xoaTheATM();
+    ifstream fin;
+    fin.open("KHACHHANG.txt", ios::in);
+    ofstream fout;
+    fout.open("temp.txt", ios::app);
+
+    int count = 1;
+    string line;
+    getline(fin, line);
+    fout << line << endl;
+    count++;
+
+    khachHang_count_line -= 8;
+    string arr[8];
+    while(getline(fin,line)){
+        arr[0] = line;
+        for(int i = 0; i < 7; i++){
+            getline(fin,line);
+            arr[i + 1] = line;
+        }
+        if(idKhachHang != arr[0]){
+            for(int i = 0; i < 7; i++){
+                fout << arr[i] << endl;
+                count++;
+            }
+            if(count == khachHang_count_line)
+                fout << arr[7];
+            else 
+                fout << arr[7] << endl;
+            count++;
+        }
+    }   
+
+    remove("KHACHHANG.txt");
+    rename("temp.txt", "KHACHHANG.txt");
+    
+    fin.close();
+    fout.close();
+}  
+
 bool KhachHang::operator ==(const KhachHang& rhs) const{
     return idKhachHang.compare(rhs.idKhachHang) == 0;
 }

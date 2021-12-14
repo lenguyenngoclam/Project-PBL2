@@ -70,12 +70,16 @@ int main(){
     */
 
     //Chuyển tiền vào thẻ
+    /*
     string IDAtm = "111";
     ViDienTu& vi = dsVi.suDungVi(tk,mk);
     size_t index = dsKhachHang.timKiemATM(IDAtm);
     TheATM& the = dsKhachHang.getListKhachHang()[index].layThongTinThe();
     vi.chuyenTienDenThe(the, 10000); 
-    
+    */
+
+    KhachHang& kh = dsKhachHang.getListKhachHang()[7];
+    kh.xoaKhachHang();
 
     return 0;
 }

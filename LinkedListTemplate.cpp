@@ -68,11 +68,11 @@ template<typename T>
 void LinkedList<T>::erase(T data){
     if(curr == 0)
         return;
-    if(*head == data)
+    if(head -> getData() == data)
         head = head -> getNext();
 
     Node<T>* current = head;
-    while(current != NULL && current -> getData() != data)
+    while(current != NULL && !(current -> getData() == data))
         current = current -> getNext();
 
     if(current == NULL)
@@ -118,4 +118,15 @@ ostream& LinkedList<T>::getInfo(ostream& os) const{
         current = current -> getNext();
     }
     return os;
+}
+
+template<typename T>
+void LinkedList<T>::deleteList(){
+    Node<T>* current = head;
+    while(current != nullptr){
+        T data = current -> getData();
+        Node<T>* temp = current -> getNext();
+        erase(data);
+        current = temp;
+    }
 }
