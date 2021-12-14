@@ -22,7 +22,7 @@ ThongTinCaNhan& ThongTinCaNhan::operator =(const ThongTinCaNhan& tt){
     return (*this);
 }
 
-void ThongTinCaNhan::NhapThongTinCaNhan()
+void ThongTinCaNhan::CaiDatThongTin()
 {
     cout << "\t\t- Nhập họ và tên: "; getline(cin,HoTen);
     cout << "\t\t- Nhập tuổi: "; fflush(stdin); getline(cin, Tuoi);

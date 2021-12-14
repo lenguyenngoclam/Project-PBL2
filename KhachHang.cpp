@@ -76,7 +76,7 @@ void KhachHang::LayThongTinCaNhan() const{
 
 void KhachHang::CaiDatThongTin()
 {
-    ThongTinCaNhan::NhapThongTinCaNhan();
+    ThongTinCaNhan::CaiDatThongTin();
     string temp = "KH";
     int num = stoi(number_KhachHang);
     num++; 
