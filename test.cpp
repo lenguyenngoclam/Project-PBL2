@@ -22,9 +22,6 @@ int main(){
 
     dsKhachHang.caiDatLichSuGiaoDich(dsLichSu);
 
-    string tk = "0962814899";
-    string mk = "123456";
-
     cout << vi_count_line << endl;
 
     // Kiểm tra đăng nhập
@@ -41,10 +38,12 @@ int main(){
     }
     
 
-    // Chức năng thêm liên kết cho ví
+    //Chức năng thêm liên kết cho ví
     
-    ViDienTu& vi = dsVi.suDungVi(tk,mk);
-    string IDAtm = "102200267";
+    ViDienTu vi;
+    vi.caiDatVi();
+    dsVi.getListVi().insert(vi);
+    string IDAtm = "102200257";
     size_t index = dsKhachHang.timKiemATM(IDAtm);
     TheATM& the = dsKhachHang.getListKhachHang()[index].layThongTinThe();
     vi.themLienKetTheATM(the);

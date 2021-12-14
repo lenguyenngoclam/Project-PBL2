@@ -247,7 +247,10 @@ void ViDienTu::caiDatVi(){
     fout << MatKhau << endl;
 
     fout << "0" << endl;
+    tongSoDu = 0;
     fout << "0.0";
+
+    vi_count_line += 4;
 
     fout.close();
 }
