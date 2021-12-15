@@ -54,7 +54,7 @@ void LichSuGiaoDich::xoaLichSuGiaoDich(){
 
 void DanhSachLichSuGiaoDich::capNhatDanhSach(){
     ls.deleteList();
-    vi_count_line = 0;
+    lichsu_count_line = 0;
     caiDatDanhSach();
 }
 

@@ -141,7 +141,8 @@ int main(){
                             index = dsKhachHang.timKiemKhachHang(idKhachHang);
                         }
 
-                        dsKhachHang.getListKhachHang()[index].xoaKhachHang();
+                        KhachHang& kh = dsKhachHang.getListKhachHang()[index];
+                        kh.xoaKhachHang();
                         dsLichSu.capNhatDanhSach();
                         dsKhachHang.capNhatDanhSach();
                         dsKhachHang.caiDatLichSuGiaoDich(dsLichSu);
