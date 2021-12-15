@@ -200,13 +200,13 @@ void ViDienTu::rutTien(DanhSachKhachHang& ds){
     string soTien;
     cout << "\t\tSố tiền muốn rút = "; cin >> soTien;
     if(stod(soTien) > tongSoDu)
-        cout << "\t\tSố dư quý khách không đủ!" << endl;
+        cout << "\t\tSố tiền quý khách không đủ!" << endl;
     else {
         the.NapTien(stod(soTien), "Rút tiền về tài khoản từ ví điện tử với số tiền : " + soTien);
         suaFile(sub,stod(soTien));
         string tmp = "Rút tiền thành công!";
         goodbye(tmp,30); cout << endl;
-        cout << "\t\t-> Số tiền trong ví của bạn = " << laySoDu() << endl << endl;
+        cout << "\t\t-> Số tiền trong ví của bạn = " << to_string(laySoDu()) << endl << endl;
     }
 }
 
@@ -234,7 +234,7 @@ void ViDienTu::napTien(DanhSachKhachHang& ds){
     the.RutTien(stod(soTien), "Rút tiền từ thẻ để nạp vào ví điện tử " + TenDangNhap + " với số tiền : " + soTien);
     string tmp = "Nạp tiền thành công!";
     goodbye(tmp,30); cout << endl;
-    cout << "\t\t-> Số tiền trong ví của bạn = " << laySoDu() << endl << endl;
+    cout << "\t\t-> Số tiền trong ví của bạn = " << to_string(laySoDu()) << endl << endl;
 }    
 
 void ViDienTu::chuyenTienDenThe(TheATM& the, double soTien){
