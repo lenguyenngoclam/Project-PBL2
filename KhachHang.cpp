@@ -220,8 +220,6 @@ void DanhSachKhachHang::taoTaiKhoanKhachHang(){
     *(temp.the) = the;
 
     lsKhachHang.insert(temp);
-
-    khachHang_count_line += 8;
 }
 
 void DanhSachKhachHang::suaThongTinKhachHang(string id){
