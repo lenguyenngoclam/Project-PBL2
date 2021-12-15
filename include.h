@@ -30,6 +30,90 @@ string LaySoLuongGiaoDich() {
     return line;
 }
 
+bool timKiemTrongFile(string tenFile, string ten){
+    const char* c = tenFile.c_str();
+    ifstream fin;
+    fin.open(c, ios::in);
+
+    string line;
+    while(getline(fin, line)){
+        if(line == ten){
+            fin.close(); 
+            return true;
+        }
+    }
+    fin.close();
+    return false;
+}
+
+void xoaTrongFile(string tenFile, string ten){
+    const char* c = tenFile.c_str();
+    ifstream fin;
+    fin.open(c, ios::in);
+    ofstream fout;
+    fout.open("temp.txt", ios::app);
+
+    string line;
+    getline(fin,line);
+    int count_line = stoi(line), count = 1;
+
+    if(count_line == 0)
+        return;
+
+    count_line--;
+
+    while(getline(fin,line)){
+        if(count == 1) {
+            if(count_line == 1)
+                fout << to_string(count_line);
+            else 
+                fout << to_string(count_line) << endl;
+            count++;
+        } else {
+            if(line != ten){
+                if(count == count_line)
+                    fout << line;
+                else 
+                    fout << line << endl;
+                count++;
+            }
+        } 
+    }
+    fin.close();
+    fout.close();
+
+    remove(c);
+    rename("temp.txt",c);
+}
+
+void themVaoFile(string tenFile, string ten){
+    const char* c = tenFile.c_str();
+    ofstream fout;
+    fout.open("temp.txt", ios::app);
+    ifstream fin;
+    fin.open(c, ios::in);
+
+    string line;
+    getline(fin,line);
+    int count_line = stoi(line), count = 1; 
+
+    count_line++;
+    fout << to_string(count_line) << endl;
+
+    while(getline(fin,line)){
+        fout << line << endl;
+        count++;
+    }
+
+    fout << ten;
+
+    fin.close();
+    fout.close();
+
+    remove(c);
+    rename("temp.txt",c); 
+}
+
 string number_KhachHang = LaySoLuongKhachHang();
 int soLuong = stoi(number_KhachHang);
 string number_lichsu = LaySoLuongGiaoDich();
