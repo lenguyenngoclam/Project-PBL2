@@ -116,7 +116,6 @@ void KhachHang::CaiDatThongTin()
 }
 
 void KhachHang::xoaKhachHang(){
-    the -> xoaTheATM();
     ifstream fin;
     fin.open("KHACHHANG.txt", ios::in);
     ofstream fout;
@@ -154,6 +153,8 @@ void KhachHang::xoaKhachHang(){
 
     remove("KHACHHANG.txt");
     rename("temp.txt","KHACHHANG.txt");
+
+    the -> xoaTheATM();
 }  
 
 bool KhachHang::operator ==(const KhachHang& rhs) const{
