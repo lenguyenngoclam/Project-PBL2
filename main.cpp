@@ -466,7 +466,7 @@ int main(){
                     case 3 :
                     {
                         srand(time(0));
-                        size_t index = rand() % dsKhachHang.getListKhachHang().getCurr();
+                        size_t index = rand() % dsNhanVien.getListNhanVien().getCurr();
 
                         NhanVien& nv = dsNhanVien.getListNhanVien()[index];
                         cout << index << endl;

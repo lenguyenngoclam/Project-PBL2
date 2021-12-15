@@ -46,9 +46,6 @@ class NhanVien : public ThongTinCaNhan{
         void CaiDatThongTin() override;
 
         bool operator ==(const NhanVien& rhs) const;
-        bool operator <(const NhanVien& rhs) const;
-        bool operator >(const NhanVien& rhs) const;
-        bool operator !=(const NhanVien& rhs) const;
 
         friend class DanhSachNhanVien;
         friend class TaiKhoanNhanVien;
