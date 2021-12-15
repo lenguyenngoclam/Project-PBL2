@@ -16,7 +16,7 @@ void LichSuGiaoDich::xoaLichSuGiaoDich(){
     ifstream fin;
     fin.open("LichSuGiaoDich.txt", ios::in);
     ofstream fout;
-    fout.open("temp.txt", ios::app);
+    fout.open("temp1.txt", ios::app);
 
     string line;
     lichsu_count_line -= 3;
@@ -43,7 +43,7 @@ void LichSuGiaoDich::xoaLichSuGiaoDich(){
     }
 
     remove("LichSuGiaoDich.txt");
-    rename("temp.txt", "LichSuGiaoDich.txt");
+    rename("temp1.txt", "LichSuGiaoDich.txt");
 
     fout.close();
     fin.close(); 
