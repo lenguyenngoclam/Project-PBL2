@@ -190,6 +190,7 @@ void ViDienTu::rutTien(DanhSachKhachHang& ds){
     {
         cout << "\t\tMã thẻ ATM không hợp lệ!" << endl;
         cout << "\t\tMời bạn nhập lại mã thẻ ATM muốn rút tiền về: ";
+        goLienKetTheATM(choice);
         fflush(stdin); getline(cin, choice);
         index = ds.timKiemATM(choice);
     }
@@ -220,6 +221,7 @@ void ViDienTu::napTien(DanhSachKhachHang& ds){
     {
         cout << "\t\tMã thẻ ATM không hợp lệ!" << endl;
         cout << "\t\tMời bạn nhập lại mã thẻ ATM muốn nạp tiền vào ví: ";
+        goLienKetTheATM(choice);
         fflush(stdin); getline(cin, choice);
         index = ds.timKiemATM(choice);
     }
@@ -229,6 +231,7 @@ void ViDienTu::napTien(DanhSachKhachHang& ds){
     string soTien;
     cout << "\t\tSố tiền muốn nạp = "; cin >> soTien;
     suaFile(add,stod(soTien));
+    the.RutTien(stod(soTien), "Rút tiền từ thẻ để nạp vào ví điện tử " + TenDangNhap + " với số tiền : " + soTien);
     string tmp = "Nạp tiền thành công!";
     goodbye(tmp,30); cout << endl;
     cout << "\t\t-> Số tiền trong ví của bạn = " << laySoDu() << endl << endl;
