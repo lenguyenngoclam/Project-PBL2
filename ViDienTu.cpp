@@ -204,7 +204,7 @@ void ViDienTu::rutTien(DanhSachKhachHang& ds){
         the.NapTien(stod(soTien), "\t\tRút tiền về tài khoản từ ví điện tử với số tiền : " + soTien);
         suaFile(sub,stod(soTien));
         string tmp = "Rút tiền thành công!";
-        goodbye(tmp,30); cout << endl;
+        cout << "\t\t"; goodbye(tmp,30); cout << endl;
         cout << "\t\t-> Số tiền trong ví của bạn = " << laySoDu() << endl << endl;
     }
 }
@@ -225,12 +225,14 @@ void ViDienTu::napTien(DanhSachKhachHang& ds){
     }
 
     TheATM& the = ds.getListKhachHang()[index].layThongTinThe();
-        suaFile(add,stod(soTien));
-        string tmp = "Nạp tiền thành công!";
-        goodbye(tmp,30); cout << endl;
-        cout << "\t\t-> Số tiền trong ví của bạn = " << laySoDu() << endl << endl;
-    }    
-}
+    
+    string soTien;
+    cout << "\t\tSố tiền muốn nạp = "; cin >> soTien;
+    suaFile(add,stod(soTien));
+    string tmp = "Nạp tiền thành công!";
+    cout << "\t\t"; goodbye(tmp,30); cout << endl;
+    cout << "\t\t-> Số tiền trong ví của bạn = " << laySoDu() << endl << endl;
+}    
 
 void ViDienTu::chuyenTienDenThe(TheATM& the, double soTien){
     the.NapTien(soTien, "Tiền được chuyển từ ví điện tử " + TenDangNhap + " với số tiền : " + to_string(soTien));
@@ -273,7 +275,7 @@ bool ViDienTu::operator ==(const ViDienTu& rhs){
 // DANH SACH VI DIEN TU
 
 void DanhSachViDienTu::capNhatDanhSach(){
-    ls.deleteList();
+    lsViDienTu.deleteList();
     caiDatDanhSach();
 }
 

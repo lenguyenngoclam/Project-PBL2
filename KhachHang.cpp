@@ -70,7 +70,7 @@ void KhachHang::DoiThongTinCaNhan() {
 }
 
 void KhachHang::InThongTin() const{
-    cout << "- ID: " << idKhachHang << endl;
+    cout << "\t\t- ID: " << idKhachHang << endl;
     ThongTinCaNhan::InThongTin();
 }
 

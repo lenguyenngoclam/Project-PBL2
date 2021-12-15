@@ -216,7 +216,7 @@ int main(){
                                     if(tempIndex == -1)
                                         cout << "\t\tKhông tìm thấy số tài khoản !" << endl;
                                     else {
-                                        cout << "Thong tin nguoi nhan : " << endl;
+                                        cout << "------------- Thông tin người nhận -------------" << endl;
                                         (dsKhachHang.getListKhachHang())[tempIndex].InThongTin();
                                         TheATM& nguoiNhan = dsKhachHang.getListKhachHang()[tempIndex].layThongTinThe();
                                         cout << "\t\tNhập số tiền cần chuyển : ";
