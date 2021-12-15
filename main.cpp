@@ -469,7 +469,6 @@ int main(){
                         size_t index = rand() % dsNhanVien.getListNhanVien().getCurr();
 
                         NhanVien& nv = dsNhanVien.getListNhanVien()[index];
-                        cout << index << endl;
                         cout << nv << endl;
 
                         cout << "\t\tVui lòng nhập các thông tin dưới đây !" << endl;
