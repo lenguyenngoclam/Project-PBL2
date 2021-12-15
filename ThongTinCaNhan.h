@@ -33,13 +33,13 @@ void ThongTinCaNhan::InThongTin() const
     cout << "\t\t- Tuổi: " << Tuoi << endl;
     cout << "\t\t- Địa chỉ: " << DiaChi << endl;
     cout << "\t\t- Số điện thoại: " << SoDienThoai << endl;
-    cout << "\t\t-----------------------------------------------------" << endl;
+    cout << "\t\t---------------------------------------------------" << endl;
 }
 
 void ThongTinCaNhan::DoiThongTinCaNhan()
 {
     int opt;
-    cout << "\t\t-------- Chọn thông tin muốn thay đổi --------" << endl;
+    cout << "\t\t----------- Chọn thông tin muốn thay đổi ------------" << endl;
     cout << "\t\t + Option 1: Họ và tên" << endl;
     cout << "\t\t + Option 2: Tuổi" << endl;
     cout << "\t\t + Option 3: Địa chỉ" << endl;
@@ -52,15 +52,15 @@ void ThongTinCaNhan::DoiThongTinCaNhan()
             getline(cin,HoTen); fflush(stdin); break;
         }
         case 2: {
-            cout << "\t\t- Nhập tuổi: "; 
+            cout << "\t\t- Nhập tuổi mới: "; 
             getline(cin,Tuoi);  fflush(stdin);break;
         }
         case 3: {
-            cout << "\t\t- Nhập địa chỉ: "; 
+            cout << "\t\t- Nhập địa chỉ mới: "; 
             getline(cin,DiaChi); fflush(stdin); break;
         }
         case 4: {
-            cout << "\t\t- Nhập số điện thoại: "; 
+            cout << "\t\t- Nhập số điện thoại mới: "; 
             getline(cin,SoDienThoai); fflush(stdin); break;
         }
     }

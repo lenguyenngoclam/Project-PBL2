@@ -79,7 +79,7 @@ int main(){
             }
 
             tk = dsTaiKhoan.suDungTaiKhoan(tenDangNhap, matKhau);
-            cout << "-------------- Xin chao --------------" << endl;
+            cout << "\t\t-------------- Xin chào --------------" << endl;
             tk.layNhanVien().InThongTin();
 
             string tempString = "n";
@@ -122,6 +122,7 @@ int main(){
                             giaoDienNhapID(tempID);
                             tempIndex = dsKhachHang.timKiemKhachHang(tempID);
                         }
+                        cout << "\t\t---------- Khách hàng " << tempID << "----------" << endl;
                         (dsKhachHang.getListKhachHang())[tempIndex].InThongTin();
                         break;
                     case 5 :
@@ -216,7 +217,7 @@ int main(){
                                     if(tempIndex == -1)
                                         cout << "\t\tKhông tìm thấy số tài khoản !" << endl;
                                     else {
-                                        cout << "------------- Thông tin người nhận -------------" << endl;
+                                        cout << "\t\t------------- Thông tin người nhận -------------" << endl;
                                         (dsKhachHang.getListKhachHang())[tempIndex].InThongTin();
                                         TheATM& nguoiNhan = dsKhachHang.getListKhachHang()[tempIndex].layThongTinThe();
                                         cout << "\t\tNhập số tiền cần chuyển : ";
@@ -231,7 +232,7 @@ int main(){
                                     }
                                     break;
                                 case 5 :
-                                    cout << "\t\t~~~~~~~~~~~~~ Lịch sử giao dịch ~~~~~~~~~~~~~" << endl;    
+                                    cout << "\t\t~~~~~~~~~~~~~~~~ Lịch sử giao dịch ~~~~~~~~~~~~~~~~" << endl;    
                                     the.inLichSuGiaoDich();
                                     break;
                                 case 6 : 

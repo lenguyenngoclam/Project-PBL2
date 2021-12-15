@@ -67,7 +67,7 @@ void NhanVien::DoiThongTinCaNhan(){
 }
 
 void NhanVien::InThongTin() const{
-    cout << "- ID: " << idNhanVien << endl;
+    cout << "\t\t- ID: " << idNhanVien << endl;
     ThongTinCaNhan::InThongTin();
 }
 

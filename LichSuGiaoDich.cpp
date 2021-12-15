@@ -7,8 +7,8 @@
 // LICH SU GIAO DICH
 
 ostream& operator <<(ostream& os, const LichSuGiaoDich& ls){
-    cout << "# Mã giao dịch : " << ls.maGiaoDich << endl;
-    cout << "  Nội dung giao dịch : " << ls.noiDung;
+    cout << "\t\t# Mã giao dịch : " << ls.maGiaoDich << endl;
+    cout << "\t\t  Nội dung giao dịch : " << ls.noiDung;
     return os;
 }
 

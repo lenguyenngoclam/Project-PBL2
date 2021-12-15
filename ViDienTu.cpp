@@ -204,7 +204,7 @@ void ViDienTu::rutTien(DanhSachKhachHang& ds){
         the.NapTien(stod(soTien), "\t\tRút tiền về tài khoản từ ví điện tử với số tiền : " + soTien);
         suaFile(sub,stod(soTien));
         string tmp = "Rút tiền thành công!";
-        cout << "\t\t"; goodbye(tmp,30); cout << endl;
+        goodbye(tmp,30); cout << endl;
         cout << "\t\t-> Số tiền trong ví của bạn = " << laySoDu() << endl << endl;
     }
 }
@@ -230,7 +230,7 @@ void ViDienTu::napTien(DanhSachKhachHang& ds){
     cout << "\t\tSố tiền muốn nạp = "; cin >> soTien;
     suaFile(add,stod(soTien));
     string tmp = "Nạp tiền thành công!";
-    cout << "\t\t"; goodbye(tmp,30); cout << endl;
+    goodbye(tmp,30); cout << endl;
     cout << "\t\t-> Số tiền trong ví của bạn = " << laySoDu() << endl << endl;
 }    
 
