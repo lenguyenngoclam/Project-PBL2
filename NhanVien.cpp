@@ -67,7 +67,7 @@ void NhanVien::DoiThongTinCaNhan(){
 }
 
 void NhanVien::InThongTin() const{
-    cout << "- ID: " << idNhanVien << endl;
+    cout << "\t\t- ID: " << idNhanVien << endl;
     ThongTinCaNhan::InThongTin();
 }
 
@@ -104,6 +104,8 @@ void NhanVien::CaiDatThongTin()
     fout << DiaChi << endl;
     fout << SoDienThoai;
 
+    nhanVien_count_line += 5;
+
     fin.close();
     fout.close();
 
@@ -113,18 +115,6 @@ void NhanVien::CaiDatThongTin()
 
 bool NhanVien::operator ==(const NhanVien& rhs) const{
     return idNhanVien.compare(rhs.idNhanVien) == 0;
-}
-
-bool NhanVien::operator !=(const NhanVien& rhs) const{
-    return idNhanVien.compare(rhs.idNhanVien) != 0;
-}
-
-bool NhanVien::operator <(const NhanVien& rhs) const{
-    return idNhanVien.compare(rhs.idNhanVien) < 0;
-}
-
-bool NhanVien::operator >(const NhanVien& rhs) const{
-    return idNhanVien.compare(rhs.idNhanVien) > 0;
 }
 
 ostream& operator <<(ostream& os, const NhanVien& nv){

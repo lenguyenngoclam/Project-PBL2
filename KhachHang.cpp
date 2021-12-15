@@ -70,7 +70,7 @@ void KhachHang::DoiThongTinCaNhan() {
 }
 
 void KhachHang::InThongTin() const{
-    cout << "- ID: " << idKhachHang << endl;
+    cout << "\t\t- ID: " << idKhachHang << endl;
     ThongTinCaNhan::InThongTin();
 }
 
@@ -220,8 +220,6 @@ void DanhSachKhachHang::taoTaiKhoanKhachHang(){
     *(temp.the) = the;
 
     lsKhachHang.insert(temp);
-
-    khachHang_count_line += 8;
 }
 
 void DanhSachKhachHang::suaThongTinKhachHang(string id){

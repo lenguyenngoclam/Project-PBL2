@@ -79,7 +79,7 @@ int main(){
             }
 
             tk = dsTaiKhoan.suDungTaiKhoan(tenDangNhap, matKhau);
-            cout << "-------------- Xin chao --------------" << endl;
+            cout << "\t\t-------------- Xin chào --------------" << endl;
             tk.layNhanVien().InThongTin();
 
             string tempString = "n";
@@ -122,6 +122,7 @@ int main(){
                             giaoDienNhapID(tempID);
                             tempIndex = dsKhachHang.timKiemKhachHang(tempID);
                         }
+                        cout << "\t\t---------- Khách hàng " << tempID << "----------" << endl;
                         (dsKhachHang.getListKhachHang())[tempIndex].InThongTin();
                         break;
                     case 5 :
@@ -159,7 +160,7 @@ int main(){
                 getline(cin, choice);
                 cout << "\t\t+------------------------------------------------------------------------+" << endl;
                 if (choice == "1" || choice == "2" || choice == "3") 
-                    cout << "\t\t--------------------------- XIN CHÀO QUÝ KHÁCH -----------------------" << endl << endl;
+                    cout << "\t\t----------------------------- XIN CHÀO QUÝ KHÁCH -------------------------" << endl << endl;
 
                 switch(stoi(choice)) {
                     
@@ -216,7 +217,7 @@ int main(){
                                     if(tempIndex == -1)
                                         cout << "\t\tKhông tìm thấy số tài khoản !" << endl;
                                     else {
-                                        cout << "Thong tin nguoi nhan : " << endl;
+                                        cout << "\t\t------------- Thông tin người nhận -------------" << endl;
                                         (dsKhachHang.getListKhachHang())[tempIndex].InThongTin();
                                         TheATM& nguoiNhan = dsKhachHang.getListKhachHang()[tempIndex].layThongTinThe();
                                         cout << "\t\tNhập số tiền cần chuyển : ";
@@ -231,7 +232,7 @@ int main(){
                                     }
                                     break;
                                 case 5 :
-                                    cout << "\t\t~~~~~~~~~~~~~ Lịch sử giao dịch ~~~~~~~~~~~~~" << endl;    
+                                    cout << "\t\t~~~~~~~~~~~~~~~~ Lịch sử giao dịch ~~~~~~~~~~~~~~~~" << endl;    
                                     the.inLichSuGiaoDich();
                                     break;
                                 case 6 : 
@@ -253,11 +254,11 @@ int main(){
                         fflush(stdin); getline(cin ,opt);
                         if (opt == "c")
                         {
-                            cout << "\t\t-------------- Đăng nhập ví điện tử ---------------" << endl << endl;
+                            cout << "\t\t--------------- Đăng nhập ví điện tử ---------------" << endl << endl;
                             giaoDienDangNhap(tenDangNhap, matKhau);
                             while(!dsVi.kiemTraDangNhap(tenDangNhap, matKhau)){
                                 cout << "\t\tTài khoản hoặc mật khẩu bị sai. Vui lòng đăng nhập lại....." << endl << endl;
-                                cout << "\t\t-------------- Đăng nhập ví điện tử ---------------" << endl << endl;
+                                cout << "\t\t--------------- Đăng nhập ví điện tử ---------------" << endl << endl;
                                 giaoDienDangNhap(tenDangNhap,matKhau);
                             }
 
@@ -283,7 +284,7 @@ int main(){
 
                                 switch(stoi(choice)){
                                     case 1 :    
-                                        cout << "\t\tSố tiền trong ví của bạn = " << vi.laySoDu() << endl << endl;
+                                        cout << "\t\tSố tiền trong ví của bạn = " << to_string(vi.laySoDu()) << endl << endl;
                                         break;
                                     case 2 :
                                         vi.napTien(dsKhachHang);
@@ -388,7 +389,7 @@ int main(){
 
                                 switch(stoi(choice)){
                                     case 1 :    
-                                        cout << "\t\tSố tiền trong ví của bạn = " << vi.laySoDu() << endl << endl;
+                                        cout << "\t\tSố tiền trong ví của bạn = " << to_string(vi.laySoDu()) << endl << endl;
                                         break;
                                     case 2 :
                                         vi.napTien(dsKhachHang);
@@ -465,10 +466,9 @@ int main(){
                     case 3 :
                     {
                         srand(time(0));
-                        size_t index = rand() % dsKhachHang.getListKhachHang().getCurr();
+                        size_t index = rand() % dsNhanVien.getListNhanVien().getCurr();
 
                         NhanVien& nv = dsNhanVien.getListNhanVien()[index];
-
                         cout << nv << endl;
 
                         cout << "\t\tVui lòng nhập các thông tin dưới đây !" << endl;
@@ -480,7 +480,7 @@ int main(){
                     case 4 :
                         tempString = "c";
                         string gb = "Tạm biệt quý khách.....";
-                        goodbye(gb,50);
+                        goodbye(gb,40);
                         cout << endl << endl;
                         break;
                 }
@@ -489,7 +489,7 @@ int main(){
 
         } else if (first_choice == "exit") {
             string gb = "XIN CHÀO TẠM BIỆT VÀ HẸN GẶP LẠI QUÝ KHÁCH.....";
-            goodbye(gb,45);   
+            goodbye(gb,40);   
             break;
         }
         else {

@@ -39,14 +39,13 @@ class NhanVien : public ThongTinCaNhan{
         NhanVien(const NhanVien& nv);
         NhanVien& operator =(const NhanVien& nv);
 
+        string LayTen() { return HoTen; }
+
         void InThongTin() const override;
         void DoiThongTinCaNhan() override;
         void CaiDatThongTin() override;
 
         bool operator ==(const NhanVien& rhs) const;
-        bool operator <(const NhanVien& rhs) const;
-        bool operator >(const NhanVien& rhs) const;
-        bool operator !=(const NhanVien& rhs) const;
 
         friend class DanhSachNhanVien;
         friend class TaiKhoanNhanVien;
