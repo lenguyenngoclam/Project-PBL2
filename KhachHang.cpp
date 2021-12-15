@@ -147,13 +147,13 @@ void KhachHang::xoaKhachHang(){
                 fout << arr[7] << endl;
             count++;
         }
-    }   
-
-    remove("KHACHHANG.txt");
-    rename("temp.txt", "KHACHHANG.txt");
+    }    
     
     fin.close();
     fout.close();
+
+    remove("KHACHHANG.txt");
+    rename("temp.txt","KHACHHANG.txt");
 }  
 
 bool KhachHang::operator ==(const KhachHang& rhs) const{
