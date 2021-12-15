@@ -42,18 +42,18 @@ int main(){
 
     while(true) {
         cout << "\t\t# Bạn là: " << endl;
-        cout << "\t\t+-----------+--------------------+" << endl;
-        cout << "\t\t|" << setw(9) << "Option" << setw(3) << "|" << setw(18) << "Chức năng" << setw(6) << "|" << endl;
-        cout << "\t\t+-----------|--------------------+" << endl;
-        cout << "\t\t|" << setw(6) << "1" << setw(6) << "|" << setw(17) << "Nhân viên" << setw(6) << "|" << endl;
-        cout << "\t\t|" << setw(6) << "2" << setw(6) << "|" << setw(18) << "Khách hàng" << setw(5) << "|" << endl;
-        cout << "\t\t|" << setw(6) << "3" << setw(6) << "|" << setw(10) << "Exit" << setw(11) << "|" << endl;
-        cout << "\t\t+-----------+--------------------+" << endl;
+        cout << "\t\t+-----------+---------------------+" << endl;
+        cout << "\t\t|" << setw(9) << "Option" << setw(3) << "|" << setw(18) << "Chức năng" << setw(7) << "|" << endl;
+        cout << "\t\t+-----------|---------------------+" << endl;
+        cout << "\t\t|" << setw(6) << "1" << setw(6) << "|" << setw(17) << "Nhân viên" << setw(7) << "|" << endl;
+        cout << "\t\t|" << setw(6) << "2" << setw(6) << "|" << setw(18) << "Khách hàng" << setw(6) << "|" << endl;
+        cout << "\t\t|" << setw(6) << "3" << setw(6) << "|" << setw(10) << "Exit" << setw(12) << "|" << endl;
+        cout << "\t\t+-----------+---------------------+" << endl;
         fflush(stdin); cout << "\t\t-> Option của bạn: ";
 
         string first_choice,choice;
         getline(cin,choice);
-        cout << "\t\t+-----------+--------------------+" << endl << endl;
+        cout << "\t\t+-----------+---------------------+" << endl << endl;
 
         
         // Tên đăng nhâp, mật khẩu, mã tài khoản cho ATM
@@ -81,6 +81,7 @@ int main(){
             tk = dsTaiKhoan.suDungTaiKhoan(tenDangNhap, matKhau);
             cout << "\t\t-------------- Xin chào --------------" << endl;
             tk.layNhanVien().InThongTin();
+            cout << "\t\t--------------------------------------" << endl;
 
             string tempString = "n";
             while(tempString == "n") {
@@ -92,7 +93,7 @@ int main(){
                 cout << "\t\t|" << setw(6) << "2" << setw(6) << "|" << setw(41) << "Tạo tài khoản cho khách hàng" << setw(6) << "|" << endl;
                 cout << "\t\t|" << setw(6) << "3" << setw(6) << "|" << setw(35) << "Sửa thông tin khách hàng" << setw(10) << "|" << endl;
                 cout << "\t\t|" << setw(6) << "4" << setw(6) << "|" << setw(41) << "Lấy thông tin của khách hàng" << setw(6) << "|" << endl;
-                cout << "\t\t|" << setw(6) << "5" << setw(6) << "|" << setw(24) << "Xóa khách hàng" << setw(19) << "|" << endl;
+                cout << "\t\t|" << setw(6) << "5" << setw(6) << "|" << setw(23) << "Xóa khách hàng" << setw(20) << "|" << endl;
                 cout << "\t\t|" << setw(6) << "6" << setw(6) << "|" << setw(19) << "Đăng xuất" << setw(25) << "|" << endl;
                 cout << "\t\t+-----------+---------------------------------------+" << endl;
                 fflush(stdin); cout << "\t\t-> Option của bạn: ";

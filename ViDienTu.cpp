@@ -217,7 +217,7 @@ void ViDienTu::napTien(DanhSachKhachHang& ds){
     cout << "\t\tNhập mã thẻ muốn sử dụng để nạp tiền vào ví: ";
     fflush(stdin); getline(cin, choice); 
     size_t index = ds.timKiemATM(choice);
-    while (index == -1)
+    while (index == -1 && lsID.findEle(choice) == -1)
     {
         cout << "\t\tMã thẻ ATM không hợp lệ!" << endl;
         cout << "\t\tMời bạn nhập lại mã thẻ ATM muốn nạp tiền vào ví: ";

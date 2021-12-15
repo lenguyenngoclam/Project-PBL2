@@ -68,7 +68,8 @@ void NhanVien::DoiThongTinCaNhan(){
 
 void NhanVien::InThongTin() const{
     cout << "\t\t- ID: " << idNhanVien << endl;
-    ThongTinCaNhan::InThongTin();
+    cout << "\t\t- Họ và tên: " << HoTen << endl;
+    //ThongTinCaNhan::InThongTin();
 }
 
 void NhanVien::CaiDatThongTin()
