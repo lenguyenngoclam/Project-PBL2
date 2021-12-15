@@ -42,8 +42,9 @@ void TheATM::caiDatTheATM(){
     getline(cin,MaTaiKhoan);
     fout << MaTaiKhoan << endl;
 
+    char s[50];
     cout << "\t\tXin moi nhap mat khau : "; fflush(stdin);
-    getline(cin, MatKhau);
+    getpassword(s,50); MatKhau = s; fflush(stdin);
     fout << MatKhau << endl;
 
     cout << "\t\tSo tien nap vao tai khoan : "; fflush(stdin);

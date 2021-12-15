@@ -1,4 +1,4 @@
-15
+16
 KH1
 nguyen nho song hoang
 19
@@ -119,3 +119,11 @@ Do Quang
 1234
 123456
 3500000.000000
+KH16
+Hoang Nguyen
+19
+Hai Chau
+0903502480
+12345
+12345
+3000000.000000

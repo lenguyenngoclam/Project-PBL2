@@ -160,7 +160,7 @@ int main(){
                 getline(cin, choice);
                 cout << "\t\t+------------------------------------------------------------------------+" << endl;
                 if (choice == "1" || choice == "2" || choice == "3") 
-                    cout << "\t\t--------------------------- XIN CHÀO QUÝ KHÁCH -----------------------" << endl << endl;
+                    cout << "\t\t----------------------------- XIN CHÀO QUÝ KHÁCH -------------------------" << endl << endl;
 
                 switch(stoi(choice)) {
                     
