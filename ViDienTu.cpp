@@ -271,7 +271,18 @@ void ViDienTu::caiDatVi(){
 
     cout << "\t\tNhập tên đăng nhập : "; fflush(stdin);
     getline(cin, TenDangNhap);
+
+    while(timKiemTrongFile("TenViDienTu.txt",TenDangNhap) == true)
+    {
+        string noti = "Tên đăng nhập đã tồn tại....";
+        goodbye(noti,30); cout << endl;
+        cout << "\t\t~~~~~~~~~ Mời bạn nhập lại ~~~~~~~~~" << endl;
+        cout << "\t\tNhập tên đăng nhập : "; 
+        fflush(stdin); getline(cin, TenDangNhap);
+    }
+
     fout << TenDangNhap << endl;
+    themVaoFile("TenViDienTu.txt",TenDangNhap);
 
     char s[50];
     cout << "\t\tNhập mật khẩu : "; fflush(stdin);

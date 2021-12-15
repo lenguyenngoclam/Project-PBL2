@@ -119,7 +119,7 @@ bool NhanVien::operator ==(const NhanVien& rhs) const{
 }
 
 ostream& operator <<(ostream& os, const NhanVien& nv){
-    cout << "\t\tXin chao quy khach. Toi la : " << nv.HoTen;
+    cout << "\t\tXin chào quý khách. Tôi là " << nv.HoTen;
     return os;
 }
 

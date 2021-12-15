@@ -56,7 +56,7 @@ class DanhSachKhachHang{
             khachHang_count_line = 0;
             CaiDatDanhSach();
         }
-        // Đọc dữ liệu ra từ file và lưu vào set
+        // Đọc dữ liệu ra từ file và lưu vào LinkedList
         void CaiDatDanhSach();
         // In danh sách khách hàng
         void InDanhSach();

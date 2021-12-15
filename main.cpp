@@ -120,7 +120,7 @@ int main(){
                         giaoDienNhapID(tempID);
                         tempIndex = dsKhachHang.timKiemKhachHang(tempID);
                         while(tempIndex == -1){
-                            cout << "\t\t->ID khách hàng không tồn tại!. Mời quý khách nhập lại....." << endl;
+                            cout << "\t\t-> ID khách hàng không tồn tại! Mời quý khách nhập lại....." << endl;
                             giaoDienNhapID(tempID);
                             tempIndex = dsKhachHang.timKiemKhachHang(tempID);
                         }
@@ -136,7 +136,8 @@ int main(){
 
                         while (index == -1)
                         {
-                            cout << "\t\tIdKhachHang không tồn tại....." << endl;
+                            string noti = "IdKhachHang không tồn tại.....";
+                            goodbye(noti,30);
                             cout << "\t\tMời nhập lại IdKhachHang: "; 
                             fflush(stdin); getline(cin, idKhachHang);
                             index = dsKhachHang.timKiemKhachHang(idKhachHang);
@@ -160,13 +161,15 @@ int main(){
                         break;
                     }
                     case 7 :
+                    {
                         tempString = "c";
                         string gb = "Tạm biệt " + tk.layNhanVien().LayTen() + ".....";
                         goodbye(gb,50);
                         cout << endl << endl;
                         //system("cls"); // clear màn hình
                         break;
-                }
+                    }
+                } 
 
             }
         } 
@@ -230,26 +233,38 @@ int main(){
                                     break;
                                 case 2 :
                                     cout << "\t\tSố tiền muốn rút = "; cin >> d;
-                                    if(the.laySoDu() < d)
-                                        cout << "\t\tSố tiền cần rút không hợp lệ !" << endl;
+                                    if(the.laySoDu() < d) {
+                                        string noti = "Số tiền cần rút không hợp lệ !";
+                                        goodbye(noti,30);
+                                    }
                                     else {
                                         the.RutTien(d, "Rút tiền từ tài khoản với số tiền : " + to_string(d));
+
+                                        string noti = "Rút tiền thành công!";
+                                        goodbye(noti,30);
                                         cout << "\t\t-> Số dư hiện tại = " << to_string(the.laySoDu()) << endl;
                                     }
                                     break;
                                 case 3 :
+                                {
                                     cout << "\t\tSố tiền muốn nạp = "; cin >> d;
                                     the.NapTien(d, "Nạp tiền vào tài khoản với số tiền : " + to_string(d));
+
+                                    string noti = "Nạp tiền thành công!";
+                                    goodbye(noti,30);
                                     cout << "\t\t-> Số dư hiện tại = " << to_string(the.laySoDu()) << endl;
                                     break;
+                                }
                                 case 4 : 
                                     cout << "\t\tNhập số tài khoản người nhận : ";
                                     getline(cin, maTaiKhoan);
                                     tempIndex = dsKhachHang.timKiemATM(maTaiKhoan);
-                                    if(tempIndex == -1)
-                                        cout << "\t\tKhông tìm thấy số tài khoản !" << endl;
+                                    if(tempIndex == -1) {
+                                        string noti = "Không tìm thấy số tài khoản !";
+                                        goodbye(noti,30);
+                                    }
                                     else {
-                                        cout << "\t\t------------- Thông tin người nhận -------------" << endl;
+                                        cout << "\t\t--------------- Thông tin người nhận --------------" << endl;
                                         (dsKhachHang.getListKhachHang())[tempIndex].InThongTin();
                                         TheATM& nguoiNhan = dsKhachHang.getListKhachHang()[tempIndex].layThongTinThe();
                                         cout << "\t\tNhập số tiền cần chuyển : ";
@@ -282,7 +297,7 @@ int main(){
                         double d;
                         string IdVi,IdATM;
                         string opt;
-                        cout << "\t\tBạn đã có ví điện tử chưa? (c/n): "; 
+                        cout << "\t\t(!) Bạn đã có ví điện tử chưa? (c/n): "; 
                         fflush(stdin); getline(cin ,opt);
                         if (opt == "c")
                         {
@@ -342,19 +357,24 @@ int main(){
                                         cout << "\t\tNhập số tiền cần chuyển : ";
                                         cin >> soTien;
                                         if(soTien > vi.laySoDu()) {
-                                            cout << "\t\tSố tiền trong ví không đủ !" << endl;
+                                            cout << "\t\tSố tiền trong ví không đủ!" << endl;
                                             cout << "\t\tBạn có muốn nạp tiền? (c/n): "; fflush(stdin); getline(cin, opt);
                                             if (opt == "c") {
                                                 vi.napTien(dsKhachHang);
                                                 vi.chuyenTienDenVi(viCanChuyen, soTien);
+                                                string noti = "Chuyển tiền thành công!";
+                                                goodbye(noti,30);    
                                                 cout << "\t\t-> Số tiền hiện tại = " << to_string(vi.laySoDu()) << endl;
                                             }
                                             else {
-                                                cout << "\t\tChuyển tiền không thành công!" << endl;
+                                                string noti = "Chuyển tiền không thành công!";
+                                                goodbye(noti,30);
                                             } 
                                         }
                                         else {
                                             vi.chuyenTienDenVi(viCanChuyen, soTien);
+                                            string noti = "Chuyển tiền thành công!";
+                                            goodbye(noti,30);
                                             cout << "\t\t-> Số tiền hiện tại = " << to_string(vi.laySoDu()) << endl;
                                         }
                                         break;
@@ -444,7 +464,7 @@ int main(){
                                         ViDienTu& viCanChuyen = dsVi.getListVi()[tempIndex];
                                         string opt;
                                         cout << "\t\t-> Người nhận: " << viCanChuyen.layTaiKhoan() << endl;
-                                        cout << "\t\tNhập số tiền cần chuyển : ";
+                                        cout << "\t\tNhập số tiền cần chuyển: ";
                                         cin >> soTien;
                                         if(soTien > vi.laySoDu()) {
                                             cout << "\t\tSố tiền trong ví không đủ !" << endl;
@@ -452,15 +472,20 @@ int main(){
                                             if (opt == "c") {
                                                 vi.napTien(dsKhachHang);
                                                 vi.chuyenTienDenVi(viCanChuyen, soTien);
-                                                cout << "\t\t-> Số tiền hiện tại = " << vi.laySoDu() << endl;
+                                                string noti = "Chuyển tiền thành công!";
+                                                goodbye(noti,30);
+                                                cout << "\t\t-> Số tiền hiện tại = " << to_string(vi.laySoDu()) << endl;
                                             }
                                             else {
-                                                cout << "\t\tChuyển tiền không thành công!" << endl;
+                                                string noti = "Chuyển tiền không thành công!";
+                                                goodbye(noti,30);
                                             } 
                                         }
                                         else {
                                             vi.chuyenTienDenVi(viCanChuyen, soTien);
-                                            cout << "\t\t-> Số tiền hiện tại = " << vi.laySoDu() << endl;
+                                            string noti = "Chuyển tiền thành công!";
+                                            goodbye(noti,30);
+                                            cout << "\t\t-> Số tiền hiện tại = " << to_string(vi.laySoDu()) << endl;
                                         }
                                         break;
                                     }
@@ -521,7 +546,7 @@ int main(){
 
         } else if (first_choice == "exit") {
             string gb = "XIN CHÀO TẠM BIỆT VÀ HẸN GẶP LẠI QUÝ KHÁCH.....";
-            goodbye(gb,40);   
+            goodbye(gb,35);   
             break;
         }
         else {

@@ -30,6 +30,7 @@ void TheATM::xoaTheATM(){
     for(int i = 0; i < ls.getCurr(); i++){
         ls[i].xoaLichSuGiaoDich();
     }
+    xoaTrongFile("TenTheATM.txt",MaTaiKhoan);
     ls.deleteList();
 }
 
@@ -40,6 +41,15 @@ void TheATM::caiDatTheATM(){
 
     cout << "\t\tXin mời nhập mã thẻ ATM: "; fflush(stdin);
     getline(cin,MaTaiKhoan);
+
+    while(timKiemTrongFile("TenTheATM.txt",MaTaiKhoan) == true)
+    {
+        string noti = "Mã tài khoản đã tồn tại....";
+        goodbye(noti,30); cout << endl;
+        cout << "\t\t~~~~~~~~~ Mời bạn nhập lại ~~~~~~~~~" << endl;
+        cout << "\t\tXin mời nhập mã thẻ ATM: "; 
+        fflush(stdin); getline(cin,MaTaiKhoan);
+    }
     fout << MaTaiKhoan << endl;
 
     char s[50];

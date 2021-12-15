@@ -213,6 +213,7 @@ void DanhSachKhachHang::taoTaiKhoanKhachHang(){
 
     TheATM the;
     the.caiDatTheATM();
+    themVaoFile("TenTheATM.txt",the.MaTaiKhoan);
 
     khachHang_count_line += 8;
 
