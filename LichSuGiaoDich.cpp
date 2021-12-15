@@ -42,11 +42,11 @@ void LichSuGiaoDich::xoaLichSuGiaoDich(){
         }
     }
 
-    remove("LichSuGiaoDich.txt");
-    rename("temp1.txt", "LichSuGiaoDich.txt");
-
     fout.close();
     fin.close(); 
+
+    remove("LichSuGiaoDich.txt");
+    rename("temp1.txt", "LichSuGiaoDich.txt");
 }
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------

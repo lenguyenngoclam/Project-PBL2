@@ -38,24 +38,24 @@ void TheATM::caiDatTheATM(){
     fout.open("KHACHHANG.txt",ios::app);
     string line;
 
-    cout << "\t\tXin moi nhap ma the ATM : "; fflush(stdin);
+    cout << "\t\tXin mời nhập mã thẻ ATM: "; fflush(stdin);
     getline(cin,MaTaiKhoan);
     fout << MaTaiKhoan << endl;
 
     char s[50];
-    cout << "\t\tXin moi nhap mat khau : "; fflush(stdin);
+    cout << "\t\tXin mời nhập mật khẩu: "; fflush(stdin);
     getpassword(s,50); MatKhau = s; fflush(stdin);
     fout << MatKhau << endl;
 
-    cout << "\t\tSo tien nap vao tai khoan : "; fflush(stdin);
+    cout << "\t\tSố tiền nạp vào tài khoản: "; fflush(stdin);
     cin >> soDu;
     fout << to_string(soDu);
 
 }
 
 void TheATM::layThongTinThe() const{
-    cout << "\t\t- Ma so the ATM : " << MaTaiKhoan << endl;
-    cout << "-\t\t So du trong the : " << to_string(soDu) << endl;
+    cout << "\t\t- Mã thẻ ATM: " << MaTaiKhoan << endl;
+    cout << "-\t\t Số dư trong thẻ: " << to_string(soDu) << endl;
 }
 
 void TheATM::suaFile(double (*func)(double, double), double soTien){

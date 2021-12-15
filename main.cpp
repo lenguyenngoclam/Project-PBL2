@@ -94,7 +94,8 @@ int main(){
                 cout << "\t\t|" << setw(6) << "3" << setw(6) << "|" << setw(35) << "Sửa thông tin khách hàng" << setw(10) << "|" << endl;
                 cout << "\t\t|" << setw(6) << "4" << setw(6) << "|" << setw(41) << "Lấy thông tin của khách hàng" << setw(6) << "|" << endl;
                 cout << "\t\t|" << setw(6) << "5" << setw(6) << "|" << setw(23) << "Xóa khách hàng" << setw(20) << "|" << endl;
-                cout << "\t\t|" << setw(6) << "6" << setw(6) << "|" << setw(19) << "Đăng xuất" << setw(25) << "|" << endl;
+                cout << "\t\t|" << setw(6) << "6" << setw(6) << "|" << setw(43) << "Lấy thông tin thẻ ATM cho khách" << setw(3) << "|" << endl;
+                cout << "\t\t|" << setw(6) << "7" << setw(6) << "|" << setw(19) << "Đăng xuất" << setw(25) << "|" << endl;
                 cout << "\t\t+-----------+---------------------------------------+" << endl;
                 fflush(stdin); cout << "\t\t-> Option của bạn: ";
                 getline(cin, choice);
@@ -149,6 +150,16 @@ int main(){
                         break;
                     }
                     case 6 :
+                    {
+                        string idKhachHang;
+                        cout << "\t\tNhập IdKhachHang cần lấy thông tin thẻ ATM: "; 
+                        fflush(stdin); getline(cin, idKhachHang);
+                        size_t index = dsKhachHang.timKiemKhachHang(idKhachHang);
+                        cout << "\t\tThông tin thẻ ATM của quý khách là:" << endl;
+                        dsKhachHang.getListKhachHang()[index].layThongTinThe().layThongTinThe();
+                        break;
+                    }
+                    case 7 :
                         tempString = "c";
                         string gb = "Tạm biệt " + tk.layNhanVien().LayTen() + ".....";
                         goodbye(gb,50);
@@ -336,7 +347,7 @@ int main(){
                                             if (opt == "c") {
                                                 vi.napTien(dsKhachHang);
                                                 vi.chuyenTienDenVi(viCanChuyen, soTien);
-                                                cout << "\t\t-> Số tiền hiện tại = " << vi.laySoDu() << endl;
+                                                cout << "\t\t-> Số tiền hiện tại = " << to_string(vi.laySoDu()) << endl;
                                             }
                                             else {
                                                 cout << "\t\tChuyển tiền không thành công!" << endl;
@@ -344,7 +355,7 @@ int main(){
                                         }
                                         else {
                                             vi.chuyenTienDenVi(viCanChuyen, soTien);
-                                            cout << "\t\t-> Số tiền hiện tại = " << vi.laySoDu() << endl;
+                                            cout << "\t\t-> Số tiền hiện tại = " << to_string(vi.laySoDu()) << endl;
                                         }
                                         break;
                                     }
