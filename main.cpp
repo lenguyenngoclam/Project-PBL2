@@ -480,7 +480,7 @@ int main(){
                     case 4 :
                         tempString = "c";
                         string gb = "Tạm biệt quý khách.....";
-                        goodbye(gb,50);
+                        goodbye(gb,40);
                         cout << endl << endl;
                         break;
                 }
