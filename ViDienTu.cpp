@@ -186,13 +186,22 @@ void ViDienTu::rutTien(DanhSachKhachHang& ds){
     fflush(stdin); getline(cin, choice);
     size_t index = ds.timKiemATM(choice);
 
-    while (index == -1 && lsID.findEle(choice) == -1)
+    //Khi nhập sai
+    while (lsID.findEle(choice) == -1)
     {
         cout << "\t\tMã thẻ ATM không hợp lệ!" << endl;
         cout << "\t\tMời bạn nhập lại mã thẻ ATM muốn rút tiền về: ";
-        goLienKetTheATM(choice);
         fflush(stdin); getline(cin, choice);
-        index = ds.timKiemATM(choice);
+    }
+
+    //Khi thẻ không còn tồn tại
+    while(index == -1){
+        goLienKetTheATM(choice);
+        cout << "\t\tMã thẻ ATM không còn tồn tại!" << endl;
+        cout << lsID << endl;
+        cout << "\t\tMời bạn nhập lại mã thẻ ATM muốn rút tiền về: ";
+        fflush(stdin); getline(cin, choice);
+        index = ds.timKiemATM(choice); 
     }
 
     TheATM& the = ds.getListKhachHang()[index].layThongTinThe();
