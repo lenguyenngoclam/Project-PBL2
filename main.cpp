@@ -284,7 +284,7 @@ int main(){
 
                                 switch(stoi(choice)){
                                     case 1 :    
-                                        cout << "\t\tSố tiền trong ví của bạn = " << vi.laySoDu() << endl << endl;
+                                        cout << "\t\tSố tiền trong ví của bạn = " << to_string(vi.laySoDu()) << endl << endl;
                                         break;
                                     case 2 :
                                         vi.napTien(dsKhachHang);
