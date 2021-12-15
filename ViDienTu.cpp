@@ -186,7 +186,7 @@ void ViDienTu::rutTien(DanhSachKhachHang& ds){
     fflush(stdin); getline(cin, choice);
     size_t index = ds.timKiemATM(choice);
 
-    while (index == -1)
+    while (index == -1 && lsID.findEle(choice) == -1)
     {
         cout << "\t\tMã thẻ ATM không hợp lệ!" << endl;
         cout << "\t\tMời bạn nhập lại mã thẻ ATM muốn rút tiền về: ";
