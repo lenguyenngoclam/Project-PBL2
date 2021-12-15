@@ -202,7 +202,7 @@ void ViDienTu::rutTien(DanhSachKhachHang& ds){
     if(stod(soTien) > tongSoDu)
         cout << "\t\tSố dư quý khách không đủ!" << endl;
     else {
-        the.NapTien(stod(soTien), "\t\tRút tiền về tài khoản từ ví điện tử với số tiền : " + soTien);
+        the.NapTien(stod(soTien), "Rút tiền về tài khoản từ ví điện tử với số tiền : " + soTien);
         suaFile(sub,stod(soTien));
         string tmp = "Rút tiền thành công!";
         goodbye(tmp,30); cout << endl;

@@ -254,11 +254,11 @@ int main(){
                         fflush(stdin); getline(cin ,opt);
                         if (opt == "c")
                         {
-                            cout << "\t\t-------------- Đăng nhập ví điện tử ---------------" << endl << endl;
+                            cout << "\t\t--------------- Đăng nhập ví điện tử ---------------" << endl << endl;
                             giaoDienDangNhap(tenDangNhap, matKhau);
                             while(!dsVi.kiemTraDangNhap(tenDangNhap, matKhau)){
                                 cout << "\t\tTài khoản hoặc mật khẩu bị sai. Vui lòng đăng nhập lại....." << endl << endl;
-                                cout << "\t\t-------------- Đăng nhập ví điện tử ---------------" << endl << endl;
+                                cout << "\t\t--------------- Đăng nhập ví điện tử ---------------" << endl << endl;
                                 giaoDienDangNhap(tenDangNhap,matKhau);
                             }
 
@@ -389,7 +389,7 @@ int main(){
 
                                 switch(stoi(choice)){
                                     case 1 :    
-                                        cout << "\t\tSố tiền trong ví của bạn = " << vi.laySoDu() << endl << endl;
+                                        cout << "\t\tSố tiền trong ví của bạn = " << to_string(vi.laySoDu()) << endl << endl;
                                         break;
                                     case 2 :
                                         vi.napTien(dsKhachHang);
@@ -490,7 +490,7 @@ int main(){
 
         } else if (first_choice == "exit") {
             string gb = "XIN CHÀO TẠM BIỆT VÀ HẸN GẶP LẠI QUÝ KHÁCH.....";
-            goodbye(gb,45);   
+            goodbye(gb,40);   
             break;
         }
         else {
