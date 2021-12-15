@@ -48,9 +48,11 @@ void TheATM::caiDatTheATM(){
     fout << MatKhau << endl;
 
     cout << "\t\tSố tiền nạp vào tài khoản: "; fflush(stdin);
-    cin >> soDu;
-    fout << to_string(soDu);
+    getline(cin,line);
+    soDu = stod(line);
+    fout << line;
 
+    fout.close();
 }
 
 void TheATM::layThongTinThe() const{

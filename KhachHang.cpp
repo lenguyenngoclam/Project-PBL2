@@ -76,18 +76,13 @@ void KhachHang::InThongTin() const{
 
 void KhachHang::CaiDatThongTin()
 {
-    ThongTinCaNhan::CaiDatThongTin();
-    string temp = "KH";
-    int num = stoi(number_KhachHang);
-    num++; 
-    number_KhachHang = to_string(num);
-    idKhachHang = temp + number_KhachHang;
-
     ifstream fin;
     fin.open("KHACHHANG.txt", ios::in);
     // Viết vào một file tạm là temp.txt sau đó sẽ xoá file KHACHHANG.txt và đổi tên file temp thành KHACHHANG
     ofstream fout;
     fout.open("temp.txt", ios::app);
+
+    ThongTinCaNhan::CaiDatThongTin(); 
     
     string line;
     string a[] = {HoTen, Tuoi, DiaChi, SoDienThoai};
@@ -95,11 +90,16 @@ void KhachHang::CaiDatThongTin()
     int count = 1;
     while(getline(fin, line)){
         if (count == 1) {
+            string temp = "KH";
+            soLuong++; 
+            number_KhachHang = to_string(soLuong);
+            idKhachHang = temp + number_KhachHang;
+
             fout << number_KhachHang << endl;
-            count++;
         } else {
             fout << line << endl;
         }
+        count++;
     }
 
     fout << idKhachHang << endl;
