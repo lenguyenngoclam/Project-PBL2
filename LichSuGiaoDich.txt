@@ -1,4 +1,4 @@
-53
+57
 #0
 Rút tiền từ tài khoản với số tiền : 20000.000000
 102200260
@@ -155,3 +155,15 @@ Nạp tiền vào tài khoản với số tiền : 2000000.000000
 #52
 Rút tiền từ tài khoản với số tiền : 500000.000000
 102200257
+#53
+Rút tiền từ thẻ để nạp vào ví điện tử 0903502480 với số tiền : 500000
+0123
+#54
+Rút tiền từ thẻ để nạp vào ví điện tử 0903502480 với số tiền : 500000
+123
+#55
+Rút tiền từ thẻ để nạp vào ví điện tử 0903502480 với số tiền : 500000
+1234
+#56
+Rút tiền về tài khoản từ ví điện tử với số tiền : 500000
+1234

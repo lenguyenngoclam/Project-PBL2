@@ -186,7 +186,7 @@ void ViDienTu::rutTien(DanhSachKhachHang& ds){
     fflush(stdin); getline(cin, choice);
     size_t index = ds.timKiemATM(choice);
 
-    //Khi nhập sai
+    // Khi nhập sai
     while (lsID.findEle(choice) == -1)
     {
         cout << "\t\tMã thẻ ATM không hợp lệ!" << endl;
@@ -194,7 +194,7 @@ void ViDienTu::rutTien(DanhSachKhachHang& ds){
         fflush(stdin); getline(cin, choice);
     }
 
-    //Khi thẻ không còn tồn tại
+    // Khi thẻ không còn tồn tại
     while(index == -1){
         goLienKetTheATM(choice);
         cout << "\t\tMã thẻ ATM không còn tồn tại!" << endl;
@@ -226,11 +226,22 @@ void ViDienTu::napTien(DanhSachKhachHang& ds){
     cout << "\t\tNhập mã thẻ muốn sử dụng để nạp tiền vào ví: ";
     fflush(stdin); getline(cin, choice); 
     size_t index = ds.timKiemATM(choice);
-    while (index == -1 && lsID.findEle(choice) == -1)
+
+    // Khi nhập sai
+    while (lsID.findEle(choice) == -1)
     {
         cout << "\t\tMã thẻ ATM không hợp lệ!" << endl;
-        cout << "\t\tMời bạn nhập lại mã thẻ ATM muốn nạp tiền vào ví: ";
+        cout << "\t\tMời bạn nhập lại mã thẻ ATM muốn nạp tiền: ";
+        fflush(stdin); getline(cin, choice);
+    }
+
+    // Khi thẻ không còn tồn tại
+    while (index == -1)
+    {
         goLienKetTheATM(choice);
+        cout << "\t\tMã thẻ ATM không còn tồn tại!" << endl;
+        cout << lsID << endl;
+        cout << "\t\tMời bạn nhập lại mã thẻ ATM muốn nạp tiền vào ví: ";
         fflush(stdin); getline(cin, choice);
         index = ds.timKiemATM(choice);
     }
