@@ -76,6 +76,26 @@ int main(){
     TheATM& the = dsKhachHang.getListKhachHang()[index].layThongTinThe();
     vi.chuyenTienDenThe(the, 3456); 
     cout << vi.laySoDu();
+    
+    //Xoá khách hàng
+    
+    string idKhachHang = "KH7";
+    size_t index = dsKhachHang.timKiemKhachHang(idKhachHang);
+    dsKhachHang.getListKhachHang()[index].xoaKhachHang();
+    dsLichSu.capNhatDanhSach();
+    dsKhachHang.capNhatDanhSach();
+    dsKhachHang.caiDatLichSuGiaoDich(dsLichSu);
+    
+
+    //Gỡ liên kết ATM
+    
+    string choice;
+    ViDienTu& vi = dsVi.suDungVi(tk,mk);
+    cout << vi.getList();
+    cout << "Chọn thẻ muốn gỡ : " ; fflush(stdin); 
+    getline(cin,choice);
+    vi.goLienKetTheATM(choice);
     */
+
     return 0;
 }
