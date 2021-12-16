@@ -1,4 +1,4 @@
-75
+76
 #0
 Rút tiền từ tài khoản với số tiền : 20000.000000
 102200260
@@ -130,4 +130,7 @@ Rút tiền về tài khoản từ ví điện tử với số tiền : 100000
 123456654321
 #74
 Nạp tiền vào tài khoản với số tiền : 900000.000000
+123456654321
+#75
+Rút tiền từ thẻ để nạp vào ví điện tử 0904567890 với số tiền : 100000
 123456654321

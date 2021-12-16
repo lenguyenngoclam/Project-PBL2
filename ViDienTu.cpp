@@ -179,7 +179,7 @@ void ViDienTu::goLienKetTheATM(string maThe){
 }
 
 void ViDienTu::rutTien(DanhSachKhachHang& ds){
-    cout << "\n\t\t--- Danh sách thẻ ATM đã liên kết với ví điện tử ---" << endl;
+    cout << "\n\t\t---- Danh sách thẻ ATM liên kết với ví điện tử ----" << endl;
     cout << lsID << endl;
     string choice;
     cout << "\t\tNhập mã thẻ muốn rút tiền về: ";
@@ -188,16 +188,17 @@ void ViDienTu::rutTien(DanhSachKhachHang& ds){
 
     while (lsID.findEle(choice) == -1 || index == -1)
     {
-        //Khi nhập sai
+        // Khi nhập sai
         if(lsID.findEle(choice) == -1)
             cout << "\t\tMã thẻ ATM không hợp lệ!" << endl;
         else {
-            //Khi thẻ không còn tồn tại
+            // Khi thẻ không còn tồn tại
             goLienKetTheATM(choice);
             cout << "\t\tMã thẻ ATM không còn tồn tại!" << endl;
+            cout << "\n\t\t---- Danh sách các thẻ liên kết với ví điện tử ----" << endl;
             cout << lsID << endl;
         } 
-        cout << "\t\tMời bạn nhập lại mã thẻ ATM muốn nạp tiền: ";
+        cout << "\t\tNhập lại mã thẻ ATM muốn nạp tiền: ";
         fflush(stdin); getline(cin, choice);
         index = ds.timKiemATM(choice);
     } 
@@ -218,25 +219,26 @@ void ViDienTu::rutTien(DanhSachKhachHang& ds){
 }
 
 void ViDienTu::napTien(DanhSachKhachHang& ds){
-    cout << "\n\t\t--- Danh sách các thẻ đã liên kết với ví điện tử ---" << endl;
+    cout << "\n\t\t---- Danh sách các thẻ liên kết với ví điện tử ----" << endl;
     cout << lsID << endl;
     string choice;
-    cout << "\t\tNhập mã thẻ muốn sử dụng để nạp tiền vào ví: ";
+    cout << "\t\tNhập mã thẻ để nạp tiền vào ví: ";
     fflush(stdin); getline(cin, choice); 
     size_t index = ds.timKiemATM(choice);
 
     while (lsID.findEle(choice) == -1 || index == -1)
     {
-        //Khi nhập sai
+        // Khi nhập sai
         if(lsID.findEle(choice) == -1)
             cout << "\t\tMã thẻ ATM không hợp lệ!" << endl;
         else {
-            //Khi thẻ không còn tồn tại
+            // Khi thẻ không còn tồn tại
             goLienKetTheATM(choice);
             cout << "\t\tMã thẻ ATM không còn tồn tại!" << endl;
+            cout << "\n\t\t---- Danh sách các thẻ liên kết với ví điện tử ----" << endl;
             cout << lsID << endl;
         } 
-        cout << "\t\tMời bạn nhập lại mã thẻ ATM muốn nạp tiền: ";
+        cout << "\t\tNhập lại mã thẻ ATM muốn nạp tiền: ";
         fflush(stdin); getline(cin, choice);
         index = ds.timKiemATM(choice);
     }

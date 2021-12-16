@@ -36,7 +36,8 @@ int main(){
 
     dsKhachHang.caiDatLichSuGiaoDich(dsLichSu);
 
-    string hello = "----------------- NGÂN HÀNG VIETCOMBANK XIN KÍNH CHÀO QUÝ KHÁCH ------------------";
+    cout << endl;
+    string hello = "------------------- NGÂN HÀNG METABANK XIN KÍNH CHÀO QUÝ KHÁCH --------------------";
     goodbye(hello,30); cout << endl;
 
 
@@ -54,7 +55,6 @@ int main(){
         string first_choice,choice;
         getline(cin,choice);
         cout << "\t\t+-----------+---------------------+" << endl << endl;
-
         
         // Tên đăng nhâp, mật khẩu, mã tài khoản cho ATM
         string tenDangNhap, matKhau, maTaiKhoan;
@@ -75,7 +75,7 @@ int main(){
                 cout << "\t\tTài khoản hoặc mật khẩu bị sai. Vui lòng đăng nhập lại....." << endl;
                 giaoDienDangNhap(tenDangNhap,matKhau);
                 tenDangNhap = "NV" + tenDangNhap;
-                tk = TaiKhoanNhanVien (tenDangNhap,matKhau);    
+                tk = TaiKhoanNhanVien(tenDangNhap,matKhau);    
             }
 
             tk = dsTaiKhoan.suDungTaiKhoan(tenDangNhap, matKhau);
@@ -85,7 +85,7 @@ int main(){
 
             string tempString = "n";
             while(tempString == "n") {
-                cout << "\t\t# Các option của nhân viên: " << endl;
+                cout << "\t\t# Option của nhân viên: " << endl;
                 cout << "\t\t+-----------+---------------------------------------+" << endl;
                 cout << "\t\t|" << setw(9) << "Option" << setw(3) << "|" << setw(25) << "Chức năng" << setw(18) << "|" << endl;
                 cout << "\t\t+-----------+---------------------------------------+" << endl;
@@ -120,7 +120,7 @@ int main(){
                         giaoDienNhapID(tempID);
                         tempIndex = dsKhachHang.timKiemKhachHang(tempID);
                         while(tempIndex == -1){
-                            cout << "\t\t-> ID khách hàng không tồn tại! Mời quý khách nhập lại....." << endl;
+                            cout << "\t\t-> ID khách hàng không tồn tại ! Mời quý khách nhập lại....." << endl;
                             giaoDienNhapID(tempID);
                             tempIndex = dsKhachHang.timKiemKhachHang(tempID);
                         }
@@ -181,7 +181,7 @@ int main(){
             string temp, tempString = "n";
 
             while (tempString == "n") {
-                cout << "\t\t# Các option của khách hàng: " << endl;
+                cout << "\t\t# Option của khách hàng: " << endl;
                 cout << "\t\t+-----------+------------------------------------------------------------+" << endl;
                 cout << "\t\t|" << setw(9) << "Option" << setw(3) << "|" << setw(34) << "Chức năng" << setw(30) << "|" << endl;
                 cout << "\t\t+-----------+------------------------------------------------------------+" << endl;
@@ -238,9 +238,9 @@ int main(){
                                         goodbye(noti,30);
                                     }
                                     else {
-                                        the.RutTien(d, "Rút tiền từ tài khoản với số tiền : " + to_string(d));
+                                        the.RutTien(d, "Rút tiền từ tài khoản với số tiền: " + to_string(d));
 
-                                        string noti = "Rút tiền thành công!";
+                                        string noti = "Rút tiền thành công !";
                                         goodbye(noti,30);
                                         cout << "\t\t-> Số dư hiện tại = " << to_string(the.laySoDu()) << endl;
                                     }
@@ -248,15 +248,15 @@ int main(){
                                 case 3 :
                                 {
                                     cout << "\t\tSố tiền muốn nạp = "; cin >> d;
-                                    the.NapTien(d, "Nạp tiền vào tài khoản với số tiền : " + to_string(d));
+                                    the.NapTien(d, "Nạp tiền vào tài khoản với số tiền: " + to_string(d));
 
-                                    string noti = "Nạp tiền thành công!";
+                                    string noti = "Nạp tiền thành công !";
                                     goodbye(noti,30);
                                     cout << "\t\t-> Số dư hiện tại = " << to_string(the.laySoDu()) << endl;
                                     break;
                                 }
                                 case 4 : 
-                                    cout << "\t\tNhập số tài khoản người nhận : ";
+                                    cout << "\t\tNhập số tài khoản người nhận: ";
                                     getline(cin, maTaiKhoan);
                                     tempIndex = dsKhachHang.timKiemATM(maTaiKhoan);
                                     if(tempIndex == -1) {
@@ -301,11 +301,9 @@ int main(){
                         fflush(stdin); getline(cin ,opt);
                         if (opt == "c")
                         {
-                            cout << "\t\t--------------- Đăng nhập ví điện tử ---------------" << endl << endl;
                             giaoDienDangNhap(tenDangNhap, matKhau);
                             while(!dsVi.kiemTraDangNhap(tenDangNhap, matKhau)){
                                 cout << "\t\tTài khoản hoặc mật khẩu bị sai. Vui lòng đăng nhập lại....." << endl << endl;
-                                cout << "\t\t--------------- Đăng nhập ví điện tử ---------------" << endl << endl;
                                 giaoDienDangNhap(tenDangNhap,matKhau);
                             }
 
@@ -313,7 +311,7 @@ int main(){
                                 ViDienTu& vi = dsVi.suDungVi(tenDangNhap, matKhau);
                                 size_t index = dsVi.suDungVi(tenDangNhap);
 
-                                cout << "\t\t--------------------- VÍ MOMO ----------------------" << endl << endl;
+                                cout << "\t\t--------------------- VÍ META ----------------------" << endl << endl;
                                 cout << "\t\t+-----------+--------------------------------------+" << endl;
                                 cout << "\t\t|" << setw(9) << "Option" << setw(3) << "|" << setw(25) << "Chức năng" << setw(17) << "|" << endl;
                                 cout << "\t\t+-----------+--------------------------------------+" << endl;
@@ -322,7 +320,8 @@ int main(){
                                 cout << "\t\t|" << setw(6) << "3" << setw(6) << "|" << setw(30) << "Rút tiền về thẻ" << setw(16) << "|" << endl;
                                 cout << "\t\t|" << setw(6) << "4" << setw(6) << "|" << setw(40) << "Chuyển tiền đến ví khác" << setw(8) << "|" << endl;
                                 cout << "\t\t|" << setw(6) << "5" << setw(6) << "|" << setw(35) << "Thêm liên kết thẻ ATM" << setw(10) << "|" << endl;
-                                cout << "\t\t|" << setw(6) << "6" << setw(6) << "|" << setw(31) << "Kết thúc giao dịch" << setw(13) << "|" << endl;
+                                cout << "\t\t|" << setw(6) << "6" << setw(6) << "|" << setw(34) << "Gỡ liên kết thẻ ATM" << setw(12) << "|" << endl;
+                                cout << "\t\t|" << setw(6) << "7" << setw(6) << "|" << setw(31) << "Kết thúc giao dịch" << setw(13) << "|" << endl;
                                 cout << "\t\t+-----------+--------------------------------------+" << endl;
                                 fflush(stdin); cout << "\t\t-> Option của bạn: ";
                                 getline(cin, choice);
@@ -358,7 +357,8 @@ int main(){
                                         cin >> soTien;
                                         if(soTien > vi.laySoDu()) {
                                             cout << "\t\tSố tiền trong ví không đủ!" << endl;
-                                            cout << "\t\tBạn có muốn nạp tiền? (c/n): "; fflush(stdin); getline(cin, opt);
+                                            cout << "\t\tBạn có muốn nạp tiền? (c/n): "; 
+                                            fflush(stdin); getline(cin, opt);
                                             if (opt == "c") {
                                                 vi.napTien(dsKhachHang);
                                                 vi.chuyenTienDenVi(viCanChuyen, soTien);
@@ -388,7 +388,7 @@ int main(){
                                         while (index == -1)
                                         {
                                             cout << "\t\tMã thẻ ATM không hợp lệ!" << endl;
-                                            cout << "\t\tMời bạn nhập lại mã thẻ ATM muốn liên kết đến ví: ";
+                                            cout << "\t\tNhập lại mã thẻ ATM muốn liên kết đến ví: ";
                                             fflush(stdin); getline(cin, IdATM);
                                             index = dsKhachHang.timKiemATM(IdATM);
                                         }
@@ -398,24 +398,55 @@ int main(){
                                         cout << "\t\t-> Liên kết thẻ ATM thành công!" << endl;
                                         break;
                                     }
-                                    case 6 : 
+                                    case 6 :
+                                    { 
+                                        cout << "\n\t\t--- Danh sách các thẻ đã liên kết với ví điện tử ---" << endl;
+                                        cout << vi.getList() << endl;
+                                        cout << "\t\tNhập mã thẻ ATM muốn gỡ liên kết: "; 
+                                        fflush(stdin); getline(cin, IdATM);
+                                        size_t index = dsKhachHang.timKiemATM(IdATM);
+                                        int exist = 1; // Thẻ tồn tại
+
+                                        while (vi.getList().findEle(IdATM) == -1 || index == -1)
+                                        {
+                                            // Khi nhập sai
+                                            if(vi.getList().findEle(IdATM) == -1)
+                                                cout << "\t\tMã thẻ ATM không hợp lệ!" << endl;
+                                            else {
+                                                // Khi thẻ không còn tồn tại
+                                                vi.goLienKetTheATM(IdATM);
+                                                cout << "\t\tMã thẻ ATM không còn tồn tại!" << endl;
+                                                cout << "\n\t\t--- Danh sách các thẻ đã liên kết với ví điện tử ---" << endl;
+                                                cout << vi.getList() << endl;
+                                                exist = 0;
+                                            } 
+                                            if (exist == 0) break; // Nếu thẻ không tồn tại
+                                            else {
+                                                cout << "\t\tMời bạn nhập lại mã thẻ ATM muốn gỡ liên kết: ";
+                                                fflush(stdin); getline(cin, IdATM);
+                                                index = dsKhachHang.timKiemATM(IdATM);
+                                            }
+                                        } 
+                                        if (exist != 0) vi.goLienKetTheATM(IdATM); // Nếu thẻ có tồn tại thì gỡ
+                                        cout << "\t\t-> Gỡ liên kết thẻ ATM thành công!" << endl;
+                                        break;
+                                    }
+                                    case 7 : 
                                         string gb = "Ví MOMO xin kính chào quý khách.....";
                                         goodbye(gb,45);
                                         cout << endl << endl;
                                         break;
                                 }
-                                if (choice == "6") break;
+                                if (choice == "7") break;
                             }
                         }
                         else {
-                            cout << "\t\t------------- Cài đặt ví điện tử MOMO -------------" << endl;
+                            cout << "\t\t------------- Cài đặt ví điện tử META -------------" << endl;
                             dsVi.taoViDienTu();
 
-                            cout << "\t\t-------------- Đăng nhập ví điện tử ---------------" << endl << endl;
                             giaoDienDangNhap(tenDangNhap, matKhau);
                             while(!dsVi.kiemTraDangNhap(tenDangNhap, matKhau)){
                                 cout << "\t\tTài khoản hoặc mật khẩu bị sai. Vui lòng đăng nhập lại....." << endl << endl;
-                                cout << "\t\t-------------- Đăng nhập ví điện tử ---------------" << endl << endl;
                                 giaoDienDangNhap(tenDangNhap,matKhau);
                             }
 
@@ -431,7 +462,7 @@ int main(){
                                 cout << "\t\t|" << setw(6) << "2" << setw(6) << "|" << setw(29) << "Nạp tiền vào ví" << setw(16) << "|" << endl;
                                 cout << "\t\t|" << setw(6) << "3" << setw(6) << "|" << setw(30) << "Rút tiền về thẻ" << setw(16) << "|" << endl;
                                 cout << "\t\t|" << setw(6) << "4" << setw(6) << "|" << setw(40) << "Chuyển tiền đến ví khác" << setw(8) << "|" << endl;
-                                cout << "\t\t|" << setw(6) << "5" << setw(6) << "|" << setw(33) << "Thêm liên kết thẻ ATM" << setw(11) << "|" << endl;
+                                cout << "\t\t|" << setw(6) << "5" << setw(6) << "|" << setw(35) << "Thêm liên kết thẻ ATM" << setw(10) << "|" << endl;
                                 cout << "\t\t|" << setw(6) << "6" << setw(6) << "|" << setw(31) << "Kết thúc giao dịch" << setw(13) << "|" << endl;
                                 cout << "\t\t+-----------+--------------------------------------+" << endl;
                                 fflush(stdin); cout << "\t\t-> Option của bạn: ";
@@ -451,7 +482,7 @@ int main(){
                                         break;
                                     case 4 : 
                                     {
-                                        cout << "\t\tNhập số ví người nhận : ";
+                                        cout << "\t\tNhập số ví người nhận: ";
                                         getline(cin, IdVi);
                                         tempIndex = dsVi.suDungVi(IdVi);
                                         while (tempIndex == -1)
@@ -472,18 +503,18 @@ int main(){
                                             if (opt == "c") {
                                                 vi.napTien(dsKhachHang);
                                                 vi.chuyenTienDenVi(viCanChuyen, soTien);
-                                                string noti = "Chuyển tiền thành công!";
+                                                string noti = "Chuyển tiền thành công !";
                                                 goodbye(noti,30);
                                                 cout << "\t\t-> Số tiền hiện tại = " << to_string(vi.laySoDu()) << endl;
                                             }
                                             else {
-                                                string noti = "Chuyển tiền không thành công!";
+                                                string noti = "Chuyển tiền không thành công !";
                                                 goodbye(noti,30);
                                             } 
                                         }
                                         else {
                                             vi.chuyenTienDenVi(viCanChuyen, soTien);
-                                            string noti = "Chuyển tiền thành công!";
+                                            string noti = "Chuyển tiền thành công !";
                                             goodbye(noti,30);
                                             cout << "\t\t-> Số tiền hiện tại = " << to_string(vi.laySoDu()) << endl;
                                         }
@@ -497,15 +528,15 @@ int main(){
 
                                         while (index == -1)
                                         {
-                                            cout << "\t\tMã thẻ ATM không hợp lệ!" << endl;
-                                            cout << "\t\tMời bạn nhập lại mã thẻ ATM muốn liên kết đến ví: ";
+                                            cout << "\t\tMã thẻ ATM không hợp lệ !" << endl;
+                                            cout << "\t\tNhập lại mã thẻ ATM muốn liên kết đến ví: ";
                                             fflush(stdin); getline(cin, IdATM);
                                             index = dsKhachHang.timKiemATM(IdATM);
                                         }
 
                                         TheATM &the = (dsKhachHang.getListKhachHang()[index]).layThongTinThe();
                                         vi.themLienKetTheATM(the);
-                                        cout << "\t\t-> Liên kết thẻ ATM thành công!" << endl;
+                                        cout << "\t\t-> Liên kết thẻ ATM thành công !" << endl;
                                         break;
                                     }
                                     case 6 : 
@@ -530,7 +561,7 @@ int main(){
 
                         cout << "\t\tVui lòng nhập các thông tin dưới đây !" << endl;
                         dsKhachHang.taoTaiKhoanKhachHang(); 
-                        cout << "\t\t-> Đã tạo tài khoản thành công!" << endl;
+                        cout << "\t\t-> Đã tạo tài khoản thành công !" << endl;
                     }
                         break;
 
