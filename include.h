@@ -3,6 +3,8 @@
 
 #include <windows.h>
 #include <conio.h>
+#include <cstdlib>
+#include <iomanip>
 
 #include "ThongTinCaNhan.cpp"
 #include "TaiKhoan.h"
@@ -147,6 +149,64 @@ void getpassword(char s[], int size) // Nhập mật khẩu dạng dấu *
     fflush(stdin);
 }
 
+string NhaMang;
+int MaCao[12];
+
+void MaTheCao()
+{
+    srand(time(0));
+    for (int i = 0;i < 11;i++)
+        MaCao[i] = rand() % 9;
+    for (int i = 0;i < 11;i++)
+    {
+        if (i == 4 || i == 7)
+            cout << " " << MaCao[i];
+        else cout << MaCao[i];
+    }
+}
+
+string Phone(double &sotien)
+{
+    string choice;
+
+    cout << "\t\t+-----------+----------------------------+" << endl;
+    cout << "\t\t|" << setw(9) << "Option" << setw(3) << "|" << setw(21) << "Nhà mạng" << setw(11) << "|" << endl;
+    cout << "\t\t+-----------|----------------------------+" << endl;
+    cout << "\t\t|" << setw(6) << "1" << setw(6) << "|" << setw(17) << "Viettel" << setw(12) << "|" << endl;
+    cout << "\t\t|" << setw(6) << "2" << setw(6) << "|" << setw(19) << "MobiPhone" << setw(10) << "|" << endl;
+    cout << "\t\t|" << setw(6) << "3" << setw(6) << "|" << setw(19) << "VinaPhone" << setw(10) << "|" << endl;
+    cout << "\t\t+-----------+----------------------------+" << endl;
+    cout << "\t\t-> Option: ";
+    fflush(stdin); getline(cin, choice);
+    cout << "\t\t+-----------+----------------------------+" << endl;
+
+    if (choice == "1") NhaMang = "VIETTEL";
+    else if (choice == "2") NhaMang = "MOBIPHONE";
+    else NhaMang = "VINAPHONE";
+
+    int opt;
+    cout << "\t\t+----------------------------------------+" << endl;
+    cout << "\t\t|" << setw(27) << "Mệnh giá" << setw(17) << "|" << endl;
+    cout << "\t\t+----------------------------------------+" << endl;
+    cout << "\t\t|" << setw(15) << "1. 10.000" << setw(18) << "2. 20.000" << setw(8) << "|" << endl;
+    cout << "\t\t|" << setw(15) << "3. 50.000" << setw(19) << "4. 100.000" << setw(7) << "|" << endl;
+    cout << "\t\t|" << setw(16) << "5. 200.000" << setw(18) << "6. 500.000" << setw(7) << "|" << endl;
+    cout << "\t\t+----------------------------------------+" << endl;
+    cout << "\t\t+----------------------------------------+" << endl;
+    cout << "\t\t-> Option: "; cin >> opt;
+    cout << "\t\t+----------------------------------------+" << endl << endl;
+    
+    switch(opt) {
+        case 1: sotien = 10000; break;
+        case 2: sotien = 20000; break;
+        case 3: sotien = 50000; break;
+        case 4: sotien = 100000; break;
+        case 5: sotien = 200000; break;
+        case 6: sotien = 500000; break;
+    }
+    return NhaMang;
+}
+
 // ----------------------------------------------------------------------------------------------------------------------------------------------
 // HAM CHUC NANG
 
@@ -169,6 +229,7 @@ void goodbye(string &str,int t)
         cout << s[i];
         Sleep(t);
     }
+    cout << endl;
 }
 
 #endif

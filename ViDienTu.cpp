@@ -179,9 +179,15 @@ void ViDienTu::goLienKetTheATM(string maThe){
 }
 
 void ViDienTu::rutTien(DanhSachKhachHang& ds){
+    string choice;
+
+    cout << "\t\tBạn muốn đổi ý? (c/n): "; fflush(stdin); getline(cin, choice);
+    if (choice == "c") return;
+
+    kiemTraLienKetATM(ds);
     cout << "\n\t\t---- Danh sách thẻ ATM liên kết với ví điện tử ----" << endl;
     cout << lsID << endl;
-    string choice;
+
     cout << "\t\tNhập mã thẻ muốn rút tiền về: ";
     fflush(stdin); getline(cin, choice);
     size_t index = ds.timKiemATM(choice);
@@ -219,9 +225,15 @@ void ViDienTu::rutTien(DanhSachKhachHang& ds){
 }
 
 void ViDienTu::napTien(DanhSachKhachHang& ds){
+    string choice;
+
+    cout << "\t\tBạn muốn đổi ý? (c/n): "; fflush(stdin); getline(cin, choice);
+    if (choice == "c") return;
+    
+    kiemTraLienKetATM(ds);
     cout << "\n\t\t---- Danh sách các thẻ liên kết với ví điện tử ----" << endl;
     cout << lsID << endl;
-    string choice;
+
     cout << "\t\tNhập mã thẻ để nạp tiền vào ví: ";
     fflush(stdin); getline(cin, choice); 
     size_t index = ds.timKiemATM(choice);
@@ -262,6 +274,95 @@ void ViDienTu::chuyenTienDenThe(TheATM& the, double soTien){
 void ViDienTu::chuyenTienDenVi(ViDienTu& vi, double soTien){
     vi.suaFile(add,soTien);
     suaFile(sub,soTien);
+}
+
+void ViDienTu::kiemTraLienKetATM(DanhSachKhachHang &ds)
+{
+    string IdATM;
+    if (lsID.getCurr() == 0)
+    {
+        string noti = "(!) Ví của bạn chưa liên kết với thẻ ATM....."; goodbye(noti,30);
+
+        cout << "\t\tNhập mã thẻ ATM muốn liên kết đến ví: "; 
+        fflush(stdin); getline(cin, IdATM);
+        size_t index = ds.timKiemATM(IdATM);
+
+        while (index == -1)
+        {
+            cout << "\t\tMã thẻ ATM không hợp lệ !" << endl;
+            cout << "\t\tNhập lại mã thẻ ATM muốn liên kết đến ví: ";
+            fflush(stdin); getline(cin, IdATM);
+            index = ds.timKiemATM(IdATM);
+        }
+
+        TheATM &the = (ds.getListKhachHang()[index]).layThongTinThe();
+        themLienKetTheATM(the);
+        cout << "\t\t-> Liên kết thẻ ATM thành công !" << endl;
+    }
+}
+
+void ViDienTu::napTienDT(DanhSachKhachHang &ds,double soTien)
+{
+    string opt, choice, IdATM;
+    size_t index = ds.timKiemATM(choice);
+
+    cout << "\t\tBạn muốn đổi ý? (c/n): "; fflush(stdin); getline(cin, choice);
+    if (choice == "c") return;
+
+    if (soTien < tongSoDu)
+    {
+        suaFile(sub,soTien);
+        cout << "\t\tThanh toán thành công !" << endl;
+        cout << "\t\tSố tiền trong ví của bạn = " << to_string(laySoDu()) << endl;
+    }
+    else {
+        string noti = "(!) Thẻ của bạn không đủ tiền....."; goodbye(noti,30);
+        cout << "\t\t-> Bạn có muốn thanh toán bằng thẻ ATM? (c/n): ";
+        fflush(stdin); getline(cin,opt);
+        while (opt != "c" || opt != "n")
+        {
+            if (opt == "c") {
+                kiemTraLienKetATM(ds);
+                cout << "\n\t\t---- Danh sách các thẻ liên kết với ví điện tử ----" << endl;
+                cout << lsID;
+                cout << "\t\tNhập mã thẻ để thanh toán: ";
+                fflush(stdin); getline(cin, choice); 
+                size_t index = ds.timKiemATM(choice);
+
+                while (lsID.findEle(choice) == -1 || index == -1)
+                {
+                    // Khi nhập sai
+                    if(lsID.findEle(choice) == -1)
+                        cout << "\t\tMã thẻ ATM không hợp lệ!" << endl;
+                    else {
+                        // Khi thẻ không còn tồn tại
+                        goLienKetTheATM(choice);
+                        cout << "\t\tMã thẻ ATM không còn tồn tại!" << endl;
+                        cout << "\n\t\t---- Danh sách các thẻ liên kết với ví điện tử ----" << endl;
+                        cout << lsID << endl;
+                    } 
+                    cout << "\t\tNhập lại mã thẻ ATM để thanh toán: ";
+                    fflush(stdin); getline(cin, choice);
+                    index = ds.timKiemATM(choice);
+                }
+                
+                TheATM& the = ds.getListKhachHang()[index].layThongTinThe();
+                the.RutTien(soTien, "Rút tiền từ thẻ để mua thẻ cào có giá: " + to_string(soTien));
+                break;
+            }
+            else if (opt == "n") {
+                napTien(ds);
+                suaFile(sub,soTien);
+                cout << "\t\tThanh toán thành công !" << endl;
+                cout << "\t\tSố tiền trong ví của bạn = " << to_string(laySoDu()) << endl;
+                break;
+            }
+            else {
+                string noti = "Mời bạn chọn lại....."; 
+                goodbye(noti,30);
+            }
+        }
+    }
 }
 
 void ViDienTu::caiDatVi(){

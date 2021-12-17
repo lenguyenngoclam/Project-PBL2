@@ -58,6 +58,7 @@ int main(){
         
         // Tên đăng nhâp, mật khẩu, mã tài khoản cho ATM
         string tenDangNhap, matKhau, maTaiKhoan;
+        int option;
 
         if (choice == "1") first_choice = "nv";
         else if (choice == "2") first_choice = "kh";
@@ -98,14 +99,15 @@ int main(){
                 cout << "\t\t|" << setw(6) << "7" << setw(6) << "|" << setw(19) << "Đăng xuất" << setw(25) << "|" << endl;
                 cout << "\t\t+-----------+---------------------------------------+" << endl;
                 cout << "\t\t-> Option của bạn: ";
-                fflush(stdin); getline(cin, choice);
+                cin >> option; fflush(stdin);
 
                 cout << "\t\t+---------------------------------------------------+" << endl;
 
                 string tempID;
                 size_t tempIndex;
 
-                switch(stoi(choice)){
+                switch(option){
+
                     case 1 : 
                         dsKhachHang.InDanhSach();
                         break;
@@ -166,9 +168,15 @@ int main(){
                         string gb = "Tạm biệt " + tk.layNhanVien().LayTen() + ".....";
                         goodbye(gb,50);
                         cout << endl << endl;
-                        //system("cls"); // clear màn hình
                         break;
                     }
+                    default:
+                    {
+                        string noti = "Option không hợp lệ. Mời bạn nhập lại.....";
+                        goodbye(noti,30);
+                        cout << "\t\t+---------------------------------------------------+" << endl;
+                    }
+
                 } 
 
             }
@@ -191,13 +199,13 @@ int main(){
                 cout << "\t\t|" << setw(6) << "4" << setw(6) << "|" << setw(22) << "Đăng xuất" << setw(43) << "|" << endl;
                 cout << "\t\t+-----------+------------------------------------------------------------+" << endl;
                 cout << "\t\t-> Option của bạn: ";
-                            
-                fflush(stdin); getline(cin, choice);
+                cin >> option; fflush(stdin);
+
                 cout << "\t\t+------------------------------------------------------------------------+" << endl;
                 if (choice == "1" || choice == "2" || choice == "3") 
                     cout << "\t\t----------------------------- XIN CHÀO QUÝ KHÁCH -------------------------" << endl << endl;
 
-                switch(stoi(choice)) {
+                switch(option) {
                     
                     case 1 :
                         giaoDienDangNhap(tenDangNhap, matKhau);
@@ -222,12 +230,12 @@ int main(){
                             cout << "\t\t|" << setw(6) << "6" << setw(6) << "|" << setw(32) << "Kết thúc giao dịch" << setw(11) << "|" << endl;
                             cout << "\t\t+-----------+-------------------------------------+" << endl;
                             cout << "\t\t-> Option của bạn: ";
-                            fflush(stdin); getline(cin, choice);
+                            cin >> option; fflush(stdin);
 
                             cout << "\t\t+-------------------------------------------------+" << endl;
 
                             double d;
-                            switch(stoi(choice)){
+                            switch(option){
                                 case 1 :    
                                     cout << "\t\tSố dư của bạn = " << to_string(the.laySoDu()) << endl;
                                     break;
@@ -283,12 +291,20 @@ int main(){
                                     the.inLichSuGiaoDich();
                                     break;
                                 case 6 : 
+                                {
                                     string gb = "Giao dịch đã kết thúc. Xin kính chào quý khách.....";
                                     goodbye(gb,45);
                                     cout << endl << endl;
                                     break;
+                                }
+                                default:
+                                {
+                                    string noti = "Option không hợp lệ. Mời bạn nhập lại.....";
+                                    goodbye(noti,30);
+                                    cout << "\t\t+-------------------------------------------------+" << endl;
+                                }
                             }
-                            if (choice == "6") break;
+                            if (option == 6) break;
                         }
                         break;
                     
@@ -318,17 +334,18 @@ int main(){
                                 cout << "\t\t|" << setw(6) << "1" << setw(6) << "|" << setw(33) << "Xem số tiền trong ví" << setw(11) << "|" << endl;
                                 cout << "\t\t|" << setw(6) << "2" << setw(6) << "|" << setw(29) << "Nạp tiền vào ví" << setw(16) << "|" << endl;
                                 cout << "\t\t|" << setw(6) << "3" << setw(6) << "|" << setw(30) << "Rút tiền về thẻ" << setw(16) << "|" << endl;
-                                cout << "\t\t|" << setw(6) << "4" << setw(6) << "|" << setw(40) << "Chuyển tiền đến ví khác" << setw(8) << "|" << endl;
-                                cout << "\t\t|" << setw(6) << "5" << setw(6) << "|" << setw(35) << "Thêm liên kết thẻ ATM" << setw(10) << "|" << endl;
-                                cout << "\t\t|" << setw(6) << "6" << setw(6) << "|" << setw(34) << "Gỡ liên kết thẻ ATM" << setw(12) << "|" << endl;
-                                cout << "\t\t|" << setw(6) << "7" << setw(6) << "|" << setw(31) << "Kết thúc giao dịch" << setw(13) << "|" << endl;
+                                cout << "\t\t|" << setw(6) << "4" << setw(6) << "|" << setw(38) << "Mua thẻ cào điện thoại" << setw(9) << "|" << endl;
+                                cout << "\t\t|" << setw(6) << "5" << setw(6) << "|" << setw(40) << "Chuyển tiền đến ví khác" << setw(8) << "|" << endl;
+                                cout << "\t\t|" << setw(6) << "6" << setw(6) << "|" << setw(35) << "Thêm liên kết thẻ ATM" << setw(10) << "|" << endl;
+                                cout << "\t\t|" << setw(6) << "7" << setw(6) << "|" << setw(34) << "Gỡ liên kết thẻ ATM" << setw(12) << "|" << endl;
+                                cout << "\t\t|" << setw(6) << "8" << setw(6) << "|" << setw(31) << "Kết thúc giao dịch" << setw(13) << "|" << endl;
                                 cout << "\t\t+-----------+--------------------------------------+" << endl;
                                 cout << "\t\t-> Option của bạn: ";
-                                fflush(stdin); getline(cin, choice);
+                                cin >> option; fflush(stdin);
 
                                 cout << "\t\t+--------------------------------------------------+" << endl;
 
-                                switch(stoi(choice)){
+                                switch(option){
                                     case 1 :    
                                         cout << "\t\tSố tiền trong ví của bạn = " << to_string(vi.laySoDu()) << endl << endl;
                                         break;
@@ -338,7 +355,28 @@ int main(){
                                     case 3 :
                                         vi.rutTien(dsKhachHang);
                                         break;
-                                    case 4 : 
+                                    case 4:
+                                    {
+                                        double soTien;
+                                        string nhamang = Phone(soTien);
+
+                                        vi.napTienDT(dsKhachHang,soTien);
+                                        cout << endl << "\t\t-> Thẻ cào của bạn:" << endl;
+                                        cout << "\t\t+----------------------------------------------+" << endl;
+                                        cout << "\t\t|" << setw(27) << nhamang << setw(20) <<  "|" << endl;
+                                        cout << "\t\t+----------------------------------------------+" << endl;
+                                        int y = (int)soTien;
+                                        if (soTien <= 50000 && soTien >= 10000)
+                                        {
+                                            cout << "\t\t|  Mệnh giá: " << to_string(y) << setw(30) << "|" << endl;
+                                        }
+                                        else
+                                            cout << "\t\t|  Mệnh giá: " << to_string(y) << setw(29) << "|" << endl;
+                                        cout << "\t\t|  Mã thẻ cào: "; MaTheCao(); cout << setw(20) << "|" << endl;
+                                        cout << "\t\t+----------------------------------------------+" << endl << endl;
+                                        break;
+                                    }
+                                    case 5 : 
                                     {
                                         cout << "\t\tNhập số ví người nhận : ";
                                         getline(cin, IdVi);
@@ -379,7 +417,7 @@ int main(){
                                         }
                                         break;
                                     }
-                                    case 5 :   
+                                    case 6 :   
                                     { 
                                         cout << "\t\tNhập mã thẻ ATM muốn liên kết đến ví: "; 
                                         fflush(stdin); getline(cin, IdATM);
@@ -398,7 +436,7 @@ int main(){
                                         cout << "\t\t-> Liên kết thẻ ATM thành công!" << endl;
                                         break;
                                     }
-                                    case 6 :
+                                    case 7 :
                                     { 
                                         cout << "\n\t\t--- Danh sách các thẻ đã liên kết với ví điện tử ---" << endl;
                                         cout << vi.getList() << endl;
@@ -431,13 +469,21 @@ int main(){
                                         cout << "\t\t-> Gỡ liên kết thẻ ATM thành công!" << endl;
                                         break;
                                     }
-                                    case 7 : 
-                                        string gb = "Ví MOMO xin kính chào quý khách.....";
+                                    case 8 :
+                                    {
+                                        string gb = "Ví META xin kính chào quý khách.....";
                                         goodbye(gb,45);
                                         cout << endl << endl;
                                         break;
+                                    }
+                                    default:
+                                    {
+                                        string noti = "Option không hợp lệ. Mời bạn nhập lại.....";
+                                        goodbye(noti,30);
+                                        cout << "\t\t+-------------------------------------------------+" << endl;
+                                    }
                                 }
-                                if (choice == "7") break;
+                                if (option == 8) break;
                             }
                         }
                         else {
@@ -461,16 +507,17 @@ int main(){
                                 cout << "\t\t|" << setw(6) << "1" << setw(6) << "|" << setw(33) << "Xem số tiền trong ví" << setw(11) << "|" << endl;
                                 cout << "\t\t|" << setw(6) << "2" << setw(6) << "|" << setw(29) << "Nạp tiền vào ví" << setw(16) << "|" << endl;
                                 cout << "\t\t|" << setw(6) << "3" << setw(6) << "|" << setw(30) << "Rút tiền về thẻ" << setw(16) << "|" << endl;
-                                cout << "\t\t|" << setw(6) << "4" << setw(6) << "|" << setw(40) << "Chuyển tiền đến ví khác" << setw(8) << "|" << endl;
-                                cout << "\t\t|" << setw(6) << "5" << setw(6) << "|" << setw(35) << "Thêm liên kết thẻ ATM" << setw(10) << "|" << endl;
-                                cout << "\t\t|" << setw(6) << "6" << setw(6) << "|" << setw(31) << "Kết thúc giao dịch" << setw(13) << "|" << endl;
+                                cout << "\t\t|" << setw(6) << "4" << setw(6) << "|" << setw(38) << "Mua thẻ cào điện thoại" << setw(9) << "|" << endl;
+                                cout << "\t\t|" << setw(6) << "5" << setw(6) << "|" << setw(40) << "Chuyển tiền đến ví khác" << setw(8) << "|" << endl;
+                                cout << "\t\t|" << setw(6) << "6" << setw(6) << "|" << setw(35) << "Thêm liên kết thẻ ATM" << setw(10) << "|" << endl;
+                                cout << "\t\t|" << setw(6) << "7" << setw(6) << "|" << setw(31) << "Kết thúc giao dịch" << setw(13) << "|" << endl;
                                 cout << "\t\t+-----------+--------------------------------------+" << endl;
                                 cout << "\t\t-> Option của bạn: ";
-                                fflush(stdin); getline(cin, choice);
+                                cin >> option; fflush(stdin);
 
                                 cout << "\t\t+--------------------------------------------------+" << endl;
 
-                                switch(stoi(choice)){
+                                switch(option){
                                     case 1 :    
                                         cout << "\t\tSố tiền trong ví của bạn = " << to_string(vi.laySoDu()) << endl << endl;
                                         break;
@@ -480,7 +527,28 @@ int main(){
                                     case 3 :
                                         vi.rutTien(dsKhachHang);
                                         break;
-                                    case 4 : 
+                                    case 4:
+                                    {
+                                        double soTien;
+                                        string nhamang = Phone(soTien);
+
+                                        vi.napTienDT(dsKhachHang,soTien);
+                                        cout << endl << "-> Thẻ cào của bạn:" << endl;
+                                        cout << "\t\t+----------------------------------------------+" << endl;
+                                        cout << "\t\t|" << setw(27) << nhamang << setw(20) <<  "|" << endl;
+                                        cout << "\t\t+----------------------------------------------+" << endl;
+                                        int y = (int)soTien;
+                                        if (soTien <= 50000 && soTien >= 10000)
+                                        {
+                                            cout << "\t\t|  Mệnh giá: " << to_string(y) << setw(30) << "|" << endl;
+                                        }
+                                        else
+                                            cout << "\t\t|  Mệnh giá: " << to_string(y) << setw(29) << "|" << endl;
+                                        cout << "\t\t|  Mã thẻ cào: "; MaTheCao(); cout << setw(20) << "|" << endl;
+                                        cout << "\t\t+----------------------------------------------+" << endl;
+                                        break;
+                                    }
+                                    case 5 : 
                                     {
                                         cout << "\t\tNhập số ví người nhận: ";
                                         getline(cin, IdVi);
@@ -520,7 +588,7 @@ int main(){
                                         }
                                         break;
                                     }
-                                    case 5 :   
+                                    case 6 :   
                                     { 
                                         cout << "\t\tNhập mã thẻ ATM muốn liên kết đến ví: "; 
                                         fflush(stdin); getline(cin, IdATM);
@@ -539,13 +607,21 @@ int main(){
                                         cout << "\t\t-> Liên kết thẻ ATM thành công !" << endl;
                                         break;
                                     }
-                                    case 6 : 
-                                        string gb = "Ví MOMO xin kính chào quý khách.....";
+                                    case 7 : 
+                                    {
+                                        string gb = "Ví META xin kính chào quý khách.....";
                                         goodbye(gb,45);
                                         cout << endl << endl;
                                         break;
+                                    }
+                                    default:
+                                    {
+                                        string noti = "Option không hợp lệ. Mời bạn nhập lại.....";
+                                        goodbye(noti,30);
+                                        cout << "\t\t+-------------------------------------------------+" << endl;
+                                    }
                                 }
-                                if (choice == "6") break;
+                                if (option == 7) break;
                             }
                         }
                         break;
@@ -562,9 +638,9 @@ int main(){
                         cout << "\t\tVui lòng nhập các thông tin dưới đây !" << endl;
                         dsKhachHang.taoTaiKhoanKhachHang(); 
                         cout << "\t\t-> Đã tạo tài khoản thành công !" << endl;
-                    }
                         break;
-
+                    }
+                    
                     case 4 :
                         tempString = "c";
                         string gb = "Tạm biệt quý khách.....";

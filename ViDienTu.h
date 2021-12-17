@@ -31,11 +31,13 @@ class ViDienTu : public TaiKhoan{
         void chuyenTienDenVi(ViDienTu& vi, double soTien);
         void caiDatVi();
         void goLienKetTheATM(string maThe);
+        void napTienDT(DanhSachKhachHang &ds,double soTien);
+        void kiemTraLienKetATM(DanhSachKhachHang &ds);
         
         string layTaiKhoan() { return TenDangNhap; }
         LinkedList<string>& getList() { return lsID; }
         double laySoDu() { return tongSoDu; }
-
+        
         bool operator ==(const ViDienTu& rhs);
 
         friend class DanhSachViDienTu;
