@@ -50,10 +50,10 @@ int main(){
         cout << "\t\t|" << setw(6) << "2" << setw(6) << "|" << setw(18) << "Khách hàng" << setw(6) << "|" << endl;
         cout << "\t\t|" << setw(6) << "3" << setw(6) << "|" << setw(10) << "Exit" << setw(12) << "|" << endl;
         cout << "\t\t+-----------+---------------------+" << endl;
-        fflush(stdin); cout << "\t\t-> Option của bạn: ";
+        cout << "\t\t-> Option của bạn: ";
 
         string first_choice,choice;
-        getline(cin,choice);
+        fflush(stdin); getline(cin,choice);
         cout << "\t\t+-----------+---------------------+" << endl << endl;
         
         // Tên đăng nhâp, mật khẩu, mã tài khoản cho ATM
@@ -97,8 +97,8 @@ int main(){
                 cout << "\t\t|" << setw(6) << "6" << setw(6) << "|" << setw(43) << "Lấy thông tin thẻ ATM cho khách" << setw(3) << "|" << endl;
                 cout << "\t\t|" << setw(6) << "7" << setw(6) << "|" << setw(19) << "Đăng xuất" << setw(25) << "|" << endl;
                 cout << "\t\t+-----------+---------------------------------------+" << endl;
-                fflush(stdin); cout << "\t\t-> Option của bạn: ";
-                getline(cin, choice);
+                cout << "\t\t-> Option của bạn: ";
+                fflush(stdin); getline(cin, choice);
 
                 cout << "\t\t+---------------------------------------------------+" << endl;
 
@@ -190,9 +190,9 @@ int main(){
                 cout << "\t\t|" << setw(6) << "3" << setw(6) << "|" << setw(67) << "Muốn đăng kí là thành viên mới của ngân hàng" << setw(8) << "|" << endl;
                 cout << "\t\t|" << setw(6) << "4" << setw(6) << "|" << setw(22) << "Đăng xuất" << setw(43) << "|" << endl;
                 cout << "\t\t+-----------+------------------------------------------------------------+" << endl;
-                fflush(stdin); cout << "\t\t-> Option của bạn: ";
+                cout << "\t\t-> Option của bạn: ";
                             
-                getline(cin, choice);
+                fflush(stdin); getline(cin, choice);
                 cout << "\t\t+------------------------------------------------------------------------+" << endl;
                 if (choice == "1" || choice == "2" || choice == "3") 
                     cout << "\t\t----------------------------- XIN CHÀO QUÝ KHÁCH -------------------------" << endl << endl;
@@ -221,8 +221,8 @@ int main(){
                             cout << "\t\t|" << setw(6) << "5" << setw(6) << "|" << setw(35) << "In lịch sử giao dịch" << setw(9) << "|" << endl;
                             cout << "\t\t|" << setw(6) << "6" << setw(6) << "|" << setw(32) << "Kết thúc giao dịch" << setw(11) << "|" << endl;
                             cout << "\t\t+-----------+-------------------------------------+" << endl;
-                            fflush(stdin); cout << "\t\t-> Option của bạn: ";
-                            getline(cin, choice);
+                            cout << "\t\t-> Option của bạn: ";
+                            fflush(stdin); getline(cin, choice);
 
                             cout << "\t\t+-------------------------------------------------+" << endl;
 
@@ -323,8 +323,8 @@ int main(){
                                 cout << "\t\t|" << setw(6) << "6" << setw(6) << "|" << setw(34) << "Gỡ liên kết thẻ ATM" << setw(12) << "|" << endl;
                                 cout << "\t\t|" << setw(6) << "7" << setw(6) << "|" << setw(31) << "Kết thúc giao dịch" << setw(13) << "|" << endl;
                                 cout << "\t\t+-----------+--------------------------------------+" << endl;
-                                fflush(stdin); cout << "\t\t-> Option của bạn: ";
-                                getline(cin, choice);
+                                cout << "\t\t-> Option của bạn: ";
+                                fflush(stdin); getline(cin, choice);
 
                                 cout << "\t\t+--------------------------------------------------+" << endl;
 
@@ -465,8 +465,8 @@ int main(){
                                 cout << "\t\t|" << setw(6) << "5" << setw(6) << "|" << setw(35) << "Thêm liên kết thẻ ATM" << setw(10) << "|" << endl;
                                 cout << "\t\t|" << setw(6) << "6" << setw(6) << "|" << setw(31) << "Kết thúc giao dịch" << setw(13) << "|" << endl;
                                 cout << "\t\t+-----------+--------------------------------------+" << endl;
-                                fflush(stdin); cout << "\t\t-> Option của bạn: ";
-                                getline(cin, choice);
+                                cout << "\t\t-> Option của bạn: ";
+                                fflush(stdin); getline(cin, choice);
 
                                 cout << "\t\t+--------------------------------------------------+" << endl;
 
