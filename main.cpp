@@ -202,7 +202,7 @@ int main(){
                 cin >> option; fflush(stdin);
 
                 cout << "\t\t+------------------------------------------------------------------------+" << endl;
-                if (choice == "1" || choice == "2" || choice == "3") 
+                if (option == 1 || option == 2 || option == 3) 
                     cout << "\t\t----------------------------- XIN CHÀO QUÝ KHÁCH -------------------------" << endl << endl;
 
                 switch(option) {
@@ -642,11 +642,20 @@ int main(){
                     }
                     
                     case 4 :
+                    {
                         tempString = "c";
                         string gb = "Tạm biệt quý khách.....";
                         goodbye(gb,40);
                         cout << endl << endl;
                         break;
+                    }
+                    default:
+                    {
+                        string noti = "Option không hợp lệ. Mời bạn nhập lại.....";
+                        goodbye(noti,30);
+                        cout << "\t\t+-------------------------------------------------+" << endl;
+                    }    
+                    
                 }
 
             }
