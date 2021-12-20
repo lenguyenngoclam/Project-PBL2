@@ -1,14 +1,21 @@
 #ifndef LICHSUGIAODICH_CPP
 #define LICHSUGIAODICH_CPP
 
+#include <string.h>
+
 #include "LichSuGiaoDich.h"
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------
 // LICH SU GIAO DICH
 
 ostream& operator <<(ostream& os, const LichSuGiaoDich& ls){
-    cout << "\t\t# Mã giao dịch : " << ls.maGiaoDich << endl;
-    cout << "\t\t  Nội dung giao dịch : " << ls.noiDung;
+    if ((ls.noiDung).size() <= 62) os << "\t\t|" << setw(12) << ls.maGiaoDich << setw(11) << "|  " << ls.noiDung << setw(33) << "|" << endl;
+    else if ((ls.noiDung).size() > 62 && (ls.noiDung).size() <= 63) os << "\t\t|" << setw(12) << ls.maGiaoDich << setw(11) << "|  " << ls.noiDung << setw(32) << "|" << endl;
+    else if ((ls.noiDung).size() > 63 && (ls.noiDung).size() < 89) os << "\t\t|" << setw(12) << ls.maGiaoDich << setw(11) << "|  " << ls.noiDung << setw(31) << "|" << endl;
+    else if ((ls.noiDung).size() >= 89 && (ls.noiDung).size() < 91) os << "\t\t|" << setw(12) << ls.maGiaoDich << setw(11) << "|  " << ls.noiDung << setw(11) << "|" << endl;
+    else if ((ls.noiDung).size() >= 91 && (ls.noiDung).size() < 95) os << "\t\t|" << setw(12) << ls.maGiaoDich << setw(11) << "|  " << ls.noiDung << setw(7) << "|" << endl;
+    else os << "\t\t|" << setw(12) << ls.maGiaoDich << setw(11) << "|  " << ls.noiDung << setw(11) << "|" << endl;
+    os << "\t\t+--------------------+----------------------------------------------------------------------------------+" << endl;
     return os;
 }
 

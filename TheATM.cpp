@@ -67,7 +67,7 @@ void TheATM::caiDatTheATM(){
 
 void TheATM::layThongTinThe() const{
     cout << "\t\t- Mã thẻ ATM: " << MaTaiKhoan << endl;
-    cout << "-\t\t Số dư trong thẻ: " << to_string(soDu) << endl;
+    cout << "\t\t- Số dư trong thẻ: " << to_string(soDu) << endl;
 }
 
 void TheATM::suaFile(double (*func)(double, double), double soTien){
@@ -190,8 +190,12 @@ void TheATM::chuyenTien(TheATM& the, double tien){
 }
 
 void TheATM::inLichSuGiaoDich(){
+    cout << "\t\t+--------------------+----------------------------------------------------------------------------------+" << endl;
+    cout << "\t\t|" << setw(19) << "Mã giao dịch" << setw(5) << "|" 
+    << setw(52) << "Nội dung giao dịch" << setw(35) << "|" << endl;
+    cout << "\t\t+--------------------+----------------------------------------------------------------------------------+" << endl;
     for(int i = 0; i < ls.getCurr(); i++)
-        cout << ls[i] << endl;
+        cout << ls[i];
 }
 
 void TheATM::caiDatLichSuGiaoDich(DanhSachLichSuGiaoDich& ds){

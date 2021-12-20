@@ -29,11 +29,9 @@ class ThongTinCaNhan{
 // Vì là hàm ảo nên phải khai báo chung 1 file
 void ThongTinCaNhan::InThongTin() const
 {
-    cout << "\t\t- Họ và tên: " << HoTen << endl;
-    cout << "\t\t- Tuổi: " << Tuoi << endl;
-    cout << "\t\t- Địa chỉ: " << DiaChi << endl;
-    cout << "\t\t- Số điện thoại: " << SoDienThoai << endl;
-    cout << "\t\t---------------------------------------------------" << endl;
+    cout << "|" << setw(27) << HoTen << setw(8) << "|" << setw(5) << Tuoi << setw(4) << 
+    "|" << setw(21) << DiaChi << setw(7) << "|" << setw(15) << SoDienThoai << setw(5) << "|" << endl;
+    cout << "\t\t+-------------+----------------------------------+--------+---------------------------+-------------------+" << endl;
 }
 
 void ThongTinCaNhan::DoiThongTinCaNhan()

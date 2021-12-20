@@ -70,7 +70,7 @@ void KhachHang::DoiThongTinCaNhan() {
 }
 
 void KhachHang::InThongTin() const{
-    cout << "\t\t- ID: " << idKhachHang << endl;
+    cout << "\t\t|" << setw(8) << idKhachHang << setw(6);
     ThongTinCaNhan::InThongTin();
 }
 
@@ -201,7 +201,11 @@ ostream& operator <<(ostream& os, const KhachHang& kh){
 }
 
 void DanhSachKhachHang::InDanhSach(){
-    cout << "\t\t--------------- Danh sách khách hàng ----------------" << endl;
+    cout << "\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Danh sách khách hàng ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << endl;
+    cout << "\t\t+-------------+----------------------------------+--------+---------------------------+-------------------+" << endl;
+    cout << "\t\t|" << setw(7) << "ID" << setw(7) << "|" << setw(26) << "Họ và tên" << setw(13) << "|" << setw(8) << "Tuổi" << setw(3) << 
+    "|" << setw(23) << "Địa chỉ" << setw(10) << "|" << setw(23) << "Số điện thoại" << setw(4) << "|" << endl;
+    cout << "\t\t+-------------+----------------------------------+--------+---------------------------+-------------------+" << endl;
     for(size_t i = 0; i < lsKhachHang.getCurr(); i++)
         lsKhachHang[i].InThongTin();
 }

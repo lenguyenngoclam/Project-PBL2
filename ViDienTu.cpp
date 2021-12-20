@@ -183,6 +183,7 @@ void ViDienTu::rutTien(DanhSachKhachHang& ds){
 
     cout << "\t\tBạn muốn đổi ý? (c/n): "; fflush(stdin); getline(cin, choice);
     if (choice == "c") return;
+    system("cls");
 
     kiemTraLienKetATM(ds);
     cout << "\n\t\t---- Danh sách thẻ ATM liên kết với ví điện tử ----" << endl;
@@ -214,13 +215,17 @@ void ViDienTu::rutTien(DanhSachKhachHang& ds){
     string soTien;
     cout << "\t\tSố tiền muốn rút = "; cin >> soTien;
     if(stod(soTien) > tongSoDu)
+    {
         cout << "\t\tSố tiền quý khách không đủ!" << endl;
+        cout << "\n\t\t"; system("pause"); system("cls");
+    }
     else {
         the.NapTien(stod(soTien), "Rút tiền về tài khoản từ ví điện tử với số tiền : " + soTien);
         suaFile(sub,stod(soTien));
         string tmp = "Rút tiền thành công!";
         goodbye(tmp,30); cout << endl;
         cout << "\t\t-> Số tiền trong ví của bạn = " << to_string(laySoDu()) << endl << endl;
+        cout << "\n\t\t"; system("pause"); system("cls");
     }
 }
 
@@ -264,6 +269,7 @@ void ViDienTu::napTien(DanhSachKhachHang& ds){
     string tmp = "Nạp tiền thành công!";
     goodbye(tmp,30); cout << endl;
     cout << "\t\t-> Số tiền trong ví của bạn = " << to_string(laySoDu()) << endl << endl;
+    cout << "\n\t\t"; system("pause"); system("cls");
 }    
 
 void ViDienTu::chuyenTienDenThe(TheATM& the, double soTien){
@@ -308,12 +314,14 @@ void ViDienTu::napTienDT(DanhSachKhachHang &ds,double soTien)
 
     cout << "\t\tBạn muốn đổi ý? (c/n): "; fflush(stdin); getline(cin, choice);
     if (choice == "c") return;
+    system("cls");
 
     if (soTien < tongSoDu)
     {
         suaFile(sub,soTien);
         cout << "\t\tThanh toán thành công !" << endl;
         cout << "\t\tSố tiền trong ví của bạn = " << to_string(laySoDu()) << endl;
+        cout << "\n\t\t"; system("pause"); system("cls");
     }
     else {
         string noti = "(!) Thẻ của bạn không đủ tiền....."; goodbye(noti,30);
@@ -328,7 +336,7 @@ void ViDienTu::napTienDT(DanhSachKhachHang &ds,double soTien)
                 cout << "\t\tNhập mã thẻ để thanh toán: ";
                 fflush(stdin); getline(cin, choice); 
                 size_t index = ds.timKiemATM(choice);
-
+                
                 while (lsID.findEle(choice) == -1 || index == -1)
                 {
                     // Khi nhập sai
@@ -348,6 +356,7 @@ void ViDienTu::napTienDT(DanhSachKhachHang &ds,double soTien)
                 
                 TheATM& the = ds.getListKhachHang()[index].layThongTinThe();
                 the.RutTien(soTien, "Rút tiền từ thẻ để mua thẻ cào có giá: " + to_string(soTien));
+                cout << "\n\t\t"; system("pause"); system("cls");
                 break;
             }
             else if (opt == "n") {
@@ -355,11 +364,13 @@ void ViDienTu::napTienDT(DanhSachKhachHang &ds,double soTien)
                 suaFile(sub,soTien);
                 cout << "\t\tThanh toán thành công !" << endl;
                 cout << "\t\tSố tiền trong ví của bạn = " << to_string(laySoDu()) << endl;
+                cout << "\n\t\t"; system("pause"); system("cls");
                 break;
             }
             else {
                 string noti = "Mời bạn chọn lại....."; 
                 goodbye(noti,30);
+                cout << "\n\t\t"; system("pause"); system("cls");
             }
         }
     }

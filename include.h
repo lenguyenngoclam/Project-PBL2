@@ -178,7 +178,7 @@ string Phone(double &sotien)
     cout << "\t\t+-----------+----------------------------+" << endl;
     cout << "\t\t-> Option: ";
     fflush(stdin); getline(cin, choice);
-    cout << "\t\t+-----------+----------------------------+" << endl;
+    cout << "\t\t+-----------+----------------------------+" << endl; system("cls");
 
     if (choice == "1") NhaMang = "VIETTEL";
     else if (choice == "2") NhaMang = "MOBIPHONE";
@@ -194,7 +194,7 @@ string Phone(double &sotien)
     cout << "\t\t+----------------------------------------+" << endl;
     cout << "\t\t+----------------------------------------+" << endl;
     cout << "\t\t-> Option: "; cin >> opt;
-    cout << "\t\t+----------------------------------------+" << endl << endl;
+    cout << "\t\t+----------------------------------------+" << endl; system("cls");
     
     switch(opt) {
         case 1: sotien = 10000; break;
